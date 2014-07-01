@@ -29,7 +29,7 @@ img { vertical-align: middle; min-width: 100px; min-height: 100px; }
 .profile-header .icon-left { left: 25px; top: 45px; }
 .profile-header .icon-top { top: 20px; left: 71.5px; }
 .profile-header .icon-right { right: 25px; top: 45px; }
-.profile-header .icon-bottom { bottom: 20px; left: 71.5px; }
+.profile-header .icon-bottom { bottom: 10px; left: 71.5px; }
 .profile-header:hover .icon-left { left: -25px; top: -5px; }
 .profile-header:hover .icon-top { top: -30px; }
 .profile-header:hover .icon-right { right: -25px; top: -5px; }
