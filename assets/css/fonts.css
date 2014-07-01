@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "fontello";
+  src:url("../fonts/fontello.eot");
+  src:url("../fonts/fontello.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/fontello.woff") format("woff"),
+    url("../fonts/fontello.ttf") format("truetype"),
+    url("../fonts/fontello.svg#fontello") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "fontello" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "fontello" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-github:before {
+  content: "a";
+}
+.icon-github-outline:before {
+  content: "b";
+}
+.icon-twitter-outline:before {
+  content: "c";
+}
+.icon-twitter:before {
+  content: "d";
+}
+.icon-buffer-outline:before {
+  content: "e";
+}
+.icon-buffer:before {
+  content: "f";
+}
+.icon-facebook-outline:before {
+  content: "g";
+}
+.icon-facebook:before {
+  content: "h";
+}
+.icon-googleplus:before {
+  content: "i";
+}
+.icon-googleplus-1:before {
+  content: "j";
+}
+.icon-xing:before {
+  content: "l";
+}
