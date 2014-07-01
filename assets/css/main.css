@@ -26,17 +26,23 @@ img { vertical-align: middle; min-width: 100px; min-height: 100px; }
   -o-transition: top 0.1s ease-out 0.2s, left 0.1s ease-out 0.2s, right 0.1s ease-out 0.2s, bottom 0.1s ease-out 0.2s;
   transition: top 0.1s ease-out 0.2s, left 0.1s ease-out 0.2s, right 0.1s ease-out 0.2s, bottom 0.1s ease-out 0.2s;
 }
-.profile-header .icon-left { left: 25px; top: 45px; }
+.profile-header .icon-bottom-left { left: 25px; bottom: 45px; }
+.profile-header .icon-top-left { left: 25px; top: 45px; }
 .profile-header .icon-top { top: 20px; left: 71.5px; }
-.profile-header .icon-right { right: 25px; top: 45px; }
+.profile-header .icon-top-right { right: 25px; top: 45px; }
+.profile-header .icon-bottom-right { right: 25px; bottom: 45px; }
 .profile-header .icon-bottom { bottom: 10px; left: 71.5px; }
-.profile-header:hover .icon-left { left: -25px; top: -5px; }
+.profile-header:hover .icon-bottom-left { left: -25px; bottom: 15px; }
+.profile-header:hover .icon-top-left { left: -25px; top: 15px; }
 .profile-header:hover .icon-top { top: -30px; }
-.profile-header:hover .icon-right { right: -25px; top: -5px; }
+.profile-header:hover .icon-top-right { right: -25px; top: 15px; }
+.profile-header:hover .icon-bottom-right { right: -25px; bottom: 15px; }
 .profile-header:hover .icon-bottom { bottom: -30px; }
-.profile-header .icon-left:hover { left: -25px; top: -5px; }
+.profile-header .icon-bottom-left:hover { left: -25px; bottom: 15px; }
+.profile-header .icon-top-left:hover { left: -25px; top: 15px; }
 .profile-header .icon-top:hover { top: -30px; }
-.profile-header .icon-right:hover { right: -25px; top: -5px; }
+.profile-header .icon-top-right:hover { right: -25px; top: 15px; }
+.profile-header .icon-bottom-right:hover { right: -25px; bottom: 15px; }
 .profile-header .icon-bottom:hover { bottom: -30px; }
 
 .profile-title { position: relative; z-index: 10; width: 100%; margin: 0; margin-top: -8px; padding: 0; font-size: 20px; font-weight: 700; color: #1E824C; line-height: 30px; }
@@ -51,9 +57,9 @@ img { vertical-align: middle; min-width: 100px; min-height: 100px; }
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px) {
   .profile-box { position: relative; margin-top: 100px; }
   .profile-header .link-social { fill: #1E824C; }
-  .profile-header .icon-left { left: -25px; top: -5px; }
+  .profile-header .icon-top-left { left: -25px; top: -5px; }
   .profile-header .icon-top { top: -30px; }
-  .profile-header .icon-right { right: -25px; top: -5px; }
+  .profile-header .icon-top-right { right: -25px; top: -5px; }
   .profile-header .icon-bottom { bottom: -30px; }
   .profile-description { width: 90%; padding-bottom: 30px; }
 }
