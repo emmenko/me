@@ -55,7 +55,7 @@ img { vertical-align: middle; min-width: 100px; min-height: 100px; }
 
 .profile-stack { background-color: #FFF; color: #1E824C; overflow: hidden; }
 .profile-stack ul { width: 40%; margin: 20px auto; list-style: none; padding: 10px; }
-.profile-stack li { display: inline-block; }
+.profile-stack li { display: inline-block; margin: 0 5px; }
 
 .profile-description { width: 40%; margin: 30px auto 0; }
 .profile-description h1 { font-size: 16px; font-style: italic; margin: 0; }
@@ -73,4 +73,5 @@ img { vertical-align: middle; min-width: 100px; min-height: 100px; }
   .profile-title { margin-top: 40px; }
   .profile-title .side-left { display: block; width: 100%; text-align: center; right: 0; }
   .profile-title .side-right { display: block; width: 100%; text-align: center; left: 0; }
+  .profile-stack li { margin: 0; }
 }
