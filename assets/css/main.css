@@ -48,13 +48,13 @@ img { vertical-align: middle; min-width: 100px; min-height: 100px; }
 /*.profile-header .icon-top-right:hover { right: -25px; top: 15px; }*/
 /*.profile-header .icon-bottom-right:hover { right: -25px; bottom: 15px; }*/
 
-.profile-title { position: relative; z-index: 10; width: 100%; margin: 0 auto; margin-top: 30px; padding: 0; font-size: 20px; font-weight: 700; color: #1E824C; line-height: 30px; }
+.profile-title { position: relative; z-index: 10; width: 100%; margin: 30px auto; padding: 0; font-size: 20px; font-weight: 700; color: #1E824C; line-height: 30px; }
 .profile-title .side-left { display: inline-block; width: 49.5%; text-align: right; position: relative; right: 20px; }
 .profile-title .side-right { display: inline-block; width: 49.5%; text-align: left; position: relative; left: 25px; }
 .profile-title .highlighted { background-color: #FFF; color: #66CC99; font-style: normal; padding: 2px 0 2px 10px; letter-spacing: 10px; margin-right: 10px; }
 
-.profile-stack { background-color: #FFF; color: #1E824C; }
-.profile-stack ul { width: 40%; margin: 0 auto; list-style: none; padding: 10px; margin-top: 20px; }
+.profile-stack { background-color: #FFF; color: #1E824C; overflow: hidden; }
+.profile-stack ul { width: 40%; margin: 20px auto; list-style: none; padding: 10px; }
 .profile-stack li { display: inline-block; }
 
 .profile-description { width: 40%; margin: 30px auto 0; }
