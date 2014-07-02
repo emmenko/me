@@ -5,6 +5,8 @@
 @-webkit-keyframes spinnerRotate { from { -webkit-transform: rotate(0deg); } to { -webkit-transform: rotate(360deg); } }
 @-moz-keyframes spinnerRotate { from { -moz-transform: rotate(0deg); } to { -moz-transform: rotate(360deg); } }
 @-ms-keyframes spinnerRotate { from { -ms-transform: rotate(0deg); } to { -ms-transform: rotate(360deg); } }
+@-o-keyframes spinnerRotate { from { -o-transform: rotate(0deg); } to { -o-transform: rotate(360deg); } }
+@keyframes spinnerRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
 html { margin: 0; padding: 0; -webkit-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; }
 body { font-family: 'Lato','Helvetica Neue','Open-Light',sans-serif; background-color: #66CC99; color: #FFF; margin: 0 auto; padding: 0; text-align: center; }
@@ -14,6 +16,8 @@ img { vertical-align: middle; min-width: 100px; min-height: 100px; }
   -webkit-animation: spinnerRotate 1s ease-in-out 0s 1;
   -moz-animation: spinnerRotate 1s ease-in-out 0s 1;
   -ms-animation: spinnerRotate 1s ease-in-out 0s 1;
+  -o-animation: spinnerRotate 1s ease-in-out 0s 1;
+  animation: spinnerRotate 1s ease-in-out 0s 1;
 }
 
 .profile-box { position: absolute; left: 0; right: 0; bottom: 0; top: 40%; vertical-align: middle; }
