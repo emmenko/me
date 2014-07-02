@@ -31,36 +31,44 @@ img { vertical-align: middle; min-width: 100px; min-height: 100px; }
 .profile-header .icon-top { top: 20px; left: 71.5px; }
 .profile-header .icon-top-right { right: 25px; top: 45px; }
 .profile-header .icon-bottom-right { right: 25px; bottom: 45px; }
-.profile-header .icon-bottom { bottom: 10px; left: 71.5px; }
+.profile-header .icon-bottom { bottom: -30px; left: 71.5px; }
 .profile-header:hover .icon-bottom-left { left: -25px; bottom: 15px; }
 .profile-header:hover .icon-top-left { left: -25px; top: 15px; }
 .profile-header:hover .icon-top { top: -30px; }
 .profile-header:hover .icon-top-right { right: -25px; top: 15px; }
 .profile-header:hover .icon-bottom-right { right: -25px; bottom: 15px; }
-.profile-header:hover .icon-bottom { bottom: -30px; }
 .profile-header .icon-bottom-left:hover { left: -25px; bottom: 15px; }
 .profile-header .icon-top-left:hover { left: -25px; top: 15px; }
 .profile-header .icon-top:hover { top: -30px; }
 .profile-header .icon-top-right:hover { right: -25px; top: 15px; }
 .profile-header .icon-bottom-right:hover { right: -25px; bottom: 15px; }
-.profile-header .icon-bottom:hover { bottom: -30px; }
 
 .profile-title { position: relative; z-index: 10; width: 100%; margin: 0; margin-top: -8px; padding: 0; font-size: 20px; font-weight: 700; color: #1E824C; line-height: 30px; }
 .profile-title .side-left { display: inline-block; width: 49.5%; text-align: right; position: relative; right: 20px; }
 .profile-title .side-right { display: inline-block; width: 49.5%; text-align: left; position: relative; left: 25px; }
 .profile-title .highlighted { background-color: #FFF; color: #66CC99; font-style: normal; padding: 2px 0 2px 10px; letter-spacing: 10px; margin-right: 10px; }
 
-.profile-description { width: 50%; margin: 30px auto 0; }
+.profile-stack { background-color: #FFF; color: #1E824C; }
+.profile-stack ul { width: 40%; margin: 0 auto; list-style: none; padding: 10px; margin-top: 20px; }
+.profile-stack li {  }
+
+.profile-description { width: 40%; margin: 30px auto 0; }
 .profile-description h1 { font-size: 16px; font-style: italic; margin: 0; }
 .profile-description h2 { font-size: 16px; text-align: right; margin-top: 5px; color: #1E824C; }
+
+body.stack { background-color: #1E824C; }
+body.stack .profile-title { color: #66CC99; }
+body.stack .profile-title .highlighted { background-color: #66CC99; color: #FFF; }
+body.stack .profile-description h2 { color: #FFF; }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px) {
   .profile-box { position: relative; margin-top: 100px; }
   .profile-header .link-social { fill: #1E824C; }
-  .profile-header .icon-top-left { left: -25px; top: -5px; }
+  .profile-header .icon-bottom-left { left: -25px; bottom: 15px; }
+  .profile-header .icon-top-left { left: -25px; top: 15px; }
   .profile-header .icon-top { top: -30px; }
-  .profile-header .icon-top-right { right: -25px; top: -5px; }
-  .profile-header .icon-bottom { bottom: -30px; }
+  .profile-header .icon-top-right { right: -25px; top: 15px; }
+  .profile-header .icon-bottom-right { right: -25px; bottom: 15px; }
   .profile-description { width: 90%; padding-bottom: 30px; }
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : portrait) {
