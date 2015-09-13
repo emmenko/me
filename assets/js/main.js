@@ -23,6 +23,10 @@ var headers = [
     link: 'https://www.xing.com/profile/Nicola_Molinari',
     position: 'bottom-right',
     icon: 'icon-xing'
+  },
+  {
+    position: 'bottom',
+    icon: 'icon-buffer'
   }
 ]
 
@@ -44,10 +48,16 @@ var ProfileHeader = React.createClass({
 
   render: function () {
     var className = 'link-social icon-' + this.props.position
-    return React.createElement(
-      'a', { href: this.props.link, className: className, target: '_blank' },
-      React.createElement('i', { className: this.props.icon })
-    )
+    return this.props.link ?
+      React.createElement(
+        'a', { href: this.props.link, className: className, target: '_blank' },
+        React.createElement('i', { className: this.props.icon })
+      )
+      :
+      React.createElement(
+        'span', { className: className },
+        React.createElement('i', { className: this.props.icon })
+      )
   }
 })
 
