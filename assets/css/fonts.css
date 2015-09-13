@@ -96,50 +96,6 @@
   content: "n";
 }
 
-/*
- * Icomoon icons
- */
-@font-face {
-  font-family: 'icomoon';
-  src:url('../fonts/icomoon.eot?tsj1dc');
-  src:url('../fonts/icomoon.eot?#iefixtsj1dc') format('embedded-opentype'),
-    url('../fonts/icomoon.woff?tsj1dc') format('woff'),
-    url('../fonts/icomoon.ttf?tsj1dc') format('truetype'),
-    url('../fonts/icomoon.svg?tsj1dc#icomoon') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-.icon-gruntjs:before,
-.icon-backbonejs:before,
-.icon-coffeescript:before,
-.icon-git:before {
-  font-family: 'icomoon';
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-gruntjs:before {
-  content: "\e600";
-}
-.icon-backbonejs:before {
-  content: "\e601";
-}
-.icon-coffeescript:before {
-  content: "\e602";
-}
-.icon-git:before {
-  content: "\e603";
-}
-
 
 /*
  * Font Mfizz v1.4-SNAPSHOT (https://github.com/suranyami/font-mfizz)
