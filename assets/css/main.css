@@ -61,6 +61,15 @@ img { vertical-align: middle; min-width: 100px; min-height: 100px; }
 .profile-description h1 { font-size: 16px; font-style: italic; margin: 0; }
 .profile-description h2 { font-size: 16px; text-align: right; margin-top: 5px; color: #1E824C; }
 
+.cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background-color: #444; color: #FFF; padding: 20px; }
+.cookie-banner .left { float: left; }
+.cookie-banner .right { float: right; }
+.cookie-banner a {
+  cursor: pointer; padding: 7px 20px; text-decoration: none;
+  background-color: #f1d600; color: #111; border-radius: 4px;
+}
+.cookie-banner a:hover { background-color: #FFF; }
+
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px) {
   .profile-box { position: relative; margin-top: 60px; }
   .profile-header .link-social { fill: #1E824C; }

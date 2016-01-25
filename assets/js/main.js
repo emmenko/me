@@ -86,4 +86,49 @@ var Profile = React.createClass({
   }
 })
 
-React.render(React.createElement(Profile, null), document.getElementById('root'))
+var CookieBanner = React.createClass({
+  displayName: 'CookieBanner',
+
+  cookieDismissed: 'cookie-dismissed',
+
+  getInitialState: function () {
+    return { showBanner: true }
+  },
+
+  componentWillMount: function () {
+    this.setState({
+      showBanner: Boolean(!~document.cookie.indexOf(this.cookieDismissed))
+    })
+  },
+
+  onCloseBanner: function () {
+    document.cookie = this.cookieDismissed + '=yes; expires=' +
+      new Date('2099-12-31').toUTCString() + '; path=/'
+    this.setState({ showBanner: false })
+  },
+
+  render: function () {
+    if (!this.state.showBanner)
+      return null
+
+    return React.createElement('div', { className: 'cookie-banner' },
+      React.createElement('div', { className: 'left' }, 'This website uses technical cookies in order to improve the experience.'),
+      React.createElement('div', { className: 'right'},
+        React.createElement('a', { onClick: this.onCloseBanner }, 'Got it!')
+      )
+    )
+  }
+})
+
+var Root = React.createClass({
+  displayName: 'Root',
+
+  render: function () {
+    return React.createElement('div', null,
+      React.createElement(Profile, null),
+      React.createElement(CookieBanner, null)
+    )
+  }
+})
+
+React.render(React.createElement(Root, null), document.getElementById('root'))
