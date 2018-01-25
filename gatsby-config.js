@@ -19,19 +19,19 @@ module.exports = {
         background_color: config.manifestBackgroundColor,
         theme_color: config.manifestThemeColor,
         display: config.manifestDisplay,
-        orientation: config.manifestOrientation
-        // icons: [
-        //   {
-        //     src: "/icons/icon-192x192.png",
-        //     sizes: "192x192",
-        //     type: "image/png"
-        //   },
-        //   {
-        //     src: "/icons/icon-512x512.png",
-        //     sizes: "512x512",
-        //     type: "image/png"
-        //   }
-        // ]
+        orientation: config.manifestOrientation,
+        icons: [
+          {
+            src: "/icons/logo-192x192.png",
+            sizes: "192x192",
+            type: "image/png"
+          },
+          {
+            src: "/icons/logo-512x512.png",
+            sizes: "512x512",
+            type: "image/png"
+          }
+        ]
       }
     },
     "gatsby-plugin-offline",
