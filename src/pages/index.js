@@ -85,8 +85,7 @@ const TextHighlighted = Text.extend`
   background: none;
   letter-spacing: 0.2rem;
   padding: 4px 8px;
-  width: 120px;
-  width: fit-content;
+  width: auto;
 `;
 const SocialLink = styled.a`
   cursor: pointer;
