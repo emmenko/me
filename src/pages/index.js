@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import "../css/global.css";
+import "../styles/global";
+import colors from "../styles/colors";
 import Avatar from "../components/avatar";
 import GithubSvg from "../components/svg/github";
 import TwitterSvg from "../components/svg/twitter";
@@ -81,7 +82,7 @@ const ProfileTitle = Text.extend`
   font-size: 2rem;
 `;
 const TextHighlighted = Text.extend`
-  border: 1px solid #e06961;
+  border: 1px solid ${colors.red};
   background: none;
   letter-spacing: 0.2rem;
   padding: 4px 8px;
@@ -90,18 +91,18 @@ const TextHighlighted = Text.extend`
 const SocialLink = styled.a`
   cursor: pointer;
   > svg {
-    fill: #e06961;
+    fill: ${colors.red};
   }
   :hover {
     > svg {
-      fill: #d84136;
+      fill: ${colors.redDark};
     }
   }
 `;
 const DisableTrackingButton = styled.button`
   background: none !important;
   border: none;
-  color: #3498db;
+  color: ${colors.link};
   cursor: pointer;
   font: inherit;
   padding: 0;
@@ -148,10 +149,18 @@ class IndexPage extends React.PureComponent {
           </CenteredLeft>
           <Centered>
             <SpacingInline size="m">
-              <SocialLink href="https://github.com/emmenko" target="_blank">
+              <SocialLink
+                href="https://github.com/emmenko"
+                rel="noopener"
+                title="Github account (emmenko)"
+              >
                 <GithubSvg width="25" height="25" />
               </SocialLink>
-              <SocialLink href="https://twitter.com/emmenko" target="_blank">
+              <SocialLink
+                href="https://twitter.com/emmenko"
+                rel="noopener"
+                title="Twitter account (emmenko)"
+              >
                 <TwitterSvg width="25" height="25" />
               </SocialLink>
             </SpacingInline>

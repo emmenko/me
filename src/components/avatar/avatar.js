@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import colors from "../../styles/colors";
 import EmmenkoSvg from "../svg/emmenko";
 
 const RoundedImage = styled.div`
-  border: 1px solid #4f4f4f;
+  border: 1px solid ${colors.text};
   border-radius: 50%;
   display: block;
   width: 200px;

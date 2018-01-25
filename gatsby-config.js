@@ -1,18 +1,44 @@
+const config = require("./src/site-config");
+
 module.exports = {
   siteMetadata: {
-    title: "Nicola Molinari (emmenko) - Personal Website",
-    description: "Personal Website",
-    siteUrl: "https://emmenko.org"
+    title: config.siteTitle,
+    description: config.siteDescription,
+    siteUrl: config.siteUrl
   },
   plugins: [
-    // TODO:
-    // - gatsby-plugin-manifest
-    // - gatsby-plugin-offline
+    "gatsby-plugin-react-helmet",
     "gatsby-plugin-styled-components",
+    {
+      // Define before `gatsby-plugin-offline`
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        name: config.siteTitle,
+        short_name: config.manifestShortName,
+        start_url: config.manifestStartUrl,
+        background_color: config.manifestBackgroundColor,
+        theme_color: config.manifestThemeColor,
+        display: config.manifestDisplay,
+        orientation: config.manifestOrientation
+        // icons: [
+        //   {
+        //     src: "/icons/icon-192x192.png",
+        //     sizes: "192x192",
+        //     type: "image/png"
+        //   },
+        //   {
+        //     src: "/icons/icon-512x512.png",
+        //     sizes: "512x512",
+        //     type: "image/png"
+        //   }
+        // ]
+      }
+    },
+    "gatsby-plugin-offline",
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
-        trackingId: "UA-52556892-1",
+        trackingId: config.analyticsTrackingId,
         anonymize: true
       }
     }
