@@ -6,7 +6,7 @@ module.exports = {
   siteLongTitle: "Nicola Molinari (emmenko) - Personal Website",
   siteUrl: "https://emmenko.org",
   siteLanguage: "en",
-  siteLogo: "/icons/logo-1024x1024.png",
+  siteLogo: "/icons/icon-1024x1024.png",
   siteDescription: "Personal Website",
   usernameTwitter: "emmenko",
   // manifest.json
