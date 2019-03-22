@@ -166,7 +166,7 @@ class IndexPage extends React.PureComponent {
             </SpacingInline>
           </Centered>
           <CenteredRight style={{ paddingRight: "8px" }}>
-            &copy; {"2018"}
+            &copy; {new Date().getFullYear()}
           </CenteredRight>
         </FooterGrid>
       </Grid>
