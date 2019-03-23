@@ -1,5 +1,5 @@
 {
-  "name": "emmenko.github.io",
+  "name": "emmenko.org",
   "description": "Personal Website (emmenko)",
   "private": true,
   "version": "1.0.0",
@@ -9,21 +9,22 @@
   "scripts": {
     "build": "gatsby build",
     "start": "gatsby develop",
-    "format":
-      "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
+    "format": "prettier --write '**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "gatsby": "^1.9.166",
-    "gatsby-link": "^1.6.34",
-    "gatsby-plugin-google-analytics": "^1.0.16",
-    "gatsby-plugin-manifest": "^1.0.13",
-    "gatsby-plugin-netlify": "^1.0.15",
-    "gatsby-plugin-offline": "^1.0.13",
-    "gatsby-plugin-react-helmet": "^2.0.4",
-    "gatsby-plugin-styled-components": "^2.0.5",
-    "prettier": "^1.10.2",
+    "gatsby": "^2.2.8",
+    "gatsby-link": "^2.0.16",
+    "gatsby-plugin-google-analytics": "^2.0.17",
+    "gatsby-plugin-manifest": "^2.0.24",
+    "gatsby-plugin-netlify": "^2.0.13",
+    "gatsby-plugin-offline": "^2.0.25",
+    "gatsby-plugin-react-helmet": "^3.0.10",
+    "gatsby-plugin-styled-components": "^3.0.7",
+    "prettier": "^1.16.4",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
     "react-helmet": "^5.2.0",
-    "styled-components": "^3.0.2"
+    "styled-components": "^4.1.3"
   }
 }

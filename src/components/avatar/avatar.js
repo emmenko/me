@@ -1,8 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import colors from "../../styles/colors";
-import EmmenkoSvg from "../svg/emmenko";
+import React from 'react';
+import styled from 'styled-components';
+import colors from '../../styles/colors';
+import EmmenkoSvg from '../svg/emmenko';
 
 const RoundedImage = styled.div`
   border: 1px solid ${colors.text};
@@ -23,6 +22,6 @@ const Avatar = () => (
     <EmmenkoSvg width="200" height="200" />
   </RoundedImage>
 );
-Avatar.displayName = "Avatar";
+Avatar.displayName = 'Avatar';
 
 export default Avatar;
