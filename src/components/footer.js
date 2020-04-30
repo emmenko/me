@@ -12,7 +12,7 @@ const Footer = () => {
     if (shouldDisable) window.gaOptout();
   };
   return (
-    <Grid columns={[3]} sx={{ paddingX: [3, 4, 0] }}>
+    <Grid as="footer" columns={[3]} sx={{ paddingX: [3, 4, 0] }}>
       <Flex
         sx={{
           justifyContent: 'flex-start',
@@ -37,7 +37,7 @@ const Footer = () => {
           alignItems: 'center',
         }}
       >
-        <Box
+        <Flex
           as="a"
           variant="links.icons"
           title="Github account (emmenko)"
@@ -47,8 +47,8 @@ const Footer = () => {
           sx={{ mr: [1] }}
         >
           <GithubSvg width="25" height="25" />
-        </Box>
-        <Box
+        </Flex>
+        <Flex
           as="a"
           variant="links.icons"
           title="Twitter account (emmenko)"
@@ -57,7 +57,7 @@ const Footer = () => {
           target="blank"
         >
           <TwitterSvg width="25" height="25" />
-        </Box>
+        </Flex>
       </Flex>
       <Flex
         sx={{

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, useColorMode } from 'theme-ui';
-import { Flex, Box, Link } from '@theme-ui/components';
+import { Flex, Grid, Link } from '@theme-ui/components';
 import ColorModeToggle from './colormode-toggle';
 
 const Header = () => {
@@ -12,14 +12,16 @@ const Header = () => {
   };
 
   return (
-    <Box as="header" sx={{ paddingX: [3, 4, 0], paddingY: [2] }}>
-      <Flex sx={{ alignItems: `center`, justifyContent: `space-between` }}>
+    <Grid as="header" columns={[2]} sx={{ paddingX: [3, 4, 0] }}>
+      <Flex sx={{ alignItems: `center`, justifyContent: `flex-start` }}>
         <Link to="/" aria-label="To homepage">
           {'/'}
         </Link>
+      </Flex>
+      <Flex sx={{ alignItems: `center`, justifyContent: `flex-end` }}>
         <ColorModeToggle isDark={isDark} toggle={toggleColorMode} />
       </Flex>
-    </Box>
+    </Grid>
   );
 };
 

@@ -41,7 +41,7 @@ export default {
     heading: 1.25,
   },
   /* DIMENSIONS */
-  breakpoints: ['640px', '768px', '1024px'],
+  breakpoints: ['640px', 'calc(768px + 1px)', '1024px'],
   sizes: {
     container: 768,
   },
