@@ -1,9 +1,9 @@
-import React from "react";
-import Helmet from "react-helmet";
-import "../styles/global";
-import config from "../site-config";
+import React from 'react';
+import Helmet from 'react-helmet';
+import '../styles/global';
+import config from '../site-config';
 
-const Template = props => (
+const Template = (props) => (
   <main>
     <Helmet>
       <html lang="en" amp />

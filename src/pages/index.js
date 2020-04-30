@@ -44,7 +44,7 @@ const FooterGrid = styled(Centered)`
 `;
 const SpacingStack = styled.div`
   > * + * {
-    ${props => {
+    ${(props) => {
       switch (props.size) {
         case 's':
           return 'margin: 4px 0 0;';
@@ -60,7 +60,7 @@ const SpacingStack = styled.div`
 `;
 const SpacingInline = styled.div`
   > * + * {
-    ${props => {
+    ${(props) => {
       switch (props.size) {
         case 's':
           return 'margin: 0 0 0 4px;';

@@ -1,17 +1,17 @@
-const config = require("./src/site-config");
+const config = require('./src/site-config');
 
 module.exports = {
   siteMetadata: {
     title: config.siteTitle,
     description: config.siteDescription,
-    siteUrl: config.siteUrl
+    siteUrl: config.siteUrl,
   },
   plugins: [
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-styled-components",
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-styled-components',
     {
       // Define before `gatsby-plugin-offline`
-      resolve: "gatsby-plugin-manifest",
+      resolve: 'gatsby-plugin-manifest',
       options: {
         name: config.siteTitle,
         short_name: config.manifestShortName,
@@ -22,25 +22,25 @@ module.exports = {
         orientation: config.manifestOrientation,
         icons: [
           {
-            src: "/icons/icon-192x192.png",
-            sizes: "192x192",
-            type: "image/png"
+            src: '/icons/icon-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
           },
           {
-            src: "/icons/icon-512x512.png",
-            sizes: "512x512",
-            type: "image/png"
-          }
-        ]
-      }
+            src: '/icons/icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+        ],
+      },
     },
-    "gatsby-plugin-offline",
+    'gatsby-plugin-offline',
     {
-      resolve: "gatsby-plugin-google-analytics",
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: config.analyticsTrackingId,
-        anonymize: true
-      }
-    }
-  ]
+        anonymize: true,
+      },
+    },
+  ],
 };

@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
 // Generated with svgr
 // svgr --no-semi --icon <file-name>.svg
 
-const EmmenkoSvg = props => (
+const EmmenkoSvg = (props) => (
   <svg
     viewBox="0 0 512 512"
     style={{ zoom: 1 }}
@@ -270,6 +270,6 @@ const EmmenkoSvg = props => (
     </text>
   </svg>
 );
-EmmenkoSvg.displayName = "EmmenkoSvg";
+EmmenkoSvg.displayName = 'EmmenkoSvg';
 
 export default EmmenkoSvg;
