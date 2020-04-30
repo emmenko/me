@@ -1,33 +1,26 @@
-import React from 'react';
-import styled from 'styled-components';
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Courier New';
-`;
-const EmojiBig = styled.div`
-  font-size: 3rem;
-`;
+/** @jsx jsx */
+import { jsx } from 'theme-ui';
+import { Box, Link } from '@theme-ui/components';
+import Layout from '../components/layout';
 
 const PageNotFound = () => (
-  <Container>
-    <h1>{'Page not found'}</h1>
-    <EmojiBig>
+  <Layout>
+    <Box as="h1" sx={{ fontFamily: 'heading' }}>
+      {'Page not found'}
+    </Box>
+    <Box sx={{ fontSize: 8 }}>
       <span role="img" aria-label="Emoji hand halt open eyes">
         🖐 👀
       </span>
-    </EmojiBig>
-    <p>
-      {'Go back to the '}
-      <a href="/" title="Homepage">
+    </Box>
+    <Box as="p">
+      {'Back to the '}
+      <Link href="/" title="Homepage">
         {'Homepage'}
-      </a>
+      </Link>
       {'.'}
-    </p>
-  </Container>
+    </Box>
+  </Layout>
 );
 PageNotFound.displayName = 'PageNotFound';
 

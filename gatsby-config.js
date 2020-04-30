@@ -8,7 +8,7 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-styled-components',
+    'gatsby-plugin-theme-ui',
     {
       // Define before `gatsby-plugin-offline`
       resolve: 'gatsby-plugin-manifest',
