@@ -1,6 +1,6 @@
 import baseTheme from '@theme-ui/preset-base';
 
-export default {
+const theme = {
   ...baseTheme,
   /* THEME OPTIONS */
   useColorSchemeMediaQuery: true,
@@ -81,3 +81,5 @@ export default {
     },
   },
 };
+
+export default theme;

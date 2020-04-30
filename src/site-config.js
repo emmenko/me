@@ -1,4 +1,4 @@
-const colors = require('./styles/colors');
+const theme = require('./gatsby-plugin-theme-ui');
 
 module.exports = {
   pathPrefix: '/',
@@ -13,8 +13,8 @@ module.exports = {
   manifestName: 'Nicola Molinari (emmenko)',
   manifestShortName: 'emmenko',
   manifestStartUrl: '/?utm_source=homescreen',
-  manifestBackgroundColor: colors.bkg,
-  manifestThemeColor: colors.red,
+  manifestBackgroundColor: theme.colors.background,
+  manifestThemeColor: theme.colors.primary,
   manifestDisplay: 'standalone',
   manifestOrientation: 'landscape',
   // analytics
