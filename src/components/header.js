@@ -12,7 +12,11 @@ const Header = () => {
   };
 
   return (
-    <Grid as="header" columns={[2]} sx={{ paddingX: [3, 4, 0] }}>
+    <Grid
+      as="header"
+      columns={[2]}
+      sx={{ paddingY: [2, 3], paddingX: [3, 4, 0] }}
+    >
       <Flex sx={{ alignItems: `center`, justifyContent: `flex-start` }}>
         <Link to="/" aria-label="To homepage">
           {'/'}

@@ -12,7 +12,11 @@ const Footer = () => {
     if (shouldDisable) window.gaOptout();
   };
   return (
-    <Grid as="footer" columns={[3]} sx={{ paddingX: [3, 4, 0] }}>
+    <Grid
+      as="footer"
+      columns={[3]}
+      sx={{ paddingY: [2, 3], paddingX: [3, 4, 0] }}
+    >
       <Flex
         sx={{
           justifyContent: 'flex-start',
