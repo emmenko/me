@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
 import { Container, Flex } from '@theme-ui/components';
+import Header from '../components/header';
 import Footer from '../components/footer';
 
 const Layout = (props) => {
@@ -11,15 +12,16 @@ const Layout = (props) => {
         width: '100vw',
         height: '100vh',
         gridTemplateColumns: '1fr',
-        gridTemplateRows: '10fr 1fr',
-        gridTemplateAreas: `'content' 'footer'`,
+        gridTemplateRows: '1fr 10fr 1fr',
+        gridTemplateAreas: `'header' 'content' 'footer'`,
       }}
     >
+      <Header />
       <Flex
         sx={{
           flexDirection: 'column',
           alignItems: 'center',
-          paddingY: [4, 5, 6],
+          paddingY: [3, 4, 5],
           paddingX: [3, 4, 0],
         }}
       >

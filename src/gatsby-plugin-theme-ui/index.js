@@ -6,6 +6,7 @@ export default {
   useColorSchemeMediaQuery: true,
   /* COLORS */
   colors: {
+    ...baseTheme.colors,
     text: '#4f4f4f',
     background: '#fff',
     primary: '#e06961',
@@ -17,6 +18,7 @@ export default {
     // A faint color for backgrounds, borders, and accents that do not require high contrast with the background color
     muted: '#f6f6ff',
     link: '#2b6cb0',
+    toggleIcon: '#2d3748',
     modes: {
       dark: {
         text: '#fff',
@@ -25,6 +27,7 @@ export default {
         secondary: '#0cf',
         highlight: '#f0c',
         muted: '#011',
+        toggleIcon: '#cbd5e0',
       },
     },
   },
@@ -48,6 +51,7 @@ export default {
     a: {
       color: 'primary',
       '&:hover': {
+        cursor: 'pointer',
         color: 'primaryHover',
       },
     },

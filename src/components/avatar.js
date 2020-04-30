@@ -3,15 +3,15 @@ import { jsx } from 'theme-ui';
 import { Box } from '@theme-ui/components';
 import EmmenkoSvg from './svg/emmenko';
 
-const Avatar = () => (
+const Avatar = ({ size = 200 }) => (
   <Box
     sx={{
       border: '1px solid',
       borderColor: 'text',
       borderRadius: '50%',
       display: 'block',
-      width: '200px',
-      height: '200px',
+      width: `${size}px`,
+      height: `${size}px`,
       overflow: 'hidden',
       '> svg.scale:not(:root)': {
         width: '100%',
@@ -19,9 +19,8 @@ const Avatar = () => (
       },
     }}
   >
-    <EmmenkoSvg width="200" height="200" />
+    <EmmenkoSvg width={size} height={size} />
   </Box>
 );
-Avatar.displayName = 'Avatar';
 
 export default Avatar;
