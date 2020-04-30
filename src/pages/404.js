@@ -15,8 +15,10 @@ const EmojiBig = styled.div`
 const PageNotFound = () => (
   <Container>
     <h1>{'Page not found'}</h1>
-    <EmojiBig role="img" aria-label="Emoji hand halt open eyes">
-      🖐 👀
+    <EmojiBig>
+      <span role="img" aria-label="Emoji hand halt open eyes">
+        🖐 👀
+      </span>
     </EmojiBig>
     <p>
       {'Go back to the '}
