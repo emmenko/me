@@ -1,9 +1,13 @@
 /** @jsx jsx */
 import { jsx, useColorMode } from 'theme-ui';
-import { Flex, Grid, Link } from '@theme-ui/components';
+import { Box, Flex } from '@theme-ui/components';
+import GithubSvg from './svg/github';
+import TwitterSvg from './svg/twitter';
 import ColorModeToggle from './colormode-toggle';
+import Breadcrumbs from './breadcrumbs';
+import Link from './link';
 
-const Header = () => {
+const Header = (props) => {
   const [colorMode, setColorMode] = useColorMode();
   const isDark = colorMode === `dark`;
   const toggleColorMode = (event) => {
@@ -12,20 +16,58 @@ const Header = () => {
   };
 
   return (
-    <Grid
+    <Box
+      id="anchor-header"
       as="header"
-      columns={[2]}
-      sx={{ paddingY: [2, 3], paddingX: [3, 4, 0] }}
+      sx={{ paddingY: 3, paddingX: [3, 4, 0] }}
     >
-      <Flex sx={{ alignItems: `center`, justifyContent: `flex-start` }}>
-        <Link to="/" aria-label="To homepage">
-          {'/'}
-        </Link>
+      <Flex
+        sx={{
+          flexDirection: ['column-reverse', 'row'],
+          justifyContent: ['center', 'space-between'],
+          alignItems: ['center'],
+        }}
+      >
+        <Breadcrumbs crumbs={props.pageContext.breadcrumbs} />
+        <Flex
+          sx={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            mb: [3, 0, 0],
+            '> * + *': {
+              ml: [2],
+            },
+          }}
+        >
+          <Box>
+            <Flex
+              as="a"
+              variant="links.icons"
+              title="Github account (emmenko)"
+              href="https://github.com/emmenko"
+              rel="noopener noreferrer"
+              target="blank"
+              sx={{ mr: [1] }}
+            >
+              <GithubSvg width="25" height="25" />
+            </Flex>
+          </Box>
+          <Box>
+            <Flex
+              as="a"
+              variant="links.icons"
+              title="Twitter account (emmenko)"
+              href="https://twitter.com/emmenko"
+              rel="noopener noreferrer"
+              target="blank"
+            >
+              <TwitterSvg width="25" height="25" />
+            </Flex>
+          </Box>
+          <ColorModeToggle isDark={isDark} toggle={toggleColorMode} />
+        </Flex>
       </Flex>
-      <Flex sx={{ alignItems: `center`, justifyContent: `flex-end` }}>
-        <ColorModeToggle isDark={isDark} toggle={toggleColorMode} />
-      </Flex>
-    </Grid>
+    </Box>
   );
 };
 

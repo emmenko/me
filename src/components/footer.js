@@ -1,8 +1,6 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
-import { Box, Flex, Button, Grid } from '@theme-ui/components';
-import GithubSvg from '../components/svg/github';
-import TwitterSvg from '../components/svg/twitter';
+import { Flex, Button, Grid } from '@theme-ui/components';
 
 const Footer = () => {
   const handleDisableTracking = () => {
@@ -14,8 +12,8 @@ const Footer = () => {
   return (
     <Grid
       as="footer"
-      columns={[3]}
-      sx={{ paddingY: [2, 3], paddingX: [3, 4, 0] }}
+      columns={[2]}
+      sx={{ mt: 5, paddingY: [2, 3], paddingX: [3, 4, 0] }}
     >
       <Flex
         sx={{
@@ -37,36 +35,10 @@ const Footer = () => {
       </Flex>
       <Flex
         sx={{
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Flex
-          as="a"
-          variant="links.icons"
-          title="Github account (emmenko)"
-          href="https://github.com/emmenko"
-          rel="noopener noreferrer"
-          target="blank"
-          sx={{ mr: [1] }}
-        >
-          <GithubSvg width="25" height="25" />
-        </Flex>
-        <Flex
-          as="a"
-          variant="links.icons"
-          title="Twitter account (emmenko)"
-          href="https://twitter.com/emmenko"
-          rel="noopener noreferrer"
-          target="blank"
-        >
-          <TwitterSvg width="25" height="25" />
-        </Flex>
-      </Flex>
-      <Flex
-        sx={{
           justifyContent: 'flex-end',
           alignItems: 'center',
+          fontSize: 1,
+          color: 'secondary',
         }}
       >
         &copy; {new Date().getFullYear()}

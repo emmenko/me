@@ -1,0 +1,21 @@
+{
+  "files.associations": {
+    "*.mdx": "markdown"
+  },
+  "javascript.validate.enable": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact"
+  ],
+  "spellright.notificationClass": "warning",
+  "spellright.language": [
+    "en"
+  ],
+  "spellright.documentTypes": [
+    "plaintext",
+    "markdown",
+    "mdx",
+    "yaml"
+  ],
+  "spellright.configurationScope": "user"
+}

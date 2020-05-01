@@ -3,14 +3,22 @@ import { jsx } from 'theme-ui';
 import { Box, Flex } from '@theme-ui/components';
 import Avatar from '../components/avatar';
 import Layout from '../components/layout';
+import Link from '../components/link';
 
 const IndexPage = () => {
   return (
-    <Layout>
+    <Layout alignContent="center" pageContext={{ breadcrumbs: [] }}>
+      <Flex sx={{ fontSize: 3, width: '100%' }}>
+        <Box>
+          <Link to="/stories" variant="links.navigation">
+            {'Stories'}
+          </Link>
+        </Box>
+      </Flex>
       <Box
         sx={{
-          mb: [4, 5],
-          fontFamily: 'heading',
+          marginY: [4, 5],
+          fontFamily: 'home',
           border: '1px solid',
           borderColor: 'primary',
           backgroundColor: 'background',
@@ -18,6 +26,7 @@ const IndexPage = () => {
           paddingY: 1,
           paddingX: 2,
           width: 'auto',
+          alignItems: 'center',
         }}
       >
         {'Nicola Molinari'}
@@ -28,7 +37,7 @@ const IndexPage = () => {
       <Box
         sx={{
           fontSize: [4, 5],
-          fontFamily: 'heading',
+          fontFamily: 'home',
           lineHeight: 'heading',
           mb: [1, 2],
           textAlign: 'center',
@@ -39,9 +48,10 @@ const IndexPage = () => {
       <Box
         sx={{
           fontSize: [2, 3],
-          fontFamily: 'heading',
+          fontFamily: 'home',
           lineHeight: 'heading',
           textAlign: 'center',
+          color: 'secondary',
         }}
       >
         {'Technology enthusiast. I ❤️️ building things.'}
