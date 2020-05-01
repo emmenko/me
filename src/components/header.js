@@ -5,7 +5,6 @@ import GithubSvg from './svg/github';
 import TwitterSvg from './svg/twitter';
 import ColorModeToggle from './colormode-toggle';
 import Breadcrumbs from './breadcrumbs';
-import Link from './link';
 
 const Header = (props) => {
   const [colorMode, setColorMode] = useColorMode();

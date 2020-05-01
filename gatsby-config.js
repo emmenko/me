@@ -84,11 +84,16 @@ module.exports = {
     },
     'gatsby-plugin-offline',
     {
-      resolve: 'gatsby-plugin-google-analytics',
+      resolve: 'gatsby-plugin-gdpr-tracking',
       options: {
-        trackingId: 'UA-52556892-1',
-        anonymize: true,
-        respectDNT: true,
+        debug: true,
+        environments: ['production', 'development'],
+        googleAnalytics: {
+          trackingId: 'UA-52556892-1',
+          autoStart: false,
+          anonymize: true,
+          controlCookieName: 'gdpr-analytics-enabled',
+        },
       },
     },
     'gatsby-plugin-netlify-cache',

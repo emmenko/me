@@ -25,6 +25,7 @@ const Layout = (props) => {
           sx={{
             flexDirection: 'column',
             alignItems: props.alignContent || 'left',
+            paddingX: [3, 4, 0]
           }}
         >
           {props.children}

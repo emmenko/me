@@ -21,12 +21,12 @@ const StoriesPage = (props) => {
       <Styled.h1>Stories</Styled.h1>
       <Grid as="section" gap={[5]} columns={[1]}>
         {props.data.allStoryPage.nodes.map((story) => (
-          <Grid gap={[3]} columns={[1, 2]}>
+          <Grid gap={[3]} columns={[1, 2]} key={story.slug}>
             <Box sx={{ padding: [null, 2, 4] }}>
               <GatsbyImage fluid={story.banner.childImageSharp.fluid} />
             </Box>
             <Flex sx={{ flexDirection: 'column', justifyContent: 'center' }}>
-              <Link key={story.slug} to={story.slug} variant="links.navigation">
+              <Link to={story.slug} variant="links.navigation">
                 <Text
                   as="h2"
                   sx={{

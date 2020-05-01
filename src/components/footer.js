@@ -1,49 +1,28 @@
 /** @jsx jsx */
+import React from 'react';
 import { jsx } from 'theme-ui';
-import { Flex, Button, Grid } from '@theme-ui/components';
+import { Flex } from '@theme-ui/components';
+import CookieConsent from './cookie-consent';
 
 const Footer = () => {
-  const handleDisableTracking = () => {
-    const shouldDisable = window.confirm(
-      'This website uses technical cookies in order to improve the experience. The IP address is also anonymized.\n\nWould you still like to disable tracking?'
-    );
-    if (shouldDisable) window.gaOptout();
-  };
   return (
-    <Grid
-      as="footer"
-      columns={[2]}
-      sx={{ mt: 5, paddingY: [2, 3], paddingX: [3, 4, 0] }}
-    >
+    <React.Fragment>
       <Flex
+        as="footer"
         sx={{
-          justifyContent: 'flex-start',
-          alignItems: 'center',
-        }}
-      >
-        <Button
-          variant="flat"
-          onClick={handleDisableTracking}
-          title="Disable Google Analytics Tracking"
-          sx={{ mr: [1] }}
-        >
-          {'Tracking'}
-        </Button>
-        <span role="img" aria-label="Emoji hand waving">
-          👋
-        </span>
-      </Flex>
-      <Flex
-        sx={{
-          justifyContent: 'flex-end',
+          justifyContent: 'center',
           alignItems: 'center',
           fontSize: 1,
           color: 'secondary',
+          mt: 5,
+          paddingY: [2, 3],
+          paddingX: [3, 4, 0],
         }}
       >
         &copy; {new Date().getFullYear()}
       </Flex>
-    </Grid>
+      <CookieConsent />
+    </React.Fragment>
   );
 };
 

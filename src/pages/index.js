@@ -8,7 +8,13 @@ import Link from '../components/link';
 const IndexPage = () => {
   return (
     <Layout alignContent="center" pageContext={{ breadcrumbs: [] }}>
-      <Flex sx={{ fontSize: 3, width: '100%' }}>
+      <Flex
+        sx={{
+          fontSize: 3,
+          width: '100%',
+          justifyContent: ['center', 'flex-start', 'flex-start'],
+        }}
+      >
         <Box>
           <Link to="/stories" variant="links.navigation">
             {'Stories'}

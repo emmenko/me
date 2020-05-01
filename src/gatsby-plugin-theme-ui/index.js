@@ -34,7 +34,7 @@ const theme = {
     // A contrast color for emphasizing UI
     secondary: '#777',
     // A background color for highlighting text
-    highlight: '#e0e',
+    highlight: '#ffefd5',
     // A faint color for backgrounds, borders, and accents that do not require high contrast with the background color
     muted: '#cbd5e0',
     toggleIcon: '#2d3748',
@@ -46,7 +46,7 @@ const theme = {
         background: '#1a202c',
         // primary: '#f0c',
         secondary: '#999',
-        highlight: '#f0c',
+        highlight: '#ffefd5',
         toggleIcon: '#cbd5e0',
       },
     },
@@ -137,6 +137,12 @@ const theme = {
       '&:hover': {
         textDecoration: 'underline',
       },
+    },
+  },
+  messages: {
+    cookieConsent: {
+      color: '#4f4f4f',
+      fontSize: 1,
     },
   },
   typography: {
