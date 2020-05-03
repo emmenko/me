@@ -170,7 +170,7 @@ const theme = {
         textAlign: 'center',
         backgroundColor: 'background',
         position: 'sticky',
-        top: 0,
+        top: '-1px',
         paddingY: [2, 3],
         m: 0,
       },
