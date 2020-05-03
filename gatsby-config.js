@@ -91,7 +91,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-gdpr-tracking',
       options: {
-        debug: false,
+        debug: true,
         environments: ['production', 'development'],
         googleAnalytics: {
           trackingId: 'UA-52556892-1',
