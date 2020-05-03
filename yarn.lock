@@ -6078,7 +6078,7 @@ gatsby-image@2.4.0:
     object-fit-images "^3.2.4"
     prop-types "^15.7.2"
 
-gatsby-link@2.4.0, gatsby-link@^2.4.0:
+gatsby-link@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/gatsby-link/-/gatsby-link-2.4.0.tgz#9de5851bdab0f9a92c4d91ca6d78514670e3f28a"
   integrity sha512-ElaUagFLlPqtLFZc7wd9RxckfMRf45Ro1X5QZi6Lz9wNQzpT/cCYzARgfcfEbM5Dsg3/p0mIQR1+0Cbjqk+1tQ==
