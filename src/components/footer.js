@@ -5,6 +5,7 @@ import { Flex } from '@theme-ui/components';
 import CookieConsent from './cookie-consent';
 
 const Footer = () => {
+  const isClient = typeof window !== 'undefined';
   return (
     <React.Fragment>
       <Flex
@@ -21,7 +22,7 @@ const Footer = () => {
       >
         &copy; {new Date().getFullYear()}
       </Flex>
-      <CookieConsent />
+      {isClient && <CookieConsent />}
     </React.Fragment>
   );
 };
