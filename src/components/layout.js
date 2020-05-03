@@ -16,7 +16,7 @@ const Layout = (props) => {
           width: '100vw',
           height: '100vh',
           gridTemplateColumns: '1fr',
-          gridTemplateRows: 'auto 10fr 1fr',
+          gridTemplateRows: 'auto 1fr auto',
           gridTemplateAreas: `'header' 'content' 'footer'`,
         }}
       >
@@ -25,7 +25,8 @@ const Layout = (props) => {
           sx={{
             flexDirection: 'column',
             alignItems: props.alignContent || 'left',
-            paddingX: [3, 4, 0]
+            paddingX: [3, 4, 0],
+            mb: [4, 5],
           }}
         >
           {props.children}

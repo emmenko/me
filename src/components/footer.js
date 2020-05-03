@@ -15,7 +15,6 @@ const Footer = () => {
           alignItems: 'center',
           fontSize: 1,
           color: 'secondary',
-          mt: 5,
           paddingY: [2, 3],
           paddingX: [3, 4, 0],
         }}
