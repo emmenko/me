@@ -7,7 +7,6 @@ import Layout from './layout';
 import SEO from './seo';
 
 const StoryPage = (props) => {
-  console.log(props);
   return (
     <Layout pageContext={props.pageContext}>
       <SEO
@@ -22,7 +21,11 @@ const StoryPage = (props) => {
           {props.data.storyPage.title}
         </Styled.h1>
         <Flex
-          sx={{ justifyContent: 'space-between', color: 'secondary', fontSize: 1 }}
+          sx={{
+            justifyContent: 'space-between',
+            color: 'secondary',
+            fontSize: 1,
+          }}
         >
           <Text as="p">{`Released on: ${props.data.storyPage.releaseDate}`}</Text>
           <Text as="p">{`Avg. read: ${props.data.storyPage.timeToRead}min`}</Text>

@@ -46,7 +46,7 @@ const Breadcrumbs = (props) => {
             {separator}
             <Box>
               <Link
-                to={partialSlug}
+                to={`/${partialSlug}`}
                 aria-label={label}
                 variant="links.navigation"
               >

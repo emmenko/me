@@ -155,7 +155,7 @@ const theme = {
         letterSpacing: '0.1em',
         p: { m: 0 },
       },
-      h1: {
+      h2: {
         fontFamily: 'story',
         fontStyle: 'italic',
         fontSize: 3,
@@ -167,7 +167,10 @@ const theme = {
         borderTop: '1px solid',
         borderColor: 'muted',
       },
-      h2: {
+      h3: {
+        position: 'sticky',
+        top: '-1px',
+        backgroundColor: 'background',
         fontFamily: 'story',
         fontStyle: 'italic',
         fontSize: 7,

@@ -9,8 +9,6 @@ import Link from './link';
 import SEO from './seo';
 
 const StoriesPage = (props) => {
-  console.log(props);
-  // const { tagsPath, basePath } = useMinimalBlogConfig();
   return (
     <Layout pageContext={props.pageContext}>
       <SEO

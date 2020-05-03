@@ -25,6 +25,11 @@ module.exports = {
       resolve: 'gatsby-plugin-mdx',
       options: {
         extensions: ['.mdx', '.md'],
+        // List of rehype plugins, that transform the HTML AST.
+        rehypePlugins: [
+          require('rehype-slug'),
+          require('./src/plugins/rehype-mdx-section'),
+        ],
         gatsbyRemarkPlugins: [
           {
             resolve: 'gatsby-remark-images',
@@ -86,7 +91,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-gdpr-tracking',
       options: {
-        debug: true,
+        debug: false,
         environments: ['production', 'development'],
         googleAnalytics: {
           trackingId: 'UA-52556892-1',
