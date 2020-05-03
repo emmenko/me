@@ -85,13 +85,23 @@ module.exports = {
             type: 'image/png',
           },
         ],
+        // https://www.gatsbyjs.org/packages/gatsby-plugin-offline/#using-with-gatsby-plugin-manifest
+        cache_busting_mode: 'none',
       },
     },
-    'gatsby-plugin-offline',
+    {
+      // https://www.gatsbyjs.org/packages/gatsby-plugin-offline/#using-with-gatsby-plugin-manifest
+      resolve: 'gatsby-plugin-offline',
+      options: {
+        workboxConfig: {
+          globPatterns: ['**/*'],
+        },
+      },
+    },
     {
       resolve: 'gatsby-plugin-gdpr-tracking',
       options: {
-        debug: true,
+        debug: false,
         environments: ['production', 'development'],
         googleAnalytics: {
           trackingId: 'UA-52556892-1',
