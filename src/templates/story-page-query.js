@@ -8,12 +8,8 @@ export const query = graphql`
     storyPage(slug: { eq: $slug }) {
       slug
       title
-      releaseDate(formatString: $formatString)
-      # tags {
-      #   name
-      #   slug
-      # }
       description
+      releaseDate(formatString: $formatString)
       body
       timeToRead
       banner {

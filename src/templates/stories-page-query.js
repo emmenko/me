@@ -9,13 +9,9 @@ export const query = graphql`
       nodes {
         slug
         title
+        description
         releaseDate(formatString: $formatString)
         timeToRead
-        description
-        # tags {
-        #   name
-        #   slug
-        # }
         banner {
           childImageSharp {
             fluid(maxWidth: 376, maxHeight: 376) {
