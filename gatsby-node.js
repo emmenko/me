@@ -59,25 +59,21 @@ exports.createSchemaCustomization = ({ actions }) => {
       id: ID!
       slug: String! @slugify
       title: String!
+      description: String
       releaseDate: Date! @dateformat
-      excerpt(pruneLength: Int = 160): String!
       body: String!
       timeToRead: Int
-      tags: [StoryPageTag]
       banner: File @fileByRelativePath
-      description: String
     }
 
     type MdxStoryPage implements Node & StoryPage {
       slug: String! @slugify
       title: String!
+      description: String
       releaseDate: Date! @dateformat
-      excerpt(pruneLength: Int = 140): String! @mdxpassthrough(fieldName: "excerpt")
       body: String! @mdxpassthrough(fieldName: "body")
       timeToRead: Int @mdxpassthrough(fieldName: "timeToRead")
-      tags: [StoryPageTag]
       banner: File @fileByRelativePath
-      description: String
     }
 
     type MinimalBlogConfig implements Node {
@@ -94,28 +90,6 @@ exports.createSchemaCustomization = ({ actions }) => {
       slug: String!
     }
   `);
-};
-
-exports.sourceNodes = ({ actions, createContentDigest }) => {
-  const { createNode } = actions;
-
-  const minimalBlogConfig = {
-    storiesPath: '/stories',
-    externalLinks: [],
-    navigation: [],
-  };
-
-  createNode({
-    ...minimalBlogConfig,
-    id: `site >>> config`,
-    parent: null,
-    children: [],
-    internal: {
-      type: `MinimalBlogConfig`,
-      contentDigest: createContentDigest(minimalBlogConfig),
-      content: JSON.stringify(minimalBlogConfig),
-    },
-  });
 };
 
 exports.onCreateNode = ({
@@ -138,15 +112,13 @@ exports.onCreateNode = ({
   const fileNode = getNode(node.parent);
   const source = fileNode.sourceInstanceName;
 
-  // Check for "pages" and create the "Page" type
   if (source === 'stories') {
     const fieldData = {
       slug: node.frontmatter.slug ? node.frontmatter.slug : undefined,
       title: node.frontmatter.title,
-      releaseDate: node.frontmatter.releaseDate,
-      // tags: modifiedTags,
-      banner: node.frontmatter.banner,
       description: node.frontmatter.description,
+      releaseDate: node.frontmatter.releaseDate,
+      banner: node.frontmatter.banner,
     };
 
     const mdxStoryPageId = createNodeId(`${node.id} >>> MdxStoryPage`);
@@ -180,14 +152,6 @@ const storyPageTemplate = require.resolve(
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions;
-
-  // createPage({
-  //   path: "/",
-  //   component: homepageTemplate,
-  //   context: {
-  //     formatString: defaultOptions.formatString,
-  //   },
-  // });
 
   createPage({
     path: `/stories`,

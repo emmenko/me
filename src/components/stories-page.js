@@ -4,8 +4,6 @@ import { Flex, Box, Grid, Text } from '@theme-ui/components';
 import GatsbyImage from 'gatsby-image';
 import Layout from './layout';
 import Link from './link';
-// import useMinimalBlogConfig from '../hooks/use-minimal-blog-config';
-// import replaceSlashes from '../utils/replaceSlashes';
 import SEO from './seo';
 
 const StoriesPage = (props) => {
@@ -37,6 +35,13 @@ const StoriesPage = (props) => {
                   {story.title}
                 </Text>
               </Link>
+              <Text
+                as="p"
+                sx={{
+                  color: 'secondary',
+                  fontSize: 1,
+                }}
+              >{`Published on: ${story.releaseDate}`}</Text>
               <Text
                 as="p"
                 sx={{ fontSize: 3, fontStyle: 'italic', mt: [3, 4] }}

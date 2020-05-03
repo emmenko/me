@@ -27,7 +27,7 @@ const StoryPage = (props) => {
             fontSize: 1,
           }}
         >
-          <Text as="p">{`Released on: ${props.data.storyPage.releaseDate}`}</Text>
+          <Text as="p">{`Published on: ${props.data.storyPage.releaseDate}`}</Text>
           <Text as="p">{`Avg. read: ${props.data.storyPage.timeToRead}min`}</Text>
         </Flex>
       </Box>
