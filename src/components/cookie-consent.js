@@ -17,8 +17,8 @@ const CookieConsent = () => {
     Cookies.get('gdpr-analytics-enabled')
   );
   // Show the cookie consent only if there is no cookie status set
-  const showCookieConsent =
-    cookieConsentStatus !== 'true' && cookieConsentStatus !== 'false';
+  const hasConfirmedCookieConsent =
+    cookieConsentStatus === 'true' || cookieConsentStatus === 'false';
   const enableTracking = () => {
     Cookies.set('gdpr-analytics-enabled', 'true');
     window.trackGoogleAnalytics();
@@ -29,7 +29,7 @@ const CookieConsent = () => {
     setCookieConsentStatus('false');
   };
 
-  if (!showCookieConsent) return null;
+  if (hasConfirmedCookieConsent) return null;
   return (
     <Message
       variant="cookieConsent"
