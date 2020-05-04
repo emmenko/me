@@ -12,12 +12,23 @@ export const query = graphql`
       releaseDate(formatString: $formatString)
       body
       timeToRead
-      banner {
+      cover {
         childImageSharp {
           fluid(maxWidth: 768) {
             ...GatsbyImageSharpFluid
           }
         }
+      }
+      coverCredits {
+        childMdx {
+          body
+        }
+      }
+      epub {
+        publicURL
+      }
+      pdf {
+        publicURL
       }
     }
   }

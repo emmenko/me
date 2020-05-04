@@ -19,7 +19,7 @@ const StoriesPage = (props) => {
         {props.data.allStoryPage.nodes.map((story) => (
           <Grid gap={[3]} columns={[1, 2]} key={story.slug}>
             <Box sx={{ padding: [null, 2, 4] }}>
-              <GatsbyImage fluid={story.banner.childImageSharp.fluid} />
+              <GatsbyImage fluid={story.cover.childImageSharp.fluid} />
             </Box>
             <Flex sx={{ flexDirection: 'column', justifyContent: 'center' }}>
               <Link to={story.slug} variant="links.navigation">

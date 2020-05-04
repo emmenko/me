@@ -63,7 +63,10 @@ exports.createSchemaCustomization = ({ actions }) => {
       releaseDate: Date! @dateformat
       body: String!
       timeToRead: Int
-      banner: File @fileByRelativePath
+      cover: File @fileByRelativePath
+      coverCredits: File @fileByRelativePath
+      epub: File @fileByRelativePath
+      pdf: File @fileByRelativePath
     }
 
     type MdxStoryPage implements Node & StoryPage {
@@ -73,7 +76,10 @@ exports.createSchemaCustomization = ({ actions }) => {
       releaseDate: Date! @dateformat
       body: String! @mdxpassthrough(fieldName: "body")
       timeToRead: Int @mdxpassthrough(fieldName: "timeToRead")
-      banner: File @fileByRelativePath
+      cover: File @fileByRelativePath
+      coverCredits: File @fileByRelativePath
+      epub: File @fileByRelativePath
+      pdf: File @fileByRelativePath
     }
 
     type MinimalBlogConfig implements Node {
@@ -112,13 +118,19 @@ exports.onCreateNode = ({
   const fileNode = getNode(node.parent);
   const source = fileNode.sourceInstanceName;
 
-  if (source === 'stories') {
+  if (
+    source === 'stories' &&
+    !fileNode.relativeDirectory.includes('/material')
+  ) {
     const fieldData = {
       slug: node.frontmatter.slug ? node.frontmatter.slug : undefined,
       title: node.frontmatter.title,
       description: node.frontmatter.description,
       releaseDate: node.frontmatter.releaseDate,
-      banner: node.frontmatter.banner,
+      cover: node.frontmatter.cover,
+      coverCredits: node.frontmatter.coverCredits,
+      epub: node.frontmatter.epub,
+      pdf: node.frontmatter.pdf,
     };
 
     const mdxStoryPageId = createNodeId(`${node.id} >>> MdxStoryPage`);

@@ -12,7 +12,7 @@ export const query = graphql`
         description
         releaseDate(formatString: $formatString)
         timeToRead
-        banner {
+        cover {
           childImageSharp {
             fluid(maxWidth: 376, maxHeight: 376) {
               ...GatsbyImageSharpFluid

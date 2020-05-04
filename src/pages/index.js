@@ -8,19 +8,6 @@ import Link from '../components/link';
 const IndexPage = () => {
   return (
     <Layout alignContent="center" pageContext={{ breadcrumbs: [] }}>
-      <Flex
-        sx={{
-          fontSize: 3,
-          width: '100%',
-          justifyContent: ['center', 'flex-start', 'flex-start'],
-        }}
-      >
-        <Box>
-          <Link to="/stories" variant="links.navigation">
-            {'Stories'}
-          </Link>
-        </Box>
-      </Flex>
       <Box
         sx={{
           marginY: [4, 5],
@@ -62,6 +49,20 @@ const IndexPage = () => {
       >
         {'Technology enthusiast. I ❤️️ building things.'}
       </Box>
+      <Flex
+        sx={{
+          fontSize: 3,
+          width: '100%',
+          justifyContent: ['center', 'flex-start', 'flex-start'],
+          mt: [5, 6],
+        }}
+      >
+        <Box>
+          <Link to="/stories" variant="links.navigation">
+            {'Stories'}
+          </Link>
+        </Box>
+      </Flex>
     </Layout>
   );
 };
