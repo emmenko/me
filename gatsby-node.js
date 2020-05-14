@@ -170,7 +170,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     component: storiesPageTemplate,
     context: {
       breadcrumbs: ['stories'],
-      formatString: `DD.MM.YYYY`,
+      formatString: `LL`,
     },
   });
 
@@ -200,7 +200,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       context: {
         breadcrumbs,
         slug: page.slug,
-        formatString: `DD.MM.YYYY`,
+        formatString: `LL`,
       },
     });
   });

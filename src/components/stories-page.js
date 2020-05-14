@@ -41,7 +41,7 @@ const StoriesPage = (props) => {
                   color: 'secondary',
                   fontSize: 1,
                 }}
-              >{`Published on: ${story.releaseDate}`}</Text>
+              >{`Published on ${story.releaseDate}`}</Text>
               <Text
                 as="p"
                 sx={{ fontSize: 3, fontStyle: 'italic', mt: [3, 4] }}
