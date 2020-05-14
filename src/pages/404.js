@@ -4,7 +4,7 @@ import { Box, Link } from '@theme-ui/components';
 import Layout from '../components/layout';
 
 const PageNotFound = () => (
-  <Layout>
+  <Layout alignContent="center" pageContext={{ breadcrumbs: [] }}>
     <Box as="h1" sx={{ fontFamily: 'heading' }}>
       {'Page not found'}
     </Box>

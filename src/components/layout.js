@@ -1,34 +1,39 @@
 /** @jsx jsx */
+import React from 'react';
 import { jsx } from 'theme-ui';
 import { Container, Flex } from '@theme-ui/components';
-import Header from '../components/header';
-import Footer from '../components/footer';
+import SEO from './seo';
+import Header from './header';
+import Footer from './footer';
 
 const Layout = (props) => {
   return (
-    <Container
-      sx={{
-        display: 'grid',
-        width: '100vw',
-        height: '100vh',
-        gridTemplateColumns: '1fr',
-        gridTemplateRows: '1fr 10fr 1fr',
-        gridTemplateAreas: `'header' 'content' 'footer'`,
-      }}
-    >
-      <Header />
-      <Flex
+    <React.Fragment>
+      <SEO />
+      <Container
         sx={{
-          flexDirection: 'column',
-          alignItems: 'center',
-          paddingY: [3, 4, 5],
-          paddingX: [3, 4, 0],
+          display: 'grid',
+          width: '100vw',
+          height: '100vh',
+          gridTemplateColumns: '1fr',
+          gridTemplateRows: 'auto 1fr auto',
+          gridTemplateAreas: `'header' 'content' 'footer'`,
         }}
       >
-        {props.children}
-      </Flex>
-      <Footer />
-    </Container>
+        <Header pageContext={props.pageContext} />
+        <Flex
+          sx={{
+            flexDirection: 'column',
+            alignItems: props.alignContent || 'left',
+            paddingX: [3, 4, 0],
+            mb: [4, 5],
+          }}
+        >
+          {props.children}
+        </Flex>
+        <Footer />
+      </Container>
+    </React.Fragment>
   );
 };
 
