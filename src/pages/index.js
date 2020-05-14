@@ -53,14 +53,16 @@ const IndexPage = () => {
         sx={{
           fontSize: 3,
           width: '100%',
-          justifyContent: ['center', 'flex-start', 'flex-start'],
+          justifyContent: ['center', 'center', 'center'],
           mt: [5, 6],
         }}
       >
         <Box>
+          {'I also write short '}
           <Link to="/stories" variant="links.navigation">
             {'Stories'}
           </Link>
+          {'.'}
         </Box>
       </Flex>
     </Layout>
