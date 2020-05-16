@@ -19,7 +19,7 @@ const mdxResolverPassthrough = (fieldName) => async (
 
 // Create general interfaces that you could can use to leverage other data sources
 // The core theme sets up MDX as a type for the general interface
-exports.createSchemaCustomization = ({ actions }) => {
+exports.createSchemaCustomization = ({ actions, schema }) => {
   const { createTypes, createFieldExtension } = actions;
 
   const slugify = (source) => {
@@ -49,53 +49,49 @@ exports.createSchemaCustomization = ({ actions }) => {
     },
   });
 
-  createTypes(`
-    type StoryPageTag {
-      name: String
-      slug: String
-    }
-
-    interface StoryPage @nodeInterface {
-      id: ID!
-      slug: String! @slugify
-      title: String!
-      description: String
-      releaseDate: Date! @dateformat
-      body: String!
-      timeToRead: Int
-      cover: File @fileByRelativePath
-      coverCredits: File @fileByRelativePath
-      epub: File @fileByRelativePath
-      pdf: File @fileByRelativePath
-    }
-
-    type MdxStoryPage implements Node & StoryPage {
-      slug: String! @slugify
-      title: String!
-      description: String
-      releaseDate: Date! @dateformat
-      body: String! @mdxpassthrough(fieldName: "body")
-      timeToRead: Int @mdxpassthrough(fieldName: "timeToRead")
-      cover: File @fileByRelativePath
-      coverCredits: File @fileByRelativePath
-      epub: File @fileByRelativePath
-      pdf: File @fileByRelativePath
-    }
-
-    type MinimalBlogConfig implements Node {
-      storiesPath: String!
-      externalLinks: [ExternalLink!]!
-      navigation: [NavigationEntry!]!
-    }
-    type ExternalLink {
-      name: String!
-      url: String!
-    }
-    type NavigationEntry {
-      title: String!
-      slug: String!
-    }
-  `);
+  actions.createTypes([
+    schema.buildInterfaceType({
+      name: 'StoryPage',
+      fields: {
+        id: { type: 'ID!' },
+        slug: { type: 'String!', extensions: { slugify: {} } },
+        title: { type: 'String!' },
+        description: { type: 'String' },
+        releaseDate: { type: 'Date!', extensions: { dateformat: {} } },
+        body: { type: 'String!' },
+        timeToRead: { type: 'Int' },
+        cover: { type: 'File', extensions: { fileByRelativePath: {} } },
+        coverCredits: { type: 'File', extensions: { fileByRelativePath: {} } },
+        epub: { type: 'File', extensions: { fileByRelativePath: {} } },
+        pdf: { type: 'File', extensions: { fileByRelativePath: {} } },
+      },
+      extensions: {
+        nodeInterface: true,
+      },
+    }),
+    schema.buildObjectType({
+      name: 'MdxStoryPage',
+      fields: {
+        slug: { type: 'String!', extensions: { slugify: {} } },
+        title: { type: 'String!' },
+        description: { type: 'String' },
+        releaseDate: { type: 'Date!', extensions: { dateformat: {} } },
+        body: {
+          type: 'String!',
+          extensions: { mdxpassthrough: { fieldName: 'body' } },
+        },
+        timeToRead: {
+          type: 'Int',
+          extensions: { mdxpassthrough: { fieldName: 'timeToRead' } },
+        },
+        cover: { type: 'File', extensions: { fileByRelativePath: {} } },
+        coverCredits: { type: 'File', extensions: { fileByRelativePath: {} } },
+        epub: { type: 'File', extensions: { fileByRelativePath: {} } },
+        pdf: { type: 'File', extensions: { fileByRelativePath: {} } },
+      },
+      interfaces: ['Node', 'StoryPage'],
+    }),
+  ]);
 };
 
 exports.onCreateNode = ({
