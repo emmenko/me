@@ -17,10 +17,10 @@ export const query = graphql`
       body
       excerpt
       timeToRead
-      banner {
+      featuredImage {
         childImageSharp {
-          resize(width: 1200, quality: 90) {
-            src
+          fluid(maxWidth: 768) {
+            ...GatsbyImageSharpFluid
           }
         }
       }
