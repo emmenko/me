@@ -1,4 +1,5 @@
 import baseTheme from '@theme-ui/preset-base';
+import codeStyles from '@theme-ui/prism/presets/theme-ui';
 
 const heading = {
   fontFamily: 'heading',
@@ -30,7 +31,7 @@ const theme = {
     text: '#4f4f4f',
     background: '#fff',
     primary: '#e06961',
-    primaryHover: '#d84136',
+    accent: '#d84136',
     // A contrast color for emphasizing UI
     secondary: '#777',
     // A background color for highlighting text
@@ -46,7 +47,7 @@ const theme = {
         background: '#1a202c',
         // primary: '#f0c',
         secondary: '#999',
-        highlight: '#ffefd5',
+        highlight: '#fbc02d',
         toggleIcon: '#cbd5e0',
       },
     },
@@ -103,6 +104,9 @@ const theme = {
       height: '1px',
       m: 3,
     },
+    code: {
+      ...codeStyles,
+    },
   },
   /* VARIANTS */
   links: {
@@ -112,7 +116,7 @@ const theme = {
         fill: 'primary',
       },
       '&:hover > svg': {
-        fill: 'primaryHover',
+        fill: 'accent',
       },
     },
     navigation: {
@@ -123,7 +127,7 @@ const theme = {
       color: 'primary',
       '&:hover': {
         cursor: 'pointer',
-        color: 'primaryHover',
+        color: 'accent',
       },
     },
   },
@@ -195,14 +199,6 @@ const theme = {
       },
       pre: {
         textAlign: 'center',
-        code: {
-          fontStyle: 'italic',
-          backgroundColor: 'muted',
-          color: 'code',
-          paddingX: 2,
-          paddingY: 1,
-          borderRadius: 2,
-        },
       },
     },
   },
