@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, Styled } from 'theme-ui';
-import { Flex, Box } from '@theme-ui/components';
+import { Flex, Box, Text } from '@theme-ui/components';
 import Layout from './layout';
 import Link from './link';
 import SEO from './seo';
@@ -20,15 +20,28 @@ const NotesPage = (props) => (
             sx={{
               flexDirection: ['column', 'row'],
               justifyContent: 'space-between',
-              alignItems: ['flex-start', 'center'],
+              alignItems: ['flex-start', 'baseline'],
+              mb: [2, 3]
             }}
           >
-            <Link to={notePage.slug}>{notePage.title}</Link>
+            <Link to={notePage.slug} variant="links.navigation">
+              <Text
+                as="h2"
+                sx={{
+                  fontSize: 5,
+                  fontWeight: 'semibold',
+                  lineHeight: 'heading',
+                  mb: [1, 2],
+                }}
+              >
+                {notePage.title}
+              </Text>
+            </Link>
             <Box
               as="time"
               sx={{
                 color: 'secondary',
-                fontSize: 1,
+                // fontSize: 1,
                 minWidth: ['auto', '108px'],
                 textAlign: ['left', 'right'],
               }}

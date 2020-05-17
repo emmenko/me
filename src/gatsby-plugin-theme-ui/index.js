@@ -83,7 +83,7 @@ const theme = {
       ...heading,
       fontSize: 6,
       fontWeight: 'semibold',
-      mt: 2,
+      mt: 3,
       mb: 5,
     },
     h2: {

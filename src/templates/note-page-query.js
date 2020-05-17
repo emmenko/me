@@ -17,12 +17,16 @@ export const query = graphql`
       body
       excerpt
       timeToRead
-      featuredImage {
-        childImageSharp {
-          fluid(maxWidth: 768) {
-            ...GatsbyImageSharpFluid
+      featureImage {
+        image {
+          childImageSharp {
+            fluid(maxWidth: 768) {
+              ...GatsbyImageSharpFluid
+            }
           }
         }
+        author
+        authorUrl
       }
     }
   }

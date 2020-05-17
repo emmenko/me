@@ -12,12 +12,16 @@ export const query = graphql`
         description
         releaseDate(formatString: $formatString)
         timeToRead
-        cover {
-          childImageSharp {
-            fluid(maxWidth: 376, maxHeight: 376) {
-              ...GatsbyImageSharpFluid
+        featureImage {
+          image {
+            childImageSharp {
+              fluid(maxWidth: 376, maxHeight: 376) {
+                ...GatsbyImageSharpFluid
+              }
             }
           }
+          author
+          authorUrl
         }
       }
     }

@@ -23,6 +23,22 @@ const mdxResolverPassthrough = (fieldName) => async (
   return result;
 };
 
+const createFeatureImage = async (gatsbyApi) => {
+  const imageNode = await createRemoteFileNode({
+    url: gatsbyApi.node.frontmatter.featureImage.url,
+    parentNodeId: gatsbyApi.node.id,
+    createNode: gatsbyApi.actions.createNode,
+    createNodeId: gatsbyApi.createNodeId,
+    cache: gatsbyApi.cache,
+    store: gatsbyApi.store,
+  });
+  return {
+    image___NODE: imageNode.id,
+    author: gatsbyApi.node.frontmatter.featureImage.author,
+    authorUrl: gatsbyApi.node.frontmatter.featureImage.authorUrl,
+  };
+};
+
 // Create general interfaces that you could can use to leverage other data sources
 // The core theme sets up MDX as a type for the general interface
 exports.createSchemaCustomization = ({ actions, schema }) => {
@@ -54,46 +70,16 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
   });
 
   actions.createTypes([
-    schema.buildInterfaceType({
-      name: 'StoryPage',
-      fields: {
-        id: { type: 'ID!' },
-        slug: { type: 'String!', extensions: { slugify: {} } },
-        title: { type: 'String!' },
-        description: { type: 'String' },
-        releaseDate: { type: 'Date!', extensions: { dateformat: {} } },
-        body: { type: 'String!' },
-        timeToRead: { type: 'Int' },
-        cover: { type: 'File', extensions: { fileByRelativePath: {} } },
-        coverCredits: { type: 'File', extensions: { fileByRelativePath: {} } },
-        epub: { type: 'File', extensions: { fileByRelativePath: {} } },
-        pdf: { type: 'File', extensions: { fileByRelativePath: {} } },
-      },
-      extensions: {
-        nodeInterface: true,
-      },
-    }),
     schema.buildObjectType({
-      name: 'MdxStoryPage',
+      name: 'FeatureImage',
       fields: {
-        slug: { type: 'String!', extensions: { slugify: {} } },
-        title: { type: 'String!' },
-        description: { type: 'String' },
-        releaseDate: { type: 'Date!', extensions: { dateformat: {} } },
-        body: {
-          type: 'String!',
-          extensions: { mdxpassthrough: { fieldName: 'body' } },
+        image: {
+          type: 'File',
+          extensions: { link: { from: 'image___NODE' } },
         },
-        timeToRead: {
-          type: 'Int',
-          extensions: { mdxpassthrough: { fieldName: 'timeToRead' } },
-        },
-        cover: { type: 'File', extensions: { fileByRelativePath: {} } },
-        coverCredits: { type: 'File', extensions: { fileByRelativePath: {} } },
-        epub: { type: 'File', extensions: { fileByRelativePath: {} } },
-        pdf: { type: 'File', extensions: { fileByRelativePath: {} } },
+        author: { type: 'String!' },
+        authorUrl: { type: 'String!' },
       },
-      interfaces: ['Node', 'StoryPage'],
     }),
   ]);
 
@@ -122,11 +108,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         html: { type: 'String' },
         timeToRead: { type: 'Int' },
         tags: { type: '[NotePageTag]' },
-        featuredImage: {
-          type: 'File',
-          extensions: { link: { from: 'featuredImage___NODE' } },
-        },
-        featuredImageAlt: { type: 'String' },
+        featureImage: { type: 'FeatureImage' },
       },
       extensions: {
         nodeInterface: true,
@@ -157,43 +139,71 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
           extensions: { mdxpassthrough: { fieldName: 'timeToRead' } },
         },
         tags: { type: '[NotePageTag]' },
-        featuredImage: {
-          type: 'File',
-          extensions: { link: { from: 'featuredImage___NODE' } },
-        },
-        featuredImageAlt: { type: 'String' },
+        featureImage: { type: 'FeatureImage' },
       },
       interfaces: ['Node', 'NotePage'],
     }),
   ]);
+
+  actions.createTypes([
+    schema.buildInterfaceType({
+      name: 'StoryPage',
+      fields: {
+        id: { type: 'ID!' },
+        slug: { type: 'String!', extensions: { slugify: {} } },
+        title: { type: 'String!' },
+        description: { type: 'String' },
+        releaseDate: { type: 'Date!', extensions: { dateformat: {} } },
+        body: { type: 'String!' },
+        timeToRead: { type: 'Int' },
+        featureImage: { type: 'FeatureImage' },
+        epub: { type: 'File', extensions: { fileByRelativePath: {} } },
+        pdf: { type: 'File', extensions: { fileByRelativePath: {} } },
+      },
+      extensions: {
+        nodeInterface: true,
+      },
+    }),
+    schema.buildObjectType({
+      name: 'MdxStoryPage',
+      fields: {
+        slug: { type: 'String!', extensions: { slugify: {} } },
+        title: { type: 'String!' },
+        description: { type: 'String' },
+        releaseDate: { type: 'Date!', extensions: { dateformat: {} } },
+        body: {
+          type: 'String!',
+          extensions: { mdxpassthrough: { fieldName: 'body' } },
+        },
+        timeToRead: {
+          type: 'Int',
+          extensions: { mdxpassthrough: { fieldName: 'timeToRead' } },
+        },
+        featureImage: { type: 'FeatureImage' },
+        epub: { type: 'File', extensions: { fileByRelativePath: {} } },
+        pdf: { type: 'File', extensions: { fileByRelativePath: {} } },
+      },
+      interfaces: ['Node', 'StoryPage'],
+    }),
+  ]);
 };
 
-exports.onCreateNode = async ({
-  node,
-  actions,
-  store,
-  cache,
-  getNode,
-  createNodeId,
-  createContentDigest,
-}) => {
-  const { createNode, createParentChildLink } = actions;
-
+exports.onCreateNode = async (gatsbyApi) => {
   // Make sure that it's an MDX node
-  if (node.internal.type !== `Mdx`) {
+  if (gatsbyApi.node.internal.type !== `Mdx`) {
     return;
   }
 
   // Create a source field
   // And grab the sourceInstanceName to differentiate the different sources
   // In this case "postsPath" and "pagesPath"
-  const fileNode = getNode(node.parent);
+  const fileNode = gatsbyApi.getNode(gatsbyApi.node.parent);
   const source = fileNode.sourceInstanceName;
 
   if (source === 'notes') {
     let modifiedTags;
-    if (node.frontmatter.tags) {
-      modifiedTags = node.frontmatter.tags.map((tag) => ({
+    if (gatsbyApi.node.frontmatter.tags) {
+      modifiedTags = gatsbyApi.node.frontmatter.tags.map((tag) => ({
         name: tag,
         slug: kebabCase(tag),
       }));
@@ -202,88 +212,87 @@ exports.onCreateNode = async ({
     }
 
     const relativeFilePath = createFilePath({
-      node,
-      getNode,
+      node: gatsbyApi.node,
+      getNode: gatsbyApi.getNode,
       basePath: 'notes',
     });
     const slug = `/notes${relativeFilePath}`;
     const fieldData = {
       slug: trimTrailingSlash(slug),
-      title: node.frontmatter.title,
-      description: node.frontmatter.description,
-      date: node.frontmatter.date,
+      title: gatsbyApi.node.frontmatter.title,
+      description: gatsbyApi.node.frontmatter.description,
+      date: gatsbyApi.node.frontmatter.date,
       tags: modifiedTags,
     };
-    if (node.frontmatter.featuredImageUrl) {
-      const featuredImageNode = await createRemoteFileNode({
-        url: node.frontmatter.featuredImageUrl, // string that points to the URL of the image
-        parentNodeId: node.id, // id of the parent node of the fileNode you are going to create
-        createNode, // helper function in gatsby-node to generate the node
-        createNodeId, // helper function in gatsby-node to generate the node id
-        cache, // Gatsby's cache
-        store, // Gatsby's redux store
-      });
-      fieldData.featuredImage___NODE = featuredImageNode.id;
-      fieldData.featuredImageAlt = node.frontmatter.featuredImageAlt;
+    if (gatsbyApi.node.frontmatter.featureImage) {
+      fieldData.featureImage = await createFeatureImage(gatsbyApi);
     }
 
-    const mdxNoteId = createNodeId(`${node.id} >>> MdxNotePage`);
+    const mdxNoteId = gatsbyApi.createNodeId(
+      `${gatsbyApi.node.id} >>> MdxNotePage`
+    );
 
-    createNode({
+    gatsbyApi.actions.createNode({
       ...fieldData,
       // Required fields
       id: mdxNoteId,
-      parent: node.id,
+      parent: gatsbyApi.node.id,
       children: [],
       internal: {
         type: `MdxNotePage`,
-        contentDigest: createContentDigest(fieldData),
+        contentDigest: gatsbyApi.createContentDigest(fieldData),
         content: JSON.stringify(fieldData),
         description: `Mdx implementation of the NotePage interface`,
       },
     });
 
-    createParentChildLink({ parent: node, child: getNode(mdxNoteId) });
+    gatsbyApi.actions.createParentChildLink({
+      parent: gatsbyApi.node,
+      child: gatsbyApi.getNode(mdxNoteId),
+    });
   }
 
-  if (
-    source === 'stories' &&
-    !fileNode.relativeDirectory.includes('/material')
-  ) {
+  if (source === 'stories') {
     const relativeFilePath = createFilePath({
-      node,
-      getNode,
+      node: gatsbyApi.node,
+      getNode: gatsbyApi.getNode,
       basePath: 'stories',
     });
     const slug = `/stories${relativeFilePath}`;
     const fieldData = {
       slug: trimTrailingSlash(slug),
-      title: node.frontmatter.title,
-      description: node.frontmatter.description,
-      releaseDate: node.frontmatter.releaseDate,
-      cover: node.frontmatter.cover,
-      coverCredits: node.frontmatter.coverCredits,
-      epub: node.frontmatter.epub,
-      pdf: node.frontmatter.pdf,
+      title: gatsbyApi.node.frontmatter.title,
+      description: gatsbyApi.node.frontmatter.description,
+      releaseDate: gatsbyApi.node.frontmatter.releaseDate,
+      epub: gatsbyApi.node.frontmatter.epub,
+      pdf: gatsbyApi.node.frontmatter.pdf,
     };
+    if (gatsbyApi.node.frontmatter.featureImage) {
+      fieldData.featureImage = await createFeatureImage(gatsbyApi);
+    }
 
-    const mdxStoryPageId = createNodeId(`${node.id} >>> MdxStoryPage`);
+    const mdxStoryPageId = gatsbyApi.createNodeId(
+      `${gatsbyApi.node.id} >>> MdxStoryPage`
+    );
 
-    createNode({
+    gatsbyApi.actions.createNode({
       ...fieldData,
       // Required fields
       id: mdxStoryPageId,
-      parent: node.id,
+      parent: gatsbyApi.node.id,
       children: [],
       internal: {
         type: `MdxStoryPage`,
-        contentDigest: createContentDigest(fieldData),
+        contentDigest: gatsbyApi.createContentDigest(fieldData),
         content: JSON.stringify(fieldData),
         description: `Mdx implementation of the StoryPage interface`,
       },
     });
 
-    createParentChildLink({ parent: node, child: getNode(mdxStoryPageId) });
+    gatsbyApi.actions.createParentChildLink({
+      parent: gatsbyApi.node,
+      child: gatsbyApi.getNode(mdxStoryPageId),
+    });
   }
 };
 

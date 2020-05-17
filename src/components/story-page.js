@@ -2,9 +2,9 @@
 import { jsx, Styled } from 'theme-ui';
 import { Box, Flex, Text, Link as HTMLLink } from '@theme-ui/components';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import GatsbyImage from 'gatsby-image';
 import Layout from './layout';
 import SEO from './seo';
+import FeatureImage from './feature-image';
 
 const StoryPage = (props) => (
   <Layout pageContext={props.pageContext}>
@@ -13,12 +13,10 @@ const StoryPage = (props) => (
       templateTitle="A short story by Nicola Molinari"
       description={props.data.storyPage.description}
       pathname={props.path}
-      image={props.data.storyPage.cover.childImageSharp.fluid.src}
+      image={props.data.storyPage.featureImage.image.childImageSharp.fluid.src}
     />
     <Box sx={{ mb: 2 }}>
-      <Styled.h1 sx={{ textAlign: 'center' }}>
-        {props.data.storyPage.title}
-      </Styled.h1>
+      <Styled.h1>{props.data.storyPage.title}</Styled.h1>
       {props.data.storyPage.epub || props.data.storyPage.pdf ? (
         <Flex
           sx={{
@@ -49,20 +47,7 @@ const StoryPage = (props) => (
         <Text as="p">{`${props.data.storyPage.timeToRead} min read`}</Text>
       </Flex>
     </Box>
-    <Box sx={{ mb: [3, 4] }}>
-      <GatsbyImage fluid={props.data.storyPage.cover.childImageSharp.fluid} />
-      {props.data.storyPage.coverCredits && (
-        <Box
-          sx={{
-            p: { m: 0, color: 'secondary', fontSize: 1, textAlign: 'center' },
-          }}
-        >
-          <MDXRenderer>
-            {props.data.storyPage.coverCredits.childMdx.body}
-          </MDXRenderer>
-        </Box>
-      )}
-    </Box>
+    <FeatureImage {...props.data.storyPage.featureImage} />
     <Box as="section" variant="typography.story">
       <MDXRenderer>{props.data.storyPage.body}</MDXRenderer>
     </Box>

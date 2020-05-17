@@ -2,11 +2,11 @@
 import { jsx, Styled } from 'theme-ui';
 import { Flex, Box, Text } from '@theme-ui/components';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import GatsbyImage from 'gatsby-image';
 import Layout from './layout';
 import SEO from './seo';
+import FeatureImage from './feature-image';
 
-const NotePage = (props) => (console.log(props),
+const NotePage = (props) => (
   <Layout pageContext={props.pageContext}>
     <SEO
       title={props.data.notePage.title}
@@ -14,8 +14,8 @@ const NotePage = (props) => (console.log(props),
       description={props.data.notePage.description}
       pathname={props.path}
       image={
-        props.data.notePage.featuredImage
-          ? props.data.notePage.featuredImage.childImageSharp.fluid.src
+        props.data.notePage.featureImage
+          ? props.data.notePage.featureImage.image.childImageSharp.fluid.src
           : undefined
       }
     />
@@ -32,11 +32,7 @@ const NotePage = (props) => (console.log(props),
         <Text as="p">{`${props.data.notePage.timeToRead} min read`}</Text>
       </Flex>
     </Box>
-    {props.data.notePage.featuredImage && (
-      <Box sx={{ mb: [3, 4] }}>
-        <GatsbyImage fluid={props.data.notePage.featuredImage.childImageSharp.fluid} />
-      </Box>
-    )}
+    <FeatureImage {...props.data.notePage.featureImage} />
     <Box as="section">
       <MDXRenderer>{props.data.notePage.body}</MDXRenderer>
     </Box>
