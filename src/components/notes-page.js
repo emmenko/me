@@ -59,7 +59,7 @@ const NotesPage = (props) => (
             }}
           >
             {notePage.tags && (
-              <Box sx={{ '> * + *': { ml: 3 } }}>
+              <Box sx={{ '> a + a': { ml: 3 } }}>
                 {notePage.tags.map((tag) => (
                   <Link key={tag.name} to={tag.slug}>
                     {tag.name}
