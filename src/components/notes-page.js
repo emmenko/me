@@ -12,18 +12,18 @@ const NotesPage = (props) => (
       description="A collections of notes, mostly about technical topics."
       pathname={props.path}
     />
-    <Styled.h1>Notes</Styled.h1>
+    <Styled.h1>
+      <Flex sx={{ justifyContent: 'space-between', alignItems: 'baseline' }}>
+        <Text>Notes</Text>
+        <Box sx={{ fontSize: 2 }}>
+          <Link to="/notes/tags">View all tags</Link>
+        </Box>
+      </Flex>
+    </Styled.h1>
     <section sx={{ mb: [5, 6, 7] }}>
       {props.data.allNotePage.nodes.map((notePage) => (
         <Box mb={4}>
-          <Flex
-            sx={{
-              flexDirection: ['column', 'row'],
-              justifyContent: 'space-between',
-              alignItems: ['flex-start', 'baseline'],
-              mb: [2, 3]
-            }}
-          >
+          <Box>
             <Link to={notePage.slug} variant="links.navigation">
               <Text
                 as="h2"
@@ -37,43 +37,16 @@ const NotesPage = (props) => (
                 {notePage.title}
               </Text>
             </Link>
-            <Box
-              as="time"
-              sx={{
-                color: 'secondary',
-                // fontSize: 1,
-                minWidth: ['auto', '108px'],
-                textAlign: ['left', 'right'],
-              }}
-            >
-              {notePage.date}
-            </Box>
-          </Flex>
-          <Box as="p">{notePage.excerpt}</Box>
-          <Box
-            sx={{
-              color: `secondary`,
-              mt: 3,
-              a: { color: `secondary` },
-              fontSize: [1, 1, 2],
-            }}
-          >
-            {notePage.tags && (
-              <Box sx={{ '> a + a': { ml: 3 } }}>
-                {notePage.tags.map((tag) => (
-                  <Link key={tag.name} to={tag.slug}>
-                    {tag.name}
-                  </Link>
-                ))}
-              </Box>
-            )}
+          </Box>
+          <Box sx={{ color: 'secondary', fontStyle: 1 }}>
+            <time>{notePage.date}</time>
+          </Box>
+          <Box as="p" sx={{ mt: 3 }}>
+            {notePage.excerpt}
           </Box>
         </Box>
       ))}
     </section>
-    <Flex sx={{ justifyContent: 'center' }}>
-      <Link to="/notes/tags">View all tags</Link>
-    </Flex>
   </Layout>
 );
 

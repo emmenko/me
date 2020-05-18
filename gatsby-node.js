@@ -1,8 +1,5 @@
 const kebabCase = require('lodash.kebabcase');
-const {
-  createFilePath,
-  createRemoteFileNode,
-} = require('gatsby-source-filesystem');
+const { createRemoteFileNode } = require('gatsby-source-filesystem');
 
 const trimTrailingSlash = (url) => url.replace(/(\/?)$/, '');
 
@@ -42,17 +39,15 @@ const createFeatureImage = async (gatsbyApi) => {
 // Create general interfaces that you could can use to leverage other data sources
 // The core theme sets up MDX as a type for the general interface
 exports.createSchemaCustomization = ({ actions, schema }) => {
-  const slugify = (source) => {
-    const slug = source.slug ? source.slug : kebabCase(source.title);
-
-    return `/${slug}`.replace(/\/\/+/g, `/`);
-  };
-
   actions.createFieldExtension({
     name: `slugify`,
     extend() {
       return {
-        resolve: slugify,
+        resolve: (source) => {
+          return trimTrailingSlash(
+            `${source.___slugPrefix}/${kebabCase(source.title || source.name)}`
+          );
+        },
       };
     },
   });
@@ -88,7 +83,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
       name: 'NotePageTag',
       fields: {
         name: { type: 'String' },
-        slug: { type: 'String' },
+        slug: { type: 'String', extensions: { slugify: {} } },
       },
     }),
     schema.buildInterfaceType({
@@ -205,20 +200,14 @@ exports.onCreateNode = async (gatsbyApi) => {
     if (gatsbyApi.node.frontmatter.tags) {
       modifiedTags = gatsbyApi.node.frontmatter.tags.map((tag) => ({
         name: tag,
-        slug: kebabCase(tag),
+        ___slugPrefix: '/notes/tags/',
       }));
     } else {
       modifiedTags = null;
     }
 
-    const relativeFilePath = createFilePath({
-      node: gatsbyApi.node,
-      getNode: gatsbyApi.getNode,
-      basePath: 'notes',
-    });
-    const slug = `/notes${relativeFilePath}`;
     const fieldData = {
-      slug: trimTrailingSlash(slug),
+      ___slugPrefix: '/notes',
       title: gatsbyApi.node.frontmatter.title,
       description: gatsbyApi.node.frontmatter.description,
       date: gatsbyApi.node.frontmatter.date,
@@ -253,14 +242,8 @@ exports.onCreateNode = async (gatsbyApi) => {
   }
 
   if (source === 'stories') {
-    const relativeFilePath = createFilePath({
-      node: gatsbyApi.node,
-      getNode: gatsbyApi.getNode,
-      basePath: 'stories',
-    });
-    const slug = `/stories${relativeFilePath}`;
     const fieldData = {
-      slug: trimTrailingSlash(slug),
+      ___slugPrefix: '/stories',
       title: gatsbyApi.node.frontmatter.title,
       description: gatsbyApi.node.frontmatter.description,
       releaseDate: gatsbyApi.node.frontmatter.releaseDate,

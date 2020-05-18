@@ -1,9 +1,11 @@
 /** @jsx jsx */
+import React from 'react';
 import { jsx, Styled } from 'theme-ui';
-import { Flex, Box, Text } from '@theme-ui/components';
+import { Box, Text } from '@theme-ui/components';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Layout from './layout';
 import SEO from './seo';
+import Link from './link';
 import FeatureImage from './feature-image';
 
 const NotePage = (props) => (
@@ -21,16 +23,41 @@ const NotePage = (props) => (
     />
     <Box sx={{ mb: 2 }}>
       <Styled.h1>{props.data.notePage.title}</Styled.h1>
-      <Flex
+      <Box
         sx={{
-          justifyContent: 'space-between',
-          color: 'secondary',
           fontSize: 1,
+          fontStyle: 'italic',
+          color: `secondary`,
+          a: { color: `secondary` },
+          mb: 3,
         }}
       >
-        <Text as="p">{`Published on ${props.data.notePage.date}`}</Text>
-        <Text as="p">{`${props.data.notePage.timeToRead} min read`}</Text>
-      </Flex>
+        <time>{props.data.notePage.date}</time>
+        <span>{' in '}</span>
+        {props.data.notePage.tags.map((tag, index) => {
+          const isLast = index === props.data.notePage.tags.length - 1;
+          const separator = <Box as="span">{', '}</Box>;
+          const linkTag = (
+            <Link key={tag.name} to={tag.slug}>
+              {tag.name}
+            </Link>
+          );
+
+          if (isLast) {
+            return linkTag;
+          }
+          return (
+            <React.Fragment>
+              {linkTag}
+              {separator}
+            </React.Fragment>
+          );
+        })}
+        <Text as="span">
+          {' '}
+          &mdash; {` About ${props.data.notePage.timeToRead} min read`}
+        </Text>
+      </Box>
     </Box>
     <FeatureImage {...props.data.notePage.featureImage} />
     <Box as="section">
