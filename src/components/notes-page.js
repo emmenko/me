@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, Styled } from 'theme-ui';
-import { Flex, Box, Text } from '@theme-ui/components';
+import { Box, Text } from '@theme-ui/components';
 import Layout from './layout';
 import SEO from './seo';
 import Link from './link';
@@ -14,12 +14,18 @@ const NotesPage = (props) => (
       pathname={props.path}
     />
     <Styled.h1>
-      <Flex sx={{ justifyContent: 'space-between', alignItems: 'baseline' }}>
+      <Box
+        sx={{
+          display: ['block', 'flex'],
+          justifyContent: 'space-between',
+          alignItems: 'baseline',
+        }}
+      >
         <Text>Notes</Text>
         <Box sx={{ fontSize: 2 }}>
           <Link to="/notes/tags">View all tags</Link>
         </Box>
-      </Flex>
+      </Box>
     </Styled.h1>
     <section sx={{ mb: [5, 6, 7] }}>
       {props.data.allNotePage.nodes.map((notePage) => (

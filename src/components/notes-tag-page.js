@@ -1,10 +1,61 @@
-import React from 'react';
+/** @jsx jsx */
+import { jsx, Styled } from 'theme-ui';
+import { Box, Text } from '@theme-ui/components';
+import Layout from './layout';
+import SEO from './seo';
+import Link from './link';
+import DraftBadge from './draft-badge';
 
-export default function NotesTagPage(props) {
-  return (
-    <div>
-      <pre>{JSON.stringify(props.data, null, 2)}</pre>
-      <pre>{JSON.stringify(props.pageContext, null, 2)}</pre>
-    </div>
-  );
-}
+const NotesTagPage = (props) => (
+  <Layout pageContext={props.pageContext}>
+    <SEO
+      title={`${props.pageContext.name} | Notes by Nicola Molinari`}
+      description={`All notes for the tag ${props.pageContext.name}`}
+      pathname={props.path}
+    />
+    <Styled.h1>
+      <Box
+        sx={{
+          display: ['block', 'flex'],
+          justifyContent: 'space-between',
+          alignItems: 'baseline',
+        }}
+      >
+        <Text>{`Notes: ${props.pageContext.name}`}</Text>
+        <Box sx={{ fontSize: 2 }}>
+          <Link to="/notes/tags">View all tags</Link>
+        </Box>
+      </Box>
+    </Styled.h1>
+    <section sx={{ mb: [5, 6, 7] }}>
+      {props.data.allNotePage.nodes.map((notePage) => (
+        <Box mb={4}>
+          {notePage.isDraft && <DraftBadge />}
+          <Box>
+            <Link to={notePage.slug} variant="links.navigation">
+              <Text
+                as="h2"
+                sx={{
+                  fontSize: 5,
+                  fontWeight: 'semibold',
+                  lineHeight: 'heading',
+                  mb: [1, 2],
+                }}
+              >
+                {notePage.title}
+              </Text>
+            </Link>
+          </Box>
+          <Box sx={{ color: 'secondary', fontStyle: 1 }}>
+            <time>{notePage.date}</time>
+          </Box>
+          <Box as="p" sx={{ mt: 3 }}>
+            {notePage.excerpt}
+          </Box>
+        </Box>
+      ))}
+    </section>
+  </Layout>
+);
+
+export default NotesTagPage;

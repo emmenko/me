@@ -322,7 +322,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     path: `/notes/tags`,
     component: notesTagsPageTemplate,
     context: {
-      breadcrumbs: ['notes'],
+      breadcrumbs: ['notes', 'tags'],
       formatString: `LL`,
     },
   });
