@@ -47,16 +47,25 @@ const IndexPage = () => {
           color: 'secondary',
         }}
       >
-        {'Technology enthusiast. I ❤️️ building things.'}
+        {'Technology enthusiast. I '}&#10084;{' building things.'}
       </Box>
       <Flex
         sx={{
+          flexDirection: 'column',
           fontSize: 3,
           width: '100%',
-          justifyContent: ['center', 'center', 'center'],
-          mt: [5, 6],
+          alignItems: 'center',
+          justifyContent: 'center',
+          mt: [4, 5],
         }}
       >
+        <Box>
+          {'In my '}
+          <Link to="/notes" variant="links.navigation">
+            {'Notes'}
+          </Link>
+          {' I write about tech stuff.'}
+        </Box>
         <Box>
           {'I also write short '}
           <Link to="/stories" variant="links.navigation">
