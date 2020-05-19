@@ -2,8 +2,9 @@
 import { jsx, Styled } from 'theme-ui';
 import { Flex, Box, Text } from '@theme-ui/components';
 import Layout from './layout';
-import Link from './link';
 import SEO from './seo';
+import Link from './link';
+import DraftBadge from './draft-badge';
 
 const NotesPage = (props) => (
   <Layout pageContext={props.pageContext}>
@@ -23,6 +24,7 @@ const NotesPage = (props) => (
     <section sx={{ mb: [5, 6, 7] }}>
       {props.data.allNotePage.nodes.map((notePage) => (
         <Box mb={4}>
+          {notePage.isDraft && <DraftBadge />}
           <Box>
             <Link to={notePage.slug} variant="links.navigation">
               <Text

@@ -6,6 +6,7 @@ export default StoryPage;
 export const query = graphql`
   query($slug: String!, $formatString: String!) {
     storyPage(slug: { eq: $slug }) {
+      isDraft
       slug
       title
       description

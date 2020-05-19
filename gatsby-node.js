@@ -89,6 +89,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
     schema.buildInterfaceType({
       name: 'NotePage',
       fields: {
+        isDraft: { type: 'Boolean!' },
         id: { type: 'ID!' },
         slug: { type: 'String!', extensions: { slugify: {} } },
         title: { type: 'String!' },
@@ -112,6 +113,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
     schema.buildObjectType({
       name: 'MdxNotePage',
       fields: {
+        isDraft: { type: 'Boolean!' },
         slug: { type: 'String!', extensions: { slugify: {} } },
         title: { type: 'String!' },
         description: { type: 'String' },
@@ -144,6 +146,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
     schema.buildInterfaceType({
       name: 'StoryPage',
       fields: {
+        isDraft: { type: 'Boolean!' },
         id: { type: 'ID!' },
         slug: { type: 'String!', extensions: { slugify: {} } },
         title: { type: 'String!' },
@@ -162,6 +165,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
     schema.buildObjectType({
       name: 'MdxStoryPage',
       fields: {
+        isDraft: { type: 'Boolean!' },
         slug: { type: 'String!', extensions: { slugify: {} } },
         title: { type: 'String!' },
         description: { type: 'String' },
@@ -194,13 +198,15 @@ exports.onCreateNode = async (gatsbyApi) => {
   // In this case "postsPath" and "pagesPath"
   const fileNode = gatsbyApi.getNode(gatsbyApi.node.parent);
   const source = fileNode.sourceInstanceName;
+  const isDraft = Boolean(gatsbyApi.node.frontmatter.draft);
+  const isProduction = process.env.NODE_ENV === 'production';
 
-  if (source === 'notes') {
+  if (source === 'notes' && !(isDraft && isProduction)) {
     let modifiedTags;
     if (gatsbyApi.node.frontmatter.tags) {
       modifiedTags = gatsbyApi.node.frontmatter.tags.map((tag) => ({
         name: tag,
-        ___slugPrefix: '/notes/tags/',
+        ___slugPrefix: '/notes/tags',
       }));
     } else {
       modifiedTags = null;
@@ -208,6 +214,7 @@ exports.onCreateNode = async (gatsbyApi) => {
 
     const fieldData = {
       ___slugPrefix: '/notes',
+      isDraft,
       title: gatsbyApi.node.frontmatter.title,
       description: gatsbyApi.node.frontmatter.description,
       date: gatsbyApi.node.frontmatter.date,
@@ -241,9 +248,10 @@ exports.onCreateNode = async (gatsbyApi) => {
     });
   }
 
-  if (source === 'stories') {
+  if (source === 'stories' && !(isDraft && isProduction)) {
     const fieldData = {
       ___slugPrefix: '/stories',
+      isDraft,
       title: gatsbyApi.node.frontmatter.title,
       description: gatsbyApi.node.frontmatter.description,
       releaseDate: gatsbyApi.node.frontmatter.releaseDate,
@@ -358,26 +366,29 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   result.data.allNotePage.nodes.forEach((page) => {
     const breadcrumbs = page.slug.split('/').filter(Boolean);
+    const slug = trimTrailingSlash(page.slug);
     createPage({
-      path: trimTrailingSlash(page.slug),
+      path: slug,
       component: notePageTemplate,
       context: {
         breadcrumbs,
-        slug: page.slug,
+        slug,
         formatString: `LL`,
       },
     });
   });
 
   result.data.allNoteTags.group.forEach((tag) => {
-    const tagPath = `/notes/tags/${kebabCase(tag.fieldValue)}`;
+    const tagPath = trimTrailingSlash(
+      `/notes/tags/${kebabCase(tag.fieldValue)}`
+    );
     const breadcrumbs = tagPath.split('/').filter(Boolean);
     createPage({
-      path: trimTrailingSlash(tagPath),
+      path: tagPath,
       component: notesTagPageTemplate,
       context: {
         breadcrumbs,
-        slug: kebabCase(tag.fieldValue),
+        slug: tagPath,
         name: tag.fieldValue,
         formatString: `LL`,
       },
@@ -386,12 +397,13 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   result.data.allStoryPage.nodes.forEach((page) => {
     const breadcrumbs = page.slug.split('/').filter(Boolean);
+    const slug = trimTrailingSlash(page.slug);
     createPage({
-      path: trimTrailingSlash(page.slug),
+      path: slug,
       component: storyPageTemplate,
       context: {
         breadcrumbs,
-        slug: page.slug,
+        slug,
         formatString: `LL`,
       },
     });

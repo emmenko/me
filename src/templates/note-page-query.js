@@ -6,6 +6,7 @@ export default NotePage;
 export const query = graphql`
   query($slug: String!, $formatString: String!) {
     notePage(slug: { eq: $slug }) {
+      isDraft
       slug
       title
       date(formatString: $formatString)

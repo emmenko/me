@@ -202,6 +202,17 @@ const theme = {
       },
     },
   },
+  badges: {
+    draft: {
+      backgroundColor: 'highlight',
+      borderRadius: '4px',
+      border: '1px solid',
+      borderColor: 'muted',
+      paddingX: 1,
+      fontSize: 1,
+      fontWeight: 'semibold',
+    },
+  },
 };
 
 export default theme;

@@ -7,6 +7,7 @@ export const query = graphql`
   query($formatString: String!) {
     allNotePage(sort: { fields: date, order: DESC }) {
       nodes {
+        isDraft
         slug
         title
         date(formatString: $formatString)

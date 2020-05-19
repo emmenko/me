@@ -10,6 +10,7 @@ export const query = graphql`
       filter: { tags: { elemMatch: { slug: { eq: $slug } } } }
     ) {
       nodes {
+        isDraft
         slug
         title
         date(formatString: $formatString)

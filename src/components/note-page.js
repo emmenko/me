@@ -7,6 +7,7 @@ import Layout from './layout';
 import SEO from './seo';
 import Link from './link';
 import FeatureImage from './feature-image';
+import DraftBadge from './draft-badge';
 
 const NotePage = (props) => (
   <Layout pageContext={props.pageContext}>
@@ -22,6 +23,7 @@ const NotePage = (props) => (
       }
     />
     <Box sx={{ mb: 2 }}>
+      {props.data.notePage.isDraft && <DraftBadge />}
       <Styled.h1>{props.data.notePage.title}</Styled.h1>
       <Box
         sx={{
@@ -53,10 +55,7 @@ const NotePage = (props) => (
             </React.Fragment>
           );
         })}
-        <Text as="span">
-          {' '}
-          &mdash; {` About ${props.data.notePage.timeToRead} min read`}
-        </Text>
+        <Text>{`About ${props.data.notePage.timeToRead} min read`}</Text>
       </Box>
     </Box>
     <FeatureImage {...props.data.notePage.featureImage} />
