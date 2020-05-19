@@ -1,10 +1,11 @@
 /** @jsx jsx */
-import { jsx, Styled } from 'theme-ui';
-import { Box, Text } from '@theme-ui/components';
+import { jsx } from 'theme-ui';
+import { Box } from '@theme-ui/components';
 import kebabCase from 'lodash.kebabcase';
 import Layout from './layout';
 import SEO from './seo';
 import Link from './link';
+import PageListHeading from './page-list-heading';
 
 const NotesTagsPage = (props) => (
   <Layout pageContext={props.pageContext}>
@@ -13,24 +14,14 @@ const NotesTagsPage = (props) => (
       description="All tags for the notes"
       pathname={props.path}
     />
-    <Styled.h1>
-      <Box
-        sx={{
-          display: ['block', 'flex'],
-          justifyContent: 'space-between',
-          alignItems: 'baseline',
-        }}
-      >
-        <Text>Tags</Text>
-        <Box sx={{ fontSize: 2 }}>
-          <Link to="/notes">View all notes</Link>
-        </Box>
-      </Box>
-    </Styled.h1>
+    <PageListHeading
+      title="Tags"
+      sideElement={<Link to="/notes">View all notes</Link>}
+    />
     <section sx={{ mb: [5, 6, 7] }}>
-      {props.data.allNotePage.group.map((group) => (
-        <Box as="ul" mb={2}>
-          <Box as="li">
+      <Box as="ul" mb={2}>
+        {props.data.allNotePage.group.map((group) => (
+          <Box as="li" key={group.fieldValue}>
             <Link
               to={`/notes/tags/${kebabCase(group.fieldValue)}`}
               variant="links.navigation"
@@ -41,8 +32,8 @@ const NotesTagsPage = (props) => (
               {`(${group.totalCount})`}
             </Box>
           </Box>
-        </Box>
-      ))}
+        ))}
+      </Box>
     </section>
   </Layout>
 );

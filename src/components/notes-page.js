@@ -1,9 +1,10 @@
 /** @jsx jsx */
-import { jsx, Styled } from 'theme-ui';
-import { Box, Text } from '@theme-ui/components';
+import { jsx } from 'theme-ui';
+import { Box, Text, Link as HTMLLink } from '@theme-ui/components';
 import Layout from './layout';
 import SEO from './seo';
 import Link from './link';
+import PageListHeading from './page-list-heading';
 import DraftBadge from './draft-badge';
 
 const NotesPage = (props) => (
@@ -13,23 +14,17 @@ const NotesPage = (props) => (
       description="A collections of notes, mostly about technical topics."
       pathname={props.path}
     />
-    <Styled.h1>
-      <Box
-        sx={{
-          display: ['block', 'flex'],
-          justifyContent: 'space-between',
-          alignItems: 'baseline',
-        }}
-      >
-        <Text>Notes</Text>
-        <Box sx={{ fontSize: 2 }}>
-          <Link to="/notes/tags">View all tags</Link>
-        </Box>
-      </Box>
-    </Styled.h1>
+    <PageListHeading
+      title="Notes"
+      sideElement={<Link to="/notes/tags">View all tags</Link>}
+    />
+    <Box as="p" sx={{ mb: [5] }}>
+      <Text as="span">{'You can find other of my articles on '}</Text>
+      <HTMLLink href="https://medium.com/@emmenko">Medium</HTMLLink>
+    </Box>
     <section sx={{ mb: [5, 6, 7] }}>
       {props.data.allNotePage.nodes.map((notePage) => (
-        <Box mb={4}>
+        <Box mb={4} key={notePage.slug}>
           {notePage.isDraft && <DraftBadge />}
           <Box>
             <Link to={notePage.slug} variant="links.navigation">

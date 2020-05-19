@@ -1,10 +1,11 @@
 /** @jsx jsx */
-import { jsx, Styled } from 'theme-ui';
+import { jsx } from 'theme-ui';
 import { Box, Text } from '@theme-ui/components';
 import Layout from './layout';
 import SEO from './seo';
 import Link from './link';
 import DraftBadge from './draft-badge';
+import PageListHeading from './page-list-heading';
 
 const NotesTagPage = (props) => (
   <Layout pageContext={props.pageContext}>
@@ -13,23 +14,13 @@ const NotesTagPage = (props) => (
       description={`All notes for the tag ${props.pageContext.name}`}
       pathname={props.path}
     />
-    <Styled.h1>
-      <Box
-        sx={{
-          display: ['block', 'flex'],
-          justifyContent: 'space-between',
-          alignItems: 'baseline',
-        }}
-      >
-        <Text>{`Notes: ${props.pageContext.name}`}</Text>
-        <Box sx={{ fontSize: 2 }}>
-          <Link to="/notes/tags">View all tags</Link>
-        </Box>
-      </Box>
-    </Styled.h1>
+    <PageListHeading
+      title={`Notes: ${props.pageContext.name}`}
+      sideElement={<Link to="/notes/tags">View all tags</Link>}
+    />
     <section sx={{ mb: [5, 6, 7] }}>
       {props.data.allNotePage.nodes.map((notePage) => (
-        <Box mb={4}>
+        <Box mb={4} key={notePage.slug}>
           {notePage.isDraft && <DraftBadge />}
           <Box>
             <Link to={notePage.slug} variant="links.navigation">

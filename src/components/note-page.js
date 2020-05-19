@@ -1,13 +1,13 @@
 /** @jsx jsx */
 import React from 'react';
-import { jsx, Styled } from 'theme-ui';
+import { jsx } from 'theme-ui';
 import { Box, Text } from '@theme-ui/components';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Layout from './layout';
 import SEO from './seo';
 import Link from './link';
+import PageHeading from './page-heading';
 import FeatureImage from './feature-image';
-import DraftBadge from './draft-badge';
 
 const NotePage = (props) => (
   <Layout pageContext={props.pageContext}>
@@ -22,42 +22,33 @@ const NotePage = (props) => (
           : undefined
       }
     />
-    <Box sx={{ mb: 2 }}>
-      {props.data.notePage.isDraft && <DraftBadge />}
-      <Styled.h1>{props.data.notePage.title}</Styled.h1>
-      <Box
-        sx={{
-          fontSize: 1,
-          fontStyle: 'italic',
-          color: `secondary`,
-          a: { color: `secondary` },
-          mb: 3,
-        }}
-      >
-        <time>{props.data.notePage.date}</time>
-        <span>{' in '}</span>
-        {props.data.notePage.tags.map((tag, index) => {
-          const isLast = index === props.data.notePage.tags.length - 1;
-          const separator = <Box as="span">{', '}</Box>;
-          const linkTag = (
-            <Link key={tag.name} to={tag.slug}>
-              {tag.name}
-            </Link>
-          );
+    <PageHeading
+      isDraft={props.data.notePage.isDraft}
+      title={props.data.notePage.title}
+    >
+      <Text as="time">{props.data.notePage.date}</Text>
+      <span>{' in '}</span>
+      {props.data.notePage.tags.map((tag, index) => {
+        const isLast = index === props.data.notePage.tags.length - 1;
+        const separator = <Box as="span">{', '}</Box>;
+        const linkTag = (
+          <Link key={tag.name} to={tag.slug}>
+            {tag.name}
+          </Link>
+        );
 
-          if (isLast) {
-            return linkTag;
-          }
-          return (
-            <React.Fragment>
-              {linkTag}
-              {separator}
-            </React.Fragment>
-          );
-        })}
-        <Text>{`About ${props.data.notePage.timeToRead} min read`}</Text>
-      </Box>
-    </Box>
+        if (isLast) {
+          return linkTag;
+        }
+        return (
+          <React.Fragment key={tag.name}>
+            {linkTag}
+            {separator}
+          </React.Fragment>
+        );
+      })}
+      <Text as="p">{`About ${props.data.notePage.timeToRead} min read`}</Text>
+    </PageHeading>
     <FeatureImage {...props.data.notePage.featureImage} />
     <Box as="section">
       <MDXRenderer>{props.data.notePage.body}</MDXRenderer>
