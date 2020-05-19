@@ -45,7 +45,7 @@ const NotesPage = (props) => (
             <time>{notePage.date}</time>
           </Box>
           <Box as="p" sx={{ mt: 3 }}>
-            {notePage.excerpt}
+            {notePage.description}
           </Box>
         </Box>
       ))}

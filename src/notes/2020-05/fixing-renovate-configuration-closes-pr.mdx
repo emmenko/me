@@ -1,5 +1,4 @@
 ---
-draft: true
 title: Fixing Renovate Config causing Pull Requests to auto close
 date: 2020-05-18
 description: With a Renovate configuration for a monorepository scheduled on a weekly basis, and dependencies grouped by major and minor/patch, Renovate will unexpectedly close the Pull Requests. Here's how you can fix that.
@@ -12,7 +11,7 @@ featureImage:
   authorUrl: https://unsplash.com/@yohoney
 ---
 
-At work we're using the [Renovate]() GitHub App to manage dependency updates in most of our repositories.
+At work we're using the [Renovate](https://github.com/apps/renovate) GitHub App to manage dependency updates in most of our repositories.
 
 We have been very happy with Renovate and we like the level of configurability that you can achieve. In fact, for our monorepositories we have been using the grouping feature to aggregate updates in single Pull Requests. We also have weekly scheduled updates, to reduce the "noise" in GitHub and CI.
 
@@ -47,7 +46,7 @@ Recently however, we started noticing weird behaviors where Renovate will open a
 
 ![Example of Renovate closing a Pull Request](./images/renovate-auto-close-pr.png)
 
-I [reached for help](https://github.com/renovatebot/config-help/issues/632) in the `renovatebot/config-help` repository and, after some investigation, Rhys Arkins suggested to change a bit the configuration. The assumption being that the mix of rules and `lockFileMaintenance` was causing some unexpected issues.
+I [reached for help](https://github.com/renovatebot/config-help/issues/632) in the `renovatebot/config-help` repository and, after some investigation, [Rhys Arkins](https://github.com/rarkins) suggested to change a bit the configuration. The assumption being that the mix of rules and `lockFileMaintenance` was causing some unexpected issues.
 
 The updated config looks like this:
 
@@ -78,7 +77,5 @@ The updated config looks like this:
 ```
 
 **TL;DR** Avoid combining major updates into groups.
-
-> But I recommend you don't combine major updates into that all updates.
 
 Now major updates are treated as individual Pull Requests, and the issue with Renovate closing the Pull Requests seems to be solved.

@@ -11,7 +11,6 @@ export const query = graphql`
         slug
         title
         date(formatString: $formatString)
-        excerpt
         timeToRead
         description
         tags {

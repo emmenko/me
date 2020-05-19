@@ -228,6 +228,7 @@ const theme = {
   badges: {
     draft: {
       backgroundColor: 'highlight',
+      color: 'secondary',
       borderRadius: '4px',
       border: '1px solid',
       borderColor: 'muted',
