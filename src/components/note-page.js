@@ -50,7 +50,7 @@ const NotePage = (props) => (
       <Text as="p">{`About ${props.data.notePage.timeToRead} min read`}</Text>
     </PageHeading>
     <FeatureImage {...props.data.notePage.featureImage} />
-    <Box as="section">
+    <Box as="section" variant="typography.note">
       <MDXRenderer>{props.data.notePage.body}</MDXRenderer>
     </Box>
   </Layout>

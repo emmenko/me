@@ -30,8 +30,10 @@ const theme = {
     ...baseTheme.colors,
     text: '#4f4f4f',
     background: '#fff',
-    primary: '#e06961',
-    accent: '#d84136',
+    borderQuote: '#e06961',
+    backgroundQuote: '#ffcdd2',
+    primary: '#d84136',
+    accent: '#e06961',
     // A contrast color for emphasizing UI
     secondary: '#777',
     // A background color for highlighting text
@@ -39,13 +41,15 @@ const theme = {
     // A faint color for backgrounds, borders, and accents that do not require high contrast with the background color
     muted: '#cbd5e0',
     toggleIcon: '#2d3748',
-    link: '#2b6cb0',
     code: '#4f4f4f',
     modes: {
       dark: {
         text: '#fff',
         background: '#1a202c',
-        // primary: '#f0c',
+        borderQuote: '#e57373',
+        backgroundQuote: '#b71c1c',
+        primary: '#f5665c',
+        accent: '#ff8880',
         secondary: '#999',
         highlight: '#fbc02d',
         toggleIcon: '#cbd5e0',
@@ -85,7 +89,7 @@ const theme = {
       fontSize: 6,
       fontWeight: 'semibold',
       mt: 4,
-      mb: 2,
+      mb: 3,
     },
     h2: {
       ...heading,
@@ -125,6 +129,7 @@ const theme = {
     },
     primary: {
       color: 'primary',
+      fontWeight: 'medium',
       '&:hover': {
         cursor: 'pointer',
         color: 'accent',
@@ -150,6 +155,24 @@ const theme = {
     },
   },
   typography: {
+    note: {
+      blockquote: {
+        margin: 0,
+        padding: 2,
+        borderLeft: '4px solid',
+        borderColor: 'borderQuote',
+        backgroundColor: 'backgroundQuote',
+        // color: 'code',
+        p: {
+          margin: 0,
+        },
+      },
+      '.gatsby-resp-image-figcaption': {
+        color: 'secondary',
+        fontSize: 1,
+        textAlign: 'center',
+      },
+    },
     story: {
       blockquote: {
         fontFamily: 'story',
