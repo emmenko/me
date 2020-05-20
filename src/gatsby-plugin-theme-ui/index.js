@@ -77,25 +77,12 @@ const theme = {
   styles: {
     ...baseTheme.styles,
     a: { variant: 'links.primary' },
-    p: { marginY: [3, 4] },
-    h1: {
-      ...heading,
-      fontSize: 6,
-      fontWeight: 'semibold',
-      mt: 4,
-      mb: 3,
-    },
-    h2: {
-      ...heading,
-      fontSize: 5,
-      fontWeight: 'bold',
-      mt: [1, 2],
-      mb: [3, 4],
-    },
-    h3: { ...heading, fontSize: 4, mt: [2, 3], mb: [2, 3] },
-    h4: { ...heading, fontSize: 3 },
-    h5: { ...heading, fontSize: 2 },
-    h6: { ...heading, fontSize: 1 },
+    p: { marginY: [2, 3] },
+    h1: { ...heading, fontSize: 5, mt: 5, mb: 4, fontWeight: 'bold' },
+    h2: { ...heading, fontSize: 4, mt: 4, mb: 3, fontWeight: 'semibold' },
+    h3: { ...heading, fontSize: 3, mt: 3, mb: 2, fontWeight: 'semibold' },
+    h4: { ...heading, fontSize: 2 },
+    h5: { ...heading, fontSize: 1 },
     hr: {
       bg: 'muted',
       border: 0,
@@ -104,6 +91,15 @@ const theme = {
     },
     code: {
       ...codeStyles,
+    },
+  },
+  headings: {
+    page: {
+      ...heading,
+      fontSize: 6,
+      fontWeight: 'semibold',
+      mt: 4,
+      mb: 3,
     },
   },
   /* VARIANTS */

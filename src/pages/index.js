@@ -47,7 +47,11 @@ const IndexPage = () => {
           color: 'secondary',
         }}
       >
-        {'Technology enthusiast. I '}&#10084;{' building things.'}
+        {'Technology enthusiast. I '}
+        <Box as="span" sx={{ color: 'primary', ':hover': { color: 'accent' } }}>
+          &#10084;
+        </Box>
+        {' building things.'}
       </Box>
       <Flex
         sx={{

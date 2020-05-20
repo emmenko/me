@@ -24,7 +24,7 @@ const NotesPage = (props) => (
     </Box>
     <section sx={{ mb: [5, 6, 7] }}>
       {props.data.allNotePage.nodes.map((notePage) => (
-        <Box mb={4} key={notePage.slug}>
+        <Box mb={5} key={notePage.slug}>
           {notePage.isDraft && <DraftBadge />}
           <Box>
             <Link to={notePage.slug} variant="links.navigation">

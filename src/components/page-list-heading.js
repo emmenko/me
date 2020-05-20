@@ -1,6 +1,6 @@
 /** @jsx jsx */
-import { jsx, Styled } from 'theme-ui';
-import { Box } from '@theme-ui/components';
+import { jsx } from 'theme-ui';
+import { Box, Heading } from '@theme-ui/components';
 
 const PageListHeading = (props) => (
   <Box
@@ -11,7 +11,9 @@ const PageListHeading = (props) => (
       mb: 4,
     }}
   >
-    <Styled.h1>{props.title}</Styled.h1>
+    <Heading as="h1" variant="headings.page">
+      {props.title}
+    </Heading>
     <Box sx={{ fontSize: 2 }}>{props.sideElement}</Box>
   </Box>
 );

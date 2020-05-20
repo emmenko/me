@@ -1,7 +1,7 @@
 ---
 draft: true
 title: Adopting Changesets for Release and Changelog Automation
-date: 2020-05-16
+date: 2020-05-20
 description: Automating your OSS project release workflow is very valuable. Learn how you can do that with Changesets.
 tags:
   - Coding
@@ -12,4 +12,63 @@ featureImage:
   authorUrl: https://unsplash.com/@austinchan
 ---
 
-Content
+When working on Open Source Software (OSS), documentation is a crucial part of the project. It helps to ease the adoption, to provide useful recommendations and examples, and so on.
+Eventually you start releasing new versions, including new features, bug fixes, improvements, and even breaking changes.
+
+# How can you communicate these changes to the users?
+
+Traditionally, people expect to find this information in a file called `CHANGELOG.md`, or in [GitHub Releases](https://help.github.com/en/github/administering-a-repository/about-releases).
+
+A release can include different things: links to commits or Pull Requests related to the new version, contextual information and code examples, emojis, and so on. At the end of the day, it's just Markdown so you can literally put whatever you want.
+
+# Automating all the things
+
+Ideally, the release notes for your project should have some kind of consistency. This is where tools and automation can help with.
+
+For instance, you can get most of the release notes automatically generated if you follow certain strategies. On top of that, you can also have the release process fully automated.
+
+This becomes very useful especially in large projects, or in monorepositories with a lot of packages.
+
+Some popular examples include [Semantic Release](https://github.com/semantic-release/semantic-release), [Lerna](https://github.com/lerna/lerna) with [Lerna Changelog](https://github.com/lerna/lerna-changelog), and many other community projects.
+
+# Release Notes in a Monorepository
+
+At my work we have a bunch of open source monorepositories and as such we need a way to make the process simple and effective for all the contributors.
+
+So far we've been using Lerna and Lerna Changelog. The tools work great and they are very helpful to manage and release multiple packages within the same repository.
+
+However, the release process requires to take certain steps to ensure that the release notes are properly documented.
+For instance, Pull Requests that have been merged, and that should be included in the release notes, should have a label assigned to them. This allows Lerna Changelog to reference the Pull Request and group it appropriately in the release note.
+
+After running the `changelog` command, we need to manually add the output to the `CHANGELOG.md` file and in the GitHub Releases.
+We don't want to have this step fully automated, as sometimes we need to provide more contextual information which requires manual writing.
+
+Overall it's still very helpful and nice but at the same time is not fully automated and relies on the user knowing what to do.
+This could be a bit of an issue for contributors that are not much familiar with the release process and maybe they are afraid to mess things up, so they just don't do it.
+
+# Using Changesets
+
+Recently I've been looking into another interesting project called [Changesets](https://github.com/atlassian/changesets). It's described as:
+
+> _A way to manage your versioning and changelogs with a focus on monorepos_
+
+It takes a bit of a different approach and it's designed to work within a monorepository, which is very important for me.
+There is a nice [documentation page](https://github.com/atlassian/changesets/blob/master/docs/detailed-explanation.md) about the motivation and design principles behind the project. I recommend to go check it out.
+
+What I like about the project is that you **document the changes as you develop them**. Those changes then dictate which packages will eventually be released. Additionally, each package gets its own `CHANGELOG.md` file, which is also nice and helpful when searching for changes of a specific package.
+
+## Automation Bots
+
+Using the `changesets` command-line interface (CLI) on its own is still not super useful. Instead, combining it with the [Changesets GitHub App](https://github.com/apps/changeset-bot) and the [Changesets GitHub Action](https://github.com/changesets/action), you have a powerful killer-feature.
+
+Roughly, the new workflow looks like the following:
+
+- You open a Pull Request and include a changeset file with a proper documentation of the changes.
+- Merging the Pull Request does not trigger any release, instead a new Pull Request named `Version Packages` is created by the Changeset GitHub Action and includes the release plan. The release plan bumps the versions of all packages and dependent packages affected by the changeset files present in the repository, as well as the updated `CHANGELOG.md` files in each package.
+- When it's time to trigger a release, you simply merge the `Version Packages` Pull Request. The Changesets GitHub Action takes care of doing the actual release, by publishing the packages to NPM, creating the git tags and the GitHub Release notes.
+
+> The steps mentioned above assume that you have installed the [Changesets GitHub App](https://github.com/apps/changeset-bot) and configured the [Changesets GitHub Action](https://github.com/changesets/action).
+
+# Conclusion
+
+Using Changesets feels like it gets the point right and fits perfectly with the monorepository workflow. It also simplifies a lot the process and makes releasing and documenting version changes much more accessible to contributors of the project.
