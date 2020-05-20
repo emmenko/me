@@ -27,32 +27,26 @@ const theme = {
   useColorSchemeMediaQuery: true,
   /* COLORS */
   colors: {
-    ...baseTheme.colors,
-    text: '#4f4f4f',
+    text: '#424242',
     background: '#fff',
-    borderQuote: '#e06961',
-    backgroundQuote: '#ffcdd2',
     primary: '#d84136',
-    accent: '#e06961',
-    // A contrast color for emphasizing UI
-    secondary: '#777',
-    // A background color for highlighting text
-    highlight: '#ffefd5',
-    // A faint color for backgrounds, borders, and accents that do not require high contrast with the background color
-    muted: '#cbd5e0',
-    toggleIcon: '#2d3748',
-    code: '#4f4f4f',
+    accent: '#db7572',
+    secondary: '#636363',
+    muted: '#bfbfbf',
+    highlight: '#f5f5f5',
+    code: '#2f2f2f',
+    toggleIcon: '#121212',
     modes: {
       dark: {
-        text: '#fff',
-        background: '#1a202c',
-        borderQuote: '#e57373',
-        backgroundQuote: '#b71c1c',
-        primary: '#f5665c',
-        accent: '#ff8880',
-        secondary: '#999',
-        highlight: '#fbc02d',
-        toggleIcon: '#cbd5e0',
+        text: '#e0e0e0',
+        background: '#121212',
+        primary: '#e79a99',
+        accent: '#e35750',
+        secondary: '#bfbfbf',
+        muted: '#e2e2e2',
+        highlight: '#272727',
+        code: '#232323',
+        toggleIcon: '#e2e2e2',
       },
     },
   },
@@ -158,11 +152,11 @@ const theme = {
     note: {
       blockquote: {
         margin: 0,
+        mb: 4,
         padding: 2,
         borderLeft: '4px solid',
-        borderColor: 'borderQuote',
-        backgroundColor: 'backgroundQuote',
-        // color: 'code',
+        borderColor: 'secondary',
+        backgroundColor: 'highlight',
         p: {
           margin: 0,
         },

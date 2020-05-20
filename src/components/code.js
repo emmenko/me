@@ -22,7 +22,7 @@ const getLineStyles = (options) => {
   if (options.shouldHighlightLine) {
     highlightLineStyles = {
       backgroundColor: 'highlight',
-      width: `calc(100% - 8px)`,
+      width: options.isCommandLine ? `calc(100% - 8px)` : '100%',
     };
   }
   return { ...promptLineStyles, ...highlightLineStyles };
