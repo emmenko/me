@@ -128,10 +128,9 @@ const theme = {
   },
   buttons: {
     flat: {
+      variant: 'links.primary',
       background: 'none',
       border: 'none',
-      color: 'link',
-      cursor: 'pointer',
       padding: 0,
       '&:hover': {
         textDecoration: 'underline',
@@ -140,7 +139,8 @@ const theme = {
   },
   messages: {
     cookieConsent: {
-      color: '#4f4f4f',
+      borderColor: 'secondary',
+      backgroundColor: 'highlight',
       fontSize: 1,
     },
   },
