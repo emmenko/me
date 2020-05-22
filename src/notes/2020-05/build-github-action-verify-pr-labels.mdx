@@ -89,7 +89,7 @@ const core = require('@actions/core');
 
 > NOTE: we're using an immediately-invoked function expression (IIFE) to use the `async/await` syntax. There is a [new JavaScript syntax proposal](https://github.com/tc39/proposal-top-level-await) to use a top-level `await`. Until this is natively supported, we're going to use the workaround with the IIFE.
 
-The code snippet above is just a basic scaffolding for running some asynchronous JavaScript code and handle possible errors. In case there is error, we're using the `core.setFailed` helper function to make the action fail.
+The code snippet above is just a basic scaffolding for running some asynchronous JavaScript code and handle possible errors. In case there is an error, we're using the `core.setFailed` helper function to make the action fail.
 
 ### Initializing Oktokit HTTP Client
 The next thing to do is to prepare all the necessary information from the GitHub Action workflow.
@@ -113,7 +113,7 @@ const github = require('@actions/github');
 })();
 ```
 
-Here we're getting some information from the `github.context` object, the GitHub token from the input parameter `github-token` and we're initializing the Oktokit SDK client to make HTTP API requests.
+Here we're getting some information from the `github.context` object, the GitHub token from the input parameter `github-token`, and we're initializing the Oktokit SDK client to make HTTP API requests.
 
 ### Getting the Pull Request labels
 
@@ -161,7 +161,7 @@ const getPullRequestNumber = (ref) => {
 })();
 ```
 
-The Pull Request number get be derived by the `issue.number` (depending on how the action is triggered) or by inspecting the Pull Request `ref`.
+The Pull Request number can be derived by the `issue.number` (depending on how the action is triggered) or by inspecting the Pull Request `ref`.
 
 With the list of potentially assigned labels, we can now start to implement the logic for the requirements that we initially defined.
 
