@@ -48,7 +48,14 @@ const IndexPage = () => {
         }}
       >
         {'Technology enthusiast. I '}
-        <Box as="span" sx={{ color: 'primary', ':hover': { color: 'accent' } }}>
+        <Box
+          as="span"
+          sx={{
+            color: 'primary',
+            cursor: 'default',
+            ':hover': { color: 'accent' },
+          }}
+        >
           &#10084;
         </Box>
         {' building things.'}

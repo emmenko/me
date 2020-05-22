@@ -23,11 +23,6 @@ const InlineCode = (props) => (
 );
 
 export default {
-  // h1: Styled.h1,
-  // h2: Styled.h2,
-  // h3: Styled.h3,
-  // h4: Styled.h4,
-  // h5: Styled.h6,
   StoryChapter,
   pre: (props) => props.children,
   code: Code,

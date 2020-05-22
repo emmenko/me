@@ -77,11 +77,11 @@ const theme = {
   styles: {
     ...baseTheme.styles,
     a: { variant: 'links.primary' },
-    p: { marginY: [2, 3] },
-    h1: { ...heading, fontSize: 5, mt: 5, mb: 4, fontWeight: 'bold' },
-    h2: { ...heading, fontSize: 4, mt: 4, mb: 3, fontWeight: 'semibold' },
-    h3: { ...heading, fontSize: 3, mt: 3, mb: 2, fontWeight: 'semibold' },
-    h4: { ...heading, fontSize: 2 },
+    p: { mt: 3, mb: 4 },
+    h1: { ...heading, fontSize: 5, mt: 6, mb: 4, fontWeight: 'bold' },
+    h2: { ...heading, fontSize: 4, mt: 5, mb: 3, fontWeight: 'semibold' },
+    h3: { ...heading, fontSize: 3, mt: 4, mb: 2, fontWeight: 'semibold' },
+    h4: { ...heading, fontSize: 2, mt: 3, mb: 1 },
     h5: { ...heading, fontSize: 1 },
     hr: {
       bg: 'muted',
@@ -146,6 +146,11 @@ const theme = {
   },
   typography: {
     note: {
+      section: {
+        '&.section-h4': {
+          ml: [0, 0, 3],
+        },
+      },
       blockquote: {
         margin: 0,
         mb: 4,
