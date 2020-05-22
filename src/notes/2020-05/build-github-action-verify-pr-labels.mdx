@@ -420,7 +420,7 @@ Thanks.`;
 
 # Testing the action
 
-Now that we finished implementing out GitHub Action, we can test it in the same repository.
+Now that we finished implementing our GitHub Action, we can test it in the same repository.
 
 Create a `.github/workflow/main.yml` workflow file:
 
@@ -465,4 +465,8 @@ At this point the GitHub Action is done. People can use it by referencing the Gi
     github-token: '${{ secrets.GITHUB_TOKEN }}'
 ```
 
-Additionally, you can choose to publish the action to the GitHub Marketplace.
+Additionally, you can choose to [publish the action to the GitHub Marketplace](https://help.github.com/en/actions/creating-actions/publishing-actions-in-github-marketplace) and tag a git version.
+
+# Conclusion
+
+Developing GitHub Action is not too hard. At the end of the day is "just JavaScript". Hopefully this article gives you the motivation and the confidence to try it out for yourself to build amazing actions.
