@@ -97,6 +97,7 @@ const Code = ({ children, className: outerClassName, ...props }) => {
               className={`${outerClassName} ${className}`}
               style={style}
               sx={{
+                fontSize: [1, 2],
                 width: '100%',
                 whiteSpace: 'pre-wrap',
                 margin: 0,
