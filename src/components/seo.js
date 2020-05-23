@@ -1,5 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { useThemeUI } from 'theme-ui';
+
 import useSiteMetadata from '../hooks/use-site-metadata';
 
 const defaultProps = {
@@ -19,6 +21,7 @@ const SEO = ({
   children,
 }) => {
   const site = useSiteMetadata();
+  const themeContext = useThemeUI();
 
   const {
     siteTitleAlt: defaultTitle,
@@ -35,10 +38,12 @@ const SEO = ({
     url: `${siteUrl}${pathname || ``}`,
     image: `${siteUrl}${image || defaultImage}`,
   };
+
   return (
     <Helmet titleTemplate={['%s', templateTitle].filter(Boolean).join(' | ')}>
       <title>{seo.title}</title>
       <html lang={siteLanguage} />
+      <meta name="theme-color" content={themeContext.theme.colors.primary} />
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
       <meta property="og:title" content={seo.title} />

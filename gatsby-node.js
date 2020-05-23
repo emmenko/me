@@ -36,8 +36,6 @@ const createFeatureImage = async (gatsbyApi) => {
   };
 };
 
-// Create general interfaces that you could can use to leverage other data sources
-// The core theme sets up MDX as a type for the general interface
 exports.createSchemaCustomization = ({ actions, schema }) => {
   actions.createFieldExtension({
     name: `slugify`,
@@ -287,21 +285,27 @@ exports.onCreateNode = async (gatsbyApi) => {
   }
 };
 
-// These template are only data-fetching wrappers that import components
-// const homepageTemplate = require.resolve(`./src/templates/homepage-query.tsx`);
+/* These template are only data-fetching wrappers that import components */
+
+// The overview page of all notes
 const notesPageTemplate = require.resolve(
   `./src/templates/notes-page-query.js`
 );
+// The detail page of a note
 const notePageTemplate = require.resolve(`./src/templates/note-page-query.js`);
+// The overview page of all note tags
 const notesTagsPageTemplate = require.resolve(
   `./src/templates/notes-tags-page-query.js`
 );
+// The overview page of all notes for a specific tag
 const notesTagPageTemplate = require.resolve(
   `./src/templates/notes-tag-page-query.js`
 );
+// The overview page of all stories
 const storiesPageTemplate = require.resolve(
   `./src/templates/stories-page-query.js`
 );
+// The detail page of a story
 const storyPageTemplate = require.resolve(
   `./src/templates/story-page-query.js`
 );
