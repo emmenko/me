@@ -16,7 +16,7 @@ const Header = (props) => {
 
   return (
     <Box
-      id="anchor-header"
+      id="top"
       as="header"
       sx={{ paddingY: 3, paddingX: [3, 4, 0] }}
     >

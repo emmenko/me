@@ -1,13 +1,14 @@
 /** @jsx jsx */
 import React from 'react';
 import { jsx } from 'theme-ui';
-import { Box, Text } from '@theme-ui/components';
+import { Box, Flex, Text } from '@theme-ui/components';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Layout from './layout';
 import SEO from './seo';
 import Link from './link';
 import PageHeading from './page-heading';
 import FeatureImage from './feature-image';
+import BackToTop from './back-to-top';
 
 const NotePage = (props) => (
   <Layout pageContext={props.pageContext}>
@@ -53,6 +54,9 @@ const NotePage = (props) => (
     <Box as="section" variant="typography.note">
       <MDXRenderer>{props.data.notePage.body}</MDXRenderer>
     </Box>
+    <Flex sx={{ justifyContent: 'flex-end' }}>
+      <BackToTop />
+    </Flex>
   </Layout>
 );
 

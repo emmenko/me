@@ -7,6 +7,7 @@ import Layout from './layout';
 import SEO from './seo';
 import PageHeading from './page-heading';
 import FeatureImage from './feature-image';
+import BackToTop from './back-to-top';
 
 const StoryPage = (props) => (
   <Layout pageContext={props.pageContext}>
@@ -52,9 +53,7 @@ const StoryPage = (props) => (
       <MDXRenderer>{props.data.storyPage.body}</MDXRenderer>
     </Box>
     <Flex sx={{ justifyContent: 'flex-end' }}>
-      <HTMLLink href="#anchor-header" variant="links.navigation">
-        &#8682; {'Back to top'}
-      </HTMLLink>
+      <BackToTop />
     </Flex>
   </Layout>
 );
