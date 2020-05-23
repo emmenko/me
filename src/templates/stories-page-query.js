@@ -7,17 +7,22 @@ export const query = graphql`
   query($formatString: String!) {
     allStoryPage(sort: { fields: releaseDate, order: DESC }) {
       nodes {
+        isDraft
         slug
         title
         description
         releaseDate(formatString: $formatString)
         timeToRead
-        cover {
-          childImageSharp {
-            fluid(maxWidth: 376, maxHeight: 376) {
-              ...GatsbyImageSharpFluid
+        featureImage {
+          image {
+            childImageSharp {
+              fluid(maxWidth: 376, maxHeight: 376) {
+                ...GatsbyImageSharpFluid
+              }
             }
           }
+          author
+          authorUrl
         }
       }
     }

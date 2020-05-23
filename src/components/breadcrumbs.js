@@ -10,12 +10,12 @@ const Breadcrumbs = (props) => {
     <Flex
       as="nav"
       sx={{
-        alignItems: 'center',
+        alignItems: 'flex-start',
         flexDirection: 'row',
         '> * + *': { ml: [2, 3] },
       }}
     >
-      <Box>
+      <Box sx={{ flexShrink: 0 }}>
         {props.crumbs.length > 0 ? (
           <Link to="/" aria-label="To homepage" variant="links.navigation">
             {'/ me'}
@@ -26,9 +26,10 @@ const Breadcrumbs = (props) => {
       </Box>
       {props.crumbs.map((crumb, index) => {
         const label = toWord(crumb);
+        const isFirst = index === 0;
         const isLast = index === props.crumbs.length - 1;
         const separator = (
-          <Box as="span" sx={{ marginX: 2, color: 'secondary' }}>
+          <Box as="span" sx={{ mr: 1, ml: [1, 2], color: 'secondary' }}>
             {'/'}
           </Box>
         );
@@ -36,13 +37,15 @@ const Breadcrumbs = (props) => {
           return (
             <Flex key={crumb}>
               {separator}
-              <Text as="span">{label}</Text>
+              <Text as="span" sx={{ fontStyle: 'italic' }}>
+                {label}
+              </Text>
             </Flex>
           );
         }
         const partialSlug = props.crumbs.filter((_, i) => i <= index).join('/');
         return (
-          <Flex key={crumb}>
+          <Flex key={crumb} sx={{ flexShrink: isFirst ? 0 : undefined }}>
             {separator}
             <Box>
               <Link

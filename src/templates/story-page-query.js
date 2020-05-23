@@ -6,23 +6,23 @@ export default StoryPage;
 export const query = graphql`
   query($slug: String!, $formatString: String!) {
     storyPage(slug: { eq: $slug }) {
+      isDraft
       slug
       title
       description
       releaseDate(formatString: $formatString)
       body
       timeToRead
-      cover {
-        childImageSharp {
-          fluid(maxWidth: 768) {
-            ...GatsbyImageSharpFluid
+      featureImage {
+        image {
+          childImageSharp {
+            fluid(maxWidth: 768) {
+              ...GatsbyImageSharpFluid
+            }
           }
         }
-      }
-      coverCredits {
-        childMdx {
-          body
-        }
+        author
+        authorUrl
       }
       epub {
         publicURL

@@ -16,7 +16,7 @@ const Header = (props) => {
 
   return (
     <Box
-      id="anchor-header"
+      id="top"
       as="header"
       sx={{ paddingY: 3, paddingX: [3, 4, 0] }}
     >
@@ -38,7 +38,7 @@ const Header = (props) => {
             },
           }}
         >
-          <Box>
+          <div>
             <Flex
               as="a"
               variant="links.icons"
@@ -50,8 +50,8 @@ const Header = (props) => {
             >
               <GithubSvg width="25" height="25" />
             </Flex>
-          </Box>
-          <Box>
+          </div>
+          <div>
             <Flex
               as="a"
               variant="links.icons"
@@ -62,7 +62,7 @@ const Header = (props) => {
             >
               <TwitterSvg width="25" height="25" />
             </Flex>
-          </Box>
+          </div>
           <ColorModeToggle isDark={isDark} toggle={toggleColorMode} />
         </Flex>
       </Flex>

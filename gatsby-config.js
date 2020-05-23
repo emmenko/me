@@ -15,6 +15,13 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
+        name: 'notes',
+        path: `${__dirname}/src/notes`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
         name: 'stories',
         path: `${__dirname}/src/stories`,
       },
@@ -65,7 +72,7 @@ module.exports = {
         short_name: 'emmenko',
         start_url: '/?utm_source=homescreen',
         background_color: '#fff', // theme.colors.background
-        theme_color: '#e06961', // theme.colors.primary
+        theme_color: '#d84136', // theme.colors.primary
         display: 'standalone',
         orientation: 'landscape',
         icons: [
@@ -87,6 +94,9 @@ module.exports = {
         ],
         // https://www.gatsbyjs.org/packages/gatsby-plugin-offline/#using-with-gatsby-plugin-manifest
         cache_busting_mode: 'none',
+        // Avoid adding the `theme-color` meta tag since we're using a theme.
+        // https://www.gatsbyjs.org/packages/gatsby-plugin-manifest/#remove-theme-color-meta-tag
+        theme_color_in_head: false
       },
     },
     {

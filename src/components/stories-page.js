@@ -1,10 +1,11 @@
 /** @jsx jsx */
-import { jsx, Styled } from 'theme-ui';
+import { jsx } from 'theme-ui';
 import { Flex, Box, Grid, Text } from '@theme-ui/components';
 import GatsbyImage from 'gatsby-image';
 import Layout from './layout';
-import Link from './link';
 import SEO from './seo';
+import Link from './link';
+import PageListHeading from './page-list-heading';
 
 const StoriesPage = (props) => {
   return (
@@ -14,12 +15,14 @@ const StoriesPage = (props) => {
         description="A collections of short stories"
         pathname={props.path}
       />
-      <Styled.h1>Stories</Styled.h1>
+      <PageListHeading title="Stories" />
       <Grid as="section" gap={[5]} columns={[1]}>
         {props.data.allStoryPage.nodes.map((story) => (
           <Grid gap={[3]} columns={[1, 2]} key={story.slug}>
             <Box sx={{ padding: [null, 2, 4] }}>
-              <GatsbyImage fluid={story.cover.childImageSharp.fluid} />
+              <GatsbyImage
+                fluid={story.featureImage.image.childImageSharp.fluid}
+              />
             </Box>
             <Flex sx={{ flexDirection: 'column', justifyContent: 'center' }}>
               <Link to={story.slug} variant="links.navigation">

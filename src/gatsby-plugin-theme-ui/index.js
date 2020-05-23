@@ -1,4 +1,5 @@
 import baseTheme from '@theme-ui/preset-base';
+import codeStyles from '@theme-ui/prism/presets/theme-ui';
 
 const heading = {
   fontFamily: 'heading',
@@ -26,28 +27,26 @@ const theme = {
   useColorSchemeMediaQuery: true,
   /* COLORS */
   colors: {
-    ...baseTheme.colors,
-    text: '#4f4f4f',
+    text: '#424242',
     background: '#fff',
-    primary: '#e06961',
-    primaryHover: '#d84136',
-    // A contrast color for emphasizing UI
-    secondary: '#777',
-    // A background color for highlighting text
-    highlight: '#ffefd5',
-    // A faint color for backgrounds, borders, and accents that do not require high contrast with the background color
-    muted: '#cbd5e0',
-    toggleIcon: '#2d3748',
-    link: '#2b6cb0',
-    code: '#4f4f4f',
+    primary: '#d84136',
+    accent: '#db7572',
+    secondary: '#636363',
+    muted: '#bfbfbf',
+    highlight: '#f5f5f5',
+    code: '#2f2f2f',
+    toggleIcon: '#121212',
     modes: {
       dark: {
-        text: '#fff',
-        background: '#1a202c',
-        // primary: '#f0c',
-        secondary: '#999',
-        highlight: '#ffefd5',
-        toggleIcon: '#cbd5e0',
+        text: '#e0e0e0',
+        background: '#121212',
+        primary: '#e79a99',
+        accent: '#e35750',
+        secondary: '#bfbfbf',
+        muted: '#e2e2e2',
+        highlight: '#272727',
+        code: '#232323',
+        toggleIcon: '#e2e2e2',
       },
     },
   },
@@ -78,30 +77,29 @@ const theme = {
   styles: {
     ...baseTheme.styles,
     a: { variant: 'links.primary' },
-    p: { marginY: [3, 4] },
-    h1: {
-      ...heading,
-      fontSize: 6,
-      fontWeight: 'semibold',
-      mt: 2,
-      mb: 5,
-    },
-    h2: {
-      ...heading,
-      fontSize: 5,
-      fontWeight: 'bold',
-      mt: [1, 2],
-      mb: [3, 4],
-    },
-    h3: { ...heading, fontSize: 4, mt: [2, 3], mb: [2, 3] },
-    h4: { ...heading, fontSize: 3 },
-    h5: { ...heading, fontSize: 2 },
-    h6: { ...heading, fontSize: 1 },
+    p: { mt: 3, mb: 4 },
+    h1: { ...heading, fontSize: 5, mt: 6, mb: 4, fontWeight: 'bold' },
+    h2: { ...heading, fontSize: 4, mt: 5, mb: 3, fontWeight: 'semibold' },
+    h3: { ...heading, fontSize: 3, mt: 4, mb: 2, fontWeight: 'semibold' },
+    h4: { ...heading, fontSize: 2, mt: 3, mb: 1 },
+    h5: { ...heading, fontSize: 1 },
     hr: {
       bg: 'muted',
       border: 0,
       height: '1px',
       m: 3,
+    },
+    code: {
+      ...codeStyles,
+    },
+  },
+  headings: {
+    page: {
+      ...heading,
+      fontSize: 6,
+      fontWeight: 'semibold',
+      mt: 4,
+      mb: 3,
     },
   },
   /* VARIANTS */
@@ -112,7 +110,7 @@ const theme = {
         fill: 'primary',
       },
       '&:hover > svg': {
-        fill: 'primaryHover',
+        fill: 'accent',
       },
     },
     navigation: {
@@ -121,18 +119,18 @@ const theme = {
     },
     primary: {
       color: 'primary',
+      fontWeight: 'medium',
       '&:hover': {
         cursor: 'pointer',
-        color: 'primaryHover',
+        color: 'accent',
       },
     },
   },
   buttons: {
     flat: {
+      variant: 'links.primary',
       background: 'none',
       border: 'none',
-      color: 'link',
-      cursor: 'pointer',
       padding: 0,
       '&:hover': {
         textDecoration: 'underline',
@@ -141,11 +139,35 @@ const theme = {
   },
   messages: {
     cookieConsent: {
-      color: '#4f4f4f',
+      borderColor: 'secondary',
+      backgroundColor: 'highlight',
       fontSize: 1,
     },
   },
   typography: {
+    note: {
+      section: {
+        '&.section-h4': {
+          ml: [0, 0, 3],
+        },
+      },
+      blockquote: {
+        margin: 0,
+        mb: 4,
+        padding: 2,
+        borderLeft: '4px solid',
+        borderColor: 'secondary',
+        backgroundColor: 'highlight',
+        p: {
+          margin: 0,
+        },
+      },
+      '.gatsby-resp-image-figcaption': {
+        color: 'secondary',
+        fontSize: 1,
+        textAlign: 'center',
+      },
+    },
     story: {
       blockquote: {
         fontFamily: 'story',
@@ -195,15 +217,19 @@ const theme = {
       },
       pre: {
         textAlign: 'center',
-        code: {
-          fontStyle: 'italic',
-          backgroundColor: 'muted',
-          color: 'code',
-          paddingX: 2,
-          paddingY: 1,
-          borderRadius: 2,
-        },
       },
+    },
+  },
+  badges: {
+    draft: {
+      backgroundColor: 'highlight',
+      color: 'secondary',
+      borderRadius: '4px',
+      border: '1px solid',
+      borderColor: 'muted',
+      paddingX: 1,
+      fontSize: 1,
+      fontWeight: 'semibold',
     },
   },
 };
