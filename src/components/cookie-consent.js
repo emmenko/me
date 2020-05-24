@@ -20,7 +20,9 @@ const CookieConsent = () => {
   const hasConfirmedCookieConsent =
     cookieConsentStatus === 'true' || cookieConsentStatus === 'false';
   const enableTracking = () => {
-    Cookies.set('gdpr-analytics-enabled', 'true');
+    Cookies.set('gdpr-analytics-enabled', 'true', {
+      expires: 365, // expire after 1 year
+    });
     window.trackGoogleAnalytics();
     setCookieConsentStatus('true');
   };
