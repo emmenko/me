@@ -1,0 +1,9 @@
+version: 1
+snapshot:
+  widths: [1024]
+static-snapshots:
+  base-url: /
+  snapshot-files: 'index.html,**/notes/index.html,**/notes/building-a-git-hub-action-to-verify-pull-request-labels/index.html,**/stories/index.html,**/stories/a-binary-tale/index.html'
+agent:
+  asset-discovery:
+    network-idle-timeout: 5000 # ms (https://docs.percy.io/docs/command-line-client#section--network-idle-timeout-t)
