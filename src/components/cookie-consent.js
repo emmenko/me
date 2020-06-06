@@ -36,6 +36,9 @@ const CookieConsent = () => {
     <Message
       variant="cookieConsent"
       sx={{
+        '@media only percy': {
+          display: 'none',
+        },
         '@keyframes slide-up': {
           from: {
             transform: 'translate(0, 100px)',
