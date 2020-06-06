@@ -50,5 +50,9 @@
   "devDependencies": {
     "eslint-config-react-app": "5.2.1",
     "hast-util-heading": "1.0.4"
+  },
+  "resolutions": {
+    "**/@mdx-js/mdx": "1.6.5",
+    "**/@mdx-js/react": "1.6.5"
   }
 }
