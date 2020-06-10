@@ -17,7 +17,7 @@ I managed to pin-point the cause of the issue to one of the React Hooks that the
 
 # The setup
 
-The component renders an `IntlProvider` (from `react-intl`), which requires a `locale` and a map of `messages` (for the given locale). Multiple locales are available and we only want to load the stuff related to the selected locale. We do so by dynamically importing the data, using [code splitting](https://reactjs.org/docs/code-splitting.html).
+The component renders an `IntlProvider` (from `react-intl`), which requires a `locale` and a map of `messages` (for the given locale). In our case we support multiple locales but we only want to load the stuff related to the selected locale. We do so by dynamically importing the data, using [code splitting](https://reactjs.org/docs/code-splitting.html).
 
 The logic of asynchronously loading the messages data is encapsulated in a React Hook named `useAsyncLocaleData`. The Hook additionally loads things like `moment` locales, etc.
 
@@ -73,7 +73,7 @@ const useAsyncLocaleData = ({
 }
 ```
 
-Notice here that the `applicationMessages` argument is passed to the `React.useCallback` dependency array. The `loadApplicationMessages` callback function is then passed another React Hook, which loads the data asynchronously.
+Notice here that the `applicationMessages` argument is passed to the `React.useCallback` dependency array. The `loadApplicationMessages` callback function is then passed to another React Hook, which loads the data asynchronously.
 
 **Can you spot the issue?**
 
