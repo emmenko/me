@@ -1,0 +1,138 @@
+---
+title: Watch out for inline references when using React Hooks
+date: 2020-06-10
+description: React Hooks that support an array of dependencies, for example useEffect or useCallback, might trigger undesired effects if a dependency argument is not a fixed reference.
+tags:
+  - Coding
+  - Learning
+featureImage:
+  url: "https://images.unsplash.com/photo-1530598343134-ee226a2e90e4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
+  author: Reid Zura
+  authorUrl: https://unsplash.com/@reidzura
+---
+
+Today I bumped into a tricky issue that took me a bit to solve. The end result of the problem was causing the browser to _freeze_ as soon as the page was loaded, and the CPU of the browser process was going over 100%. It was more or less clear that something was causing an **infinite loop**.
+
+I managed to pin-point the cause of the issue to one of the React Hooks that the component was using, but I couldn't understand the actual problem at first.
+
+# The setup
+
+The component renders an `IntlProvider` (from `react-intl`), which requires a `locale` and a map of `messages` (for the given locale). In our case we support multiple locales but we only want to load the stuff related to the selected locale. We do so by dynamically importing the data, using [code splitting](https://reactjs.org/docs/code-splitting.html).
+
+The logic of asynchronously loading the messages data is encapsulated in a React Hook named `useAsyncLocaleData`. The Hook additionally loads things like `moment` locales, etc.
+
+```js highlightLines="3-6"
+const Page = () => {
+  const [activeLocale, setActiveLocale] = React.useState('en');
+  const { messages } = useAsyncLocaleData({
+    locale: activeLocale,
+    applicationMessages: {},
+  });
+
+  return (
+    <IntlProvider locale={activeLocale} messages={messages}>
+      {/* ... */}
+    </IntlProvider>
+  );
+}
+```
+
+Notice the `applicationMessages: {}` passed to the `useAsyncLocaleData`. The `applicationMessages` option can either be a `function` or an `object`. The `function` should return a Promise, so it can be used with the dynamic `import` to load the messages file for the specific locale.
+
+In this particular component though, there is no need to have proper translation messages and therefore I opted to pass an empty object.
+
+Everything looks ordinary here, except that the `useAsyncLocaleData` gets re-rendered in an infinite loop. Let's dig a bit more to see what the problem is.
+
+# The Hook function
+
+The `useAsyncLocaleData` Hook starts by defining a `loadApplicationMessages` function, which handles the case of the `applicationMessages` argument being a `function` or an `object`.
+
+> The rest of the Hook is not important, so I'll leave the code out of the example. You can find the full implementation [here](https://github.com/commercetools/merchant-center-application-kit/blob/aabc88f23b58946aa5619c0fb58a2bddbfcae146/packages/i18n/src/async-locale-data/async-locale-data.tsx#L37-L73).
+
+```js highlightLines="3,12,17"
+const useAsyncLocaleData = ({
+  locale,
+  applicationMessages,
+}) => {
+  const loadApplicationMessages = React.useCallback(
+    async (locale: string) => {
+      if (typeof applicationMessages === 'function') {
+        return await applicationMessages(locale);
+      }
+      return getMessagesForLocale(applicationMessages, locale);
+    },
+    [applicationMessages]
+  );
+
+  const applicationMessagesResult = useAsyncIntlMessages({
+    locale,
+    loader: loadApplicationMessages,
+  });
+
+  // ...
+}
+```
+
+Notice here that the `applicationMessages` argument is passed to the `React.useCallback` dependency array. The `loadApplicationMessages` callback function is then passed to another React Hook, which loads the data asynchronously.
+
+**Can you spot the issue?**
+
+# The solution
+
+As we (_should_) know, the dependency array of certain React Hooks is used to re-execute the Hook if the **argument value**, or the **reference** to the value, change.
+
+In my case, the `applicationMessages: {}` is the culprit. Here we're passing an object literal which has a **different reference** on every render.
+
+To fix that, we can move the object literal to a static variable, so the reference does not change.
+
+```js highlightLines="1,7"
+const applicationMessages = {};
+
+const Page = () => {
+  const [activeLocale, setActiveLocale] = React.useState('en');
+  const { messages } = useAsyncLocaleData({
+    locale: activeLocale,
+    applicationMessages,
+  });
+
+  return (
+    <IntlProvider locale={activeLocale} messages={messages}>
+      {/* ... */}
+    </IntlProvider>
+  );
+}
+```
+
+Additionally, we can also avoid passing the `applicationMessages` to the dependency array, with the assumption that this is not a value that would regularly change.
+
+```js highlightLines="12-14,16"
+const useAsyncLocaleData = ({
+  locale,
+  applicationMessages,
+}) => {
+  const loadApplicationMessages = React.useCallback(
+    async (locale: string) => {
+      if (typeof applicationMessages === 'function') {
+        return await applicationMessages(locale);
+      }
+      return getMessagesForLocale(applicationMessages, locale);
+    },
+    // NOTE: we assume that the `applicationMessages` argument never changes.
+    // Therefore, we disable the dependency array to not depend on that argument.
+    // This is important, to avoid potential infinite loops.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+
+  const applicationMessagesResult = useAsyncIntlMessages({
+    locale,
+    loader: loadApplicationMessages,
+  });
+
+  // ...
+}
+```
+
+# Conclusion
+
+I suppose the moral of the story is to always watch out and be careful when defining the dependencies array in certain React Hooks. At the same time, it's important to also pass static references wherever possible, to avoid unwanted side-effects.
