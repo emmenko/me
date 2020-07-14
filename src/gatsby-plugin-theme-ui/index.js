@@ -167,6 +167,11 @@ const theme = {
         fontSize: 1,
         textAlign: 'center',
       },
+      // Visually group the list to the previous paragraph
+      'p + ul': {
+        mt: -3,
+        mb: 5,
+      },
     },
     story: {
       blockquote: {

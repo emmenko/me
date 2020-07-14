@@ -1,0 +1,95 @@
+---
+title: How confident are you in merging dependency updates?
+date: 2020-07-14
+description: Tools such as Renovate, Dependabot, etc. are a great help in keeping your dependencies up-to-date. Yet, how confident are you in merging those Pull Requests without fearing to break things?
+tags:
+  - Coding
+  - Automation
+featureImage:
+  url: "https://images.unsplash.com/photo-1566759996874-04d713cc224a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80"
+  author: Daniel J. Schwarz
+  authorUrl: https://unsplash.com/@danieljschwarz
+---
+
+I'm a JavaScript developer and like me you're probably challenged by the amount of dependencies that you regularly need/should keep up-to-date.
+
+Luckily, there are tools that can help with that. Some of the popular ones are [Renovate](https://renovate.whitesourcesoftware.com/) or [Dependabot](https://dependabot.com/).
+
+# Dealing with Pull Request updates
+
+So you've now set up one of these tools and you start getting Pull Requests for each dependency update. One, two, five, ten, fourteen Pull Requests.
+
+Uh, should I merge all of them now? Ah wait, there are multiple Pull Requests that should be updated together. Let me open a new Pull Request to update a bunch of them together and close the other ones.
+
+Alright, now I can start merging a bunch of them. Can I just merge them together? Probably better to merge one, wait for another Pull Request to be automatically rebased, then merge that and so on.
+
+Weird, CI seems to take a lot of time. Damn it, this is going to take forever!
+
+Done, finally! Now I can get to work. Oh wait, the day is already over. What? The sun has already set, nooooooooo!
+
+# Grouping Pull Request updates
+
+Instead of getting one Pull Request for each dependency update, we can tell e.g. [Renovate](https://renovate.whitesourcesoftware.com/) to group updates in a single Pull Request.
+
+> Note that Dependabot unfortunately does not support yet grouping of dependencies.
+
+Let's say we want to get updates of patch and minor version updates in one Pull Request. All major version updates should go into their own separate Pull Requests, as they probably require some manual changes in the code.
+
+A possible setup with Renovate could be something like:
+
+```json title="renovate.json"
+{
+  "extends": [
+    "config:base",
+    ":pinOnlyDevDependencies",
+    "schedule:weekly"
+  ],
+  "separateMajorMinor": true,
+  "packageRules": [
+    {
+      "packagePatterns": [
+        "*"
+      ],
+      "updateTypes": ["minor", "patch"],
+      "groupName": "all dependencies",
+      "groupSlug": "all"
+    }
+  ],
+  "lockFileMaintenance": {
+    "enabled": true
+  }
+}
+```
+
+This is the setup I usually use in my projects and at work. It schedules updates once a week and groups updates as we wanted to.
+
+This is much better now and less time consuming.
+
+# Merging dependency updates
+
+Regardless of the setup you choose to follow, one major question remains: **do you feel confident merging the dependency updates**?
+
+We know that JavaScript dependency management and resolution is a mess. How many times have you had to fight with your `node_modules` and ended up reinstalling all dependencies from scratch? Not to mention the lockfiles updates and pinning dependencies to specific versions.
+
+It is indeed frustrating because it feels like it's unpredictable and unreliable. Hence, the question about how confident you are.
+
+## What can we do to increase this level of confidence?
+
+The answer is rather simple: **tests**!
+
+Have your CI run the necessary checks and tests to ensure that the application is in a working state. This is already enough to give the minimal confidence to approve and merge a Pull Request with some updated dependencies, without having to do manual testing.
+
+For example, you have a web application. I would set up CI so that it does the following things:
+- run linters (ESLint, Stylelint, etc.)
+- build the application bundles for production
+- run unit tests and integration tests
+- start the application as if in production mode and run End-To-End tests against that
+- (optionally) run Visual Regression Tests to certain parts of the application
+
+With that, **I have enough confidence** to know if the application is likely to break to due some dependency updates.
+
+> This may seem like an obvious choice and if you're already doing that, good for you. If not, setting these things up is really not much of an effort and it really pays off in the long term.
+
+# Conclusion
+
+Managing dependency updates often times sucks. With the proper tools and CI setup you can make the process simpler to manage, as well as keep your sanity intact.
