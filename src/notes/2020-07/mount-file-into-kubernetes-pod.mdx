@@ -1,0 +1,130 @@
+---
+title: Mounting a file with Helm into a Kubernetes pod using a ConfigMap
+date: 2020-07-21
+description: How to mount a file from disk into the running docker container of the Kubernetes pod, using a ConfigMap.
+tags:
+  - Coding
+  - Automation
+featureImage:
+  url: "https://images.unsplash.com/photo-1585637850919-66f56fe273c9?ixlib=rb-1.2.1&auto=format&fit=crop&w=2565&q=80"
+  author: Kingsley Jebaraj
+  authorUrl: https://unsplash.com/@kingsleyjeb
+---
+
+Today I bumped into a small challenge at work related to a Helm chart and Kubernetes. For future references, let me write about it.
+
+> This note assumes you are familiar with the concepts of [Kubernetes](https://kubernetes.io/) and [Helm](https://helm.sh/).
+
+# Background
+
+One of our Helm charts deploys an HTTP server which requires a config file to be provided as a command-line argument. The docker image for the HTTP server only exposes the main command to start the server, so we need to pass the argument to the container command, as well as mount the ConfigMap into the docker container.
+
+```yaml title="deployment.yaml" highlightLines="17-21"
+kind: Deployment
+# ...
+spec:
+  # ...
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/application-config.yaml") . | sha256sum }}
+        # ...
+    spec:
+      volumes:
+      - configMap:
+          name: application-config
+        name: application-config
+      containers:
+      - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        command:
+        - "./bin/start.js"
+        args:
+        - "--config"
+        - "/etc/app/config.json"
+        # ...
+        volumeMounts:
+        - name: application-config
+          mountPath: /etc/app
+          readOnly: true
+```
+
+The ConfigMap defining the `config.json` is somehow manually "crafted" from a bunch of chart values.
+
+```yaml title="application-config.yaml"
+kind: ConfigMap
+# ...
+data:
+  config.json: |
+    {
+      "name": "{{ .Values.app.name }}"
+      // ...
+    }
+```
+
+However, we recently introduced a new configuration file format, which does not required to pass the `--config` command-line argument anymore. Instead, the config file is automatically loaded by the HTTP server following certain naming conventions (see [cosmiconfig](https://www.npmjs.com/package/cosmiconfig) package).
+
+# Problem
+
+The config file is now defined in the source code of the project folder and not crafted together within the ConfigMap.
+
+Therefore, the question arises: **How can we mount the config file from the filesystem into the running docker container of the Kubernetes pod?**
+
+# Solution
+
+After several trials, I was able to make things work by leveraging the ConfigMap and the `--set-file` option of the Helm command.
+
+The ConfigMap is still necessary, as we need to mount the config file into the docker container. The only difference is that we need to mount a **single file** and that the content of the ConfigMap should be automatically read from the file on disk.
+
+Helm provides a `--set-file` option that we can use to read the content of the config file from disk. The content is then assigned to a template variable `applicationConfigJson` that we can reference into the ConfigMap:
+
+```yaml title="application-config.yaml" highlightLines="5"
+kind: ConfigMap
+# ...
+data:
+  config.json: |
+{{ .Values.applicationConfigJson | indent 4 }}
+```
+
+Then Helm command to deploy the chart should be updated as following:
+
+```console noPromptLines="2-3"
+helm upgrade --install \
+  --set-file applicationConfigJson="./path/to/application-config.json" \
+  # ...
+```
+
+Finally, the Kubernetes deployment should be updated as well by removing the `command` + `args` option and by specifying the `subPath` to the single file when mounting the volume:
+
+```yaml title="deployment.yaml" highlightLines="20-21"
+kind: Deployment
+# ...
+spec:
+  # ...
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/application-config.yaml") . | sha256sum }}
+        # ...
+    spec:
+      volumes:
+      - configMap:
+          name: application-config
+        name: application-config
+      containers:
+      - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        # ...
+        volumeMounts:
+        - name: application-config
+          mountPath: /app/application-config.json
+          subPath: application-config.json
+          readOnly: true
+```
+
+# Conclusion
+
+It was a bit tricky to find this solution but at the same time I learned a bunch of new things:
+- mounting a single file using the combination of `mountPath` and `subPath` options
+- using ConfigMaps is easy and very helpful for mounting volumes
+- using the `--set-file` option to assign the content of the file to a template variable
+
+Happy Helming and deployments! 🚀
