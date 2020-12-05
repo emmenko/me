@@ -48,7 +48,7 @@
     "theme-ui": "0.3.1"
   },
   "devDependencies": {
-    "eslint-config-react-app": "5.2.1",
+    "eslint-config-react-app": "6.0.0",
     "hast-util-heading": "1.0.4"
   },
   "resolutions": {
