@@ -1,6 +1,4 @@
-/** @jsx jsx */
-import React from 'react';
-import { jsx } from 'theme-ui';
+import { Fragment } from 'react';
 import { Box, Flex, Text } from '@theme-ui/components';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Layout from './layout';
@@ -42,10 +40,10 @@ const NotePage = (props) => (
           return linkTag;
         }
         return (
-          <React.Fragment key={tag.name}>
+          <Fragment key={tag.name}>
             {linkTag}
             {separator}
-          </React.Fragment>
+          </Fragment>
         );
       })}
       <Text as="p">{`About ${props.data.notePage.timeToRead} min read`}</Text>

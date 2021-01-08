@@ -1,8 +1,3 @@
-import React from 'react';
-
-// Generated with svgr
-// svgr --no-semi --icon <file-name>.svg
-
 const EmmenkoSvg = (props) => (
   <svg
     viewBox="0 0 512 512"

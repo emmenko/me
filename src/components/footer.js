@@ -1,13 +1,10 @@
-/** @jsx jsx */
-import React from 'react';
-import { jsx } from 'theme-ui';
 import { Flex } from '@theme-ui/components';
 import CookieConsent from './cookie-consent';
 
 const Footer = () => {
   const isClient = typeof window !== 'undefined';
   return (
-    <React.Fragment>
+    <>
       <Flex
         as="footer"
         sx={{
@@ -22,7 +19,7 @@ const Footer = () => {
         &copy; {new Date().getFullYear()}
       </Flex>
       {isClient && <CookieConsent />}
-    </React.Fragment>
+    </>
   );
 };
 

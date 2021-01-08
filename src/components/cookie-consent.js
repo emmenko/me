@@ -1,6 +1,4 @@
-/** @jsx jsx */
-import React from 'react';
-import { jsx } from 'theme-ui';
+import { useState } from 'react';
 import Cookies from 'js-cookie';
 import {
   Box,
@@ -13,7 +11,7 @@ import {
 } from '@theme-ui/components';
 
 const CookieConsent = () => {
-  const [cookieConsentStatus, setCookieConsentStatus] = React.useState(
+  const [cookieConsentStatus, setCookieConsentStatus] = useState(
     Cookies.get('gdpr-analytics-enabled')
   );
   // Show the cookie consent only if there is no cookie status set

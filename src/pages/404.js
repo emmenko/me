@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from 'theme-ui';
 import { Box, Link } from '@theme-ui/components';
 import Layout from '../components/layout';
 

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from 'theme-ui';
 import { Link as GatsbyLink } from 'gatsby';
 import { Link as HTMLLink } from '@theme-ui/components';
 

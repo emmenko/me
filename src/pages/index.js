@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from 'theme-ui';
 import { Box, Flex } from '@theme-ui/components';
 import Avatar from '../components/avatar';
 import Layout from '../components/layout';

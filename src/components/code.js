@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { jsx, Styled } from 'theme-ui';
+import { Themed } from 'theme-ui';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import { Box } from '@theme-ui/components';
 import codeBlockParseOptions from '../utils/code-block-parse-options';
@@ -93,7 +92,7 @@ const Code = ({ children, className: outerClassName, ...props }) => {
                 {title}
               </Box>
             )}
-            <Styled.pre
+            <Themed.pre
               className={`${outerClassName} ${className}`}
               style={style}
               sx={{
@@ -147,7 +146,7 @@ const Code = ({ children, className: outerClassName, ...props }) => {
                   </div>
                 );
               })}
-            </Styled.pre>
+            </Themed.pre>
           </Box>
         )}
       </Highlight>
