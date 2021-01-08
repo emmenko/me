@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from 'theme-ui';
 import { Box, Text } from '@theme-ui/components';
 import Layout from './layout';
 import SEO from './seo';

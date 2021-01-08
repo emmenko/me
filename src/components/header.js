@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { jsx, useColorMode } from 'theme-ui';
+import { useColorMode } from 'theme-ui';
 import { Box, Flex } from '@theme-ui/components';
 import GithubSvg from './svg/github';
 import TwitterSvg from './svg/twitter';
@@ -15,11 +14,7 @@ const Header = (props) => {
   };
 
   return (
-    <Box
-      id="top"
-      as="header"
-      sx={{ paddingY: 3, paddingX: [3, 4, 0] }}
-    >
+    <Box id="top" as="header" sx={{ paddingY: 3, paddingX: [3, 4, 0] }}>
       <Flex
         sx={{
           flexDirection: ['column-reverse', 'row'],

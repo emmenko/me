@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from 'theme-ui';
 import { Box } from '@theme-ui/components';
 import kebabCase from 'lodash.kebabcase';
 import Layout from './layout';

@@ -11,6 +11,12 @@ const siteMetadata = {
 
 module.exports = {
   siteMetadata,
+  flags: {
+    DEV_SSR: true,
+    FAST_DEV: true,
+    PRESERVE_WEBPACK_CACHE: true,
+    FAST_REFRESH: true,
+  },
   plugins: [
     {
       resolve: 'gatsby-source-filesystem',
@@ -96,7 +102,7 @@ module.exports = {
         cache_busting_mode: 'none',
         // Avoid adding the `theme-color` meta tag since we're using a theme.
         // https://www.gatsbyjs.org/packages/gatsby-plugin-manifest/#remove-theme-color-meta-tag
-        theme_color_in_head: false
+        theme_color_in_head: false,
       },
     },
     {

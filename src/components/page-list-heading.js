@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from 'theme-ui';
 import { Box, Heading } from '@theme-ui/components';
 
 const PageListHeading = (props) => (

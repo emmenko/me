@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from 'theme-ui';
 import { Flex, Box, Grid, Text } from '@theme-ui/components';
 import GatsbyImage from 'gatsby-image';
 import Layout from './layout';

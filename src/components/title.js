@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from 'theme-ui';
 import { Box, Flex } from '@theme-ui/components';
 
 // const Title = ({ text, children, as = `h2`, className }: TitleProps) => (

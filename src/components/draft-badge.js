@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from 'theme-ui';
 import { Flex, Text } from '@theme-ui/components';
 
 const DraftBadge = () => (

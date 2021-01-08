@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { jsx, Styled } from 'theme-ui';
+import { Themed } from 'theme-ui';
 import { Box, Link as HTMLLink } from '@theme-ui/components';
 import GatsbyImage from 'gatsby-image';
 
@@ -15,10 +14,10 @@ const FeatureImage = (props) => {
           p: { m: 0, color: 'secondary', fontSize: 1, textAlign: 'center' },
         }}
       >
-        <Styled.p>
+        <Themed.p>
           {'Photo by '}
           <HTMLLink href={props.authorUrl}>{props.author}</HTMLLink>
-        </Styled.p>
+        </Themed.p>
       </Box>
     </Box>
   );

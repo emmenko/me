@@ -1,6 +1,3 @@
-/** @jsx jsx */
-import React from 'react';
-import { jsx } from 'theme-ui';
 import { Box, Flex, Text, Link as HTMLLink } from '@theme-ui/components';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Layout from './layout';
@@ -39,12 +36,12 @@ const StoryPage = (props) => (
           </HTMLLink>
         )}
         {props.data.storyPage.pdf && (
-          <React.Fragment>
+          <>
             {props.data.storyPage.epub ? ' and ' : null}
             <HTMLLink href={props.data.storyPage.pdf.publicURL}>
               &#x2913; PDF
             </HTMLLink>
-          </React.Fragment>
+          </>
         )}
       </Box>
     ) : null}
