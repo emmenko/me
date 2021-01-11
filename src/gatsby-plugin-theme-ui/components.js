@@ -20,15 +20,18 @@ const InlineCode = (props) => (
     {props.children}
   </Themed.code>
 );
+const Pre = (props) => props.children;
 
-export default {
+const components = {
   h1: Themed.h2,
   h2: Themed.h3,
   h3: Themed.h4,
   h4: Themed.h5,
   h5: Themed.h6,
   StoryChapter,
-  pre: (props) => props.children,
+  pre: Pre,
   code: Code,
   inlineCode: InlineCode,
 };
+
+export default components;

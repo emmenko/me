@@ -38,8 +38,8 @@ const theme = {
     toggleIcon: '#121212',
     modes: {
       dark: {
-        text: '#e0e0e0',
-        background: '#121212',
+        text: '#c9d1d9',
+        background: '#0d1117',
         primary: '#e79a99',
         accent: '#e35750',
         secondary: '#bfbfbf',
@@ -53,10 +53,8 @@ const theme = {
   /* TYPOGRAPHY */
   fonts: {
     ...baseTheme.fonts,
-    body: ['"Avenir Next"', baseTheme.fonts.body].join(', '),
-    heading: '"Avenir Next"',
     home: 'Courier New',
-    story: 'Charter, "Avenir Next"',
+    story: 'Charter',
   },
   fontWeights: {
     ...baseFontWeights,
@@ -64,7 +62,7 @@ const theme = {
     heading: baseFontWeights.medium,
   },
   lineHeights: {
-    body: 1.75,
+    body: 1.5,
     heading: 1.25,
     story: 1.5,
   },
@@ -77,11 +75,11 @@ const theme = {
   styles: {
     ...baseTheme.styles,
     a: { variant: 'links.primary' },
-    p: { mt: 3, mb: 4 },
-    h1: { ...heading, fontSize: 5, mt: 6, mb: 4, fontWeight: 'bold' },
-    h2: { ...heading, fontSize: 4, mt: 5, mb: 3, fontWeight: 'semibold' },
-    h3: { ...heading, fontSize: 3, mt: 4, mb: 2, fontWeight: 'semibold' },
-    h4: { ...heading, fontSize: 2, mt: 3, mb: 1 },
+    p: { mt: 2, mb: 3, fontSize: 2 },
+    h1: { ...heading, fontSize: 5, mt: 5, mb: 4, fontWeight: 'bold' },
+    h2: { ...heading, fontSize: 4, mt: 4, mb: 3, fontWeight: 'semibold' },
+    h3: { ...heading, fontSize: 3, mt: 3, mb: 2, fontWeight: 'semibold' },
+    h4: { ...heading, fontSize: 2, mt: 2, mb: 1 },
     h5: { ...heading, fontSize: 1 },
     hr: {
       bg: 'muted',
