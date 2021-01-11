@@ -167,8 +167,10 @@ const theme = {
       },
       // Visually group the list to the previous paragraph
       'p + ul': {
-        mt: -3,
-        mb: 5,
+        mb: 4,
+      },
+      'li + li': {
+        mt: 2,
       },
     },
     story: {
