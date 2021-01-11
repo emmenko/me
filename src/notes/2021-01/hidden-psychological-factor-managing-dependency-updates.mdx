@@ -1,0 +1,84 @@
+---
+title: The hidden psychological factor of managing dependency updates
+date: 2021-01-11
+description: Dealing with dependency updates can get stressful. Let's talk about it.
+tags:
+  - Automation
+  - Health
+featureImage:
+  url: "https://images.unsplash.com/photo-1456162018889-1d2b969f7084?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=3752&q=80"
+  author: Cristian Newman
+  authorUrl: https://unsplash.com/@cristian_newman
+---
+
+Let's get to the point right away: managing dependency updates is not that simple (yes it's hard!). Of course it can also be fun but I'm here to talk about the unpleasant parts.
+
+# Some facts
+
+If you are a JavaScript developer you probably have encountered this situation. If not, I guess lucky you? Oh and if you are not a JavaScript developer spare yourself some pain and don't bother reading this (_unless of course you also experienced something similar in other ecosystems in which case I'd love to hear your thoughts_).
+
+> npm is the world's largest software registry. Open source developers from every continent use npm to share and borrow packages, and many organizations use npm to manage private development as well.
+
+At this time of writing NPM has about 1.5 million packages. That's a lot.
+As the JavaScript ecosystem has been growing, many packages depend on each other more and more. Sometimes [they even cause major disruptions across the industry](https://blog.npmjs.org/post/141577284765/kik-left-pad-and-npm).
+
+# Drawing the picture
+
+When you start a project or a library chances are that you need some other libraries to help you building your thing.
+Let's say that you _only_ need one library. You define it as a dependency in your `package.json`. That looks simple enough, doesn't it?<br/>
+You continue building your thing and you're happy. At this point you might have some options:
+
+* Keep doing your thing, don't bother about updating your dependency.
+* You manually check from time to time if the dependency has newer released versions.
+* You want to get newer updates as soon as possible, so you use something like [Renovate](https://www.whitesourcesoftware.com/free-developer-tools/renovate) or [Dependabot](https://dependabot.com/) to automate the process of updating your `package.json`.
+* You delegate to someone else...
+
+# Automation it is, but...
+
+Assuming that you do care about keeping your project somehow up-to-date, **how do you make sure that newer updates do not change or break the behavior of your library or application**?
+
+Of course you would need to have some kind of testing environment in place that makes sure that you keep the same behavior. It can be just a bunch of unit tests or more sophisticated test environments including integration tests, end-to-end tests, visual regression tests, etc.
+
+But even if you have that, **are you really sure and confident that things are going to keep working fine**? It's _just_ one dependency that you updated, right?<br/>
+It could be, but that dependency might depend on hundreds of other dependencies, and so on and so on. It's kind of a scary thought to be honest.
+
+What if your project depends on more than one dependency though? You might even use a mono-repository (which is quite popular nowadays) with hundreds of dependencies.<br/>
+Suddenly things do not look so bright anymore.
+
+# Feeling the pressure
+
+So how do you handle things and cope with that?
+
+Personally, I do love automation. No matter if the project is small or big, I always try to automate things as much as possible. This includes both getting automatic updates and having a CI environment as the first line of defense and confidence boost.
+
+This is extremely helpful especially if I have to juggle between dozens of repositories.
+
+At the same time, I started noticing that having all this automation sometimes comes with a drawback: it creates a **psychological pressure for having to handle these updates**.
+
+Updates usually come in the form of a Pull Request by the integration app of your choice (I usually use [Renovate](https://www.whitesourcesoftware.com/free-developer-tools/renovate)). You can get one Pull Request for each dependency or luckily you can also get the updates grouped together (less Pull Requests, happier developers).
+
+Still, the fact that there are open Pull Requests all over the repositories does have some sort of **pressure** on you or your team. Who does want to keep open Pull Requests around anyway, right?<br/>
+Let's just go ahead and merge them, and maybe do a new release of our libraries.<br/>
+Sometimes it's as simple as that, sometimes you end up in the rabbit hole.
+
+# Finding the balance
+
+My team and I have settled on a weekly update schedule, meaning that we don't get spammed with Pull Requests on a daily basis whenever there is an update to a library. This helps a lot but it also means that every week we get potentially several aggregated updates to deal with.<br/>
+And we're talking about JavaScript, so there are usually lots of updates.
+
+Of course there is always the option to procrastinate and handle the updates "another time". **The more you leave an update pending though, the more pressure you might feel and possibly the harder would be to deal with the update smoothly** (for example having to migrate or refactor code).
+
+It's a **balance** that you and your team have to find, as well as **embracing and being aware of the pros and cons**.
+
+To be fair, sometimes updates are simply not meant to be dealt with immediately. For instance, a major [Webpack](https://webpack.js.org/) update will most likely require the ecosystem (of Webpack) to catch up first, before you are able to actually use the new Webpack version.<br/>
+And this is also a problem.<br/>
+People having to "wait" for other libraries to catch up are implicitly **creating and putting pressure on maintainers** of those other libraries to "_support the new Webpack version_". Or any other library, Webpack is just an example to convey the point.
+
+Moreover, dependency resolution is also often times a cause of issues and frustration, leading again to additional pressure.
+
+# Conclusion
+
+Managing dependencies can be simple and fun but also complicated and frustrating. And it does come with a psychological aspect that you need to be aware of, both for yourself, your team, and other people that you might rely on.<br/>
+It's an important task of our job as software developers to deal with it, to do it responsibly, and do it safely.
+
+Stay safe and healthy, and find the right balance.
