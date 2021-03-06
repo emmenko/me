@@ -1,6 +1,6 @@
 import { Themed } from 'theme-ui';
 import { Box, Link as HTMLLink } from '@theme-ui/components';
-import GatsbyImage from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 const FeatureImage = (props) => {
   if (!props.image) {
@@ -8,7 +8,7 @@ const FeatureImage = (props) => {
   }
   return (
     <Box sx={{ mb: [3, 4] }}>
-      <GatsbyImage fluid={props.image.childImageSharp.fluid} />
+      <GatsbyImage image={props.image.childImageSharp.gatsbyImageData} />
       <Box
         sx={{
           p: { m: 0, color: 'secondary', fontSize: 1, textAlign: 'center' },

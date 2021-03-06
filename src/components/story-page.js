@@ -1,5 +1,6 @@
 import { Box, Flex, Text, Link as HTMLLink } from '@theme-ui/components';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { getSrc } from 'gatsby-plugin-image';
 import Layout from './layout';
 import SEO from './seo';
 import PageHeading from './page-heading';
@@ -13,7 +14,7 @@ const StoryPage = (props) => (
       templateTitle="A short story by Nicola Molinari"
       description={props.data.storyPage.description}
       pathname={props.path}
-      image={props.data.storyPage.featureImage.image.childImageSharp.fluid.src}
+      image={getSrc(props.data.storyPage.featureImage.image)}
     />
     <PageHeading
       isDraft={props.data.storyPage.isDraft}

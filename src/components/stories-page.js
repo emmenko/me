@@ -1,5 +1,5 @@
 import { Flex, Box, Grid, Text } from '@theme-ui/components';
-import GatsbyImage from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import Layout from './layout';
 import SEO from './seo';
 import Link from './link';
@@ -19,7 +19,7 @@ const StoriesPage = (props) => {
           <Grid gap={[3]} columns={[1, 2]} key={story.slug}>
             <Box sx={{ padding: [null, 2, 4] }}>
               <GatsbyImage
-                fluid={story.featureImage.image.childImageSharp.fluid}
+                image={story.featureImage.image.childImageSharp.gatsbyImageData}
               />
             </Box>
             <Flex sx={{ flexDirection: 'column', justifyContent: 'center' }}>

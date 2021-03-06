@@ -104,9 +104,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         tags: { type: '[NotePageTag]' },
         featureImage: { type: 'FeatureImage' },
       },
-      extensions: {
-        nodeInterface: true,
-      },
+      interfaces: ['Node'],
     }),
     schema.buildObjectType({
       name: 'MdxNotePage',
@@ -156,9 +154,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         epub: { type: 'File', extensions: { fileByRelativePath: {} } },
         pdf: { type: 'File', extensions: { fileByRelativePath: {} } },
       },
-      extensions: {
-        nodeInterface: true,
-      },
+      interfaces: ['Node'],
     }),
     schema.buildObjectType({
       name: 'MdxStoryPage',
