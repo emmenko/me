@@ -1,5 +1,6 @@
 import { Box, Heading, Flex, Text } from '@theme-ui/components';
 import DraftBadge from './draft-badge';
+import AudioSvg from './svg/audio';
 
 const PageHeading = (props) => (
   <Box sx={{ mb: 4 }}>
@@ -32,12 +33,15 @@ const PageHeading = (props) => (
             rel="noopener noreferrer"
             target="blank"
             data-readmoapp
-            sx={{ '> * + *': { ml: 2 } }}
           >
-            <Text as="span" variant="typography.emoji">
-              🎧
+            <AudioSvg width={24} height={24} />
+            <Text
+              as="span"
+              variant="links.primary"
+              sx={{ ml: 1, fontStyle: 'normal', fontWeight: 'normal' }}
+            >
+              {props.listenToLabel}
             </Text>
-            <Text as="span">{props.listenToLabel}</Text>
           </Flex>
         </Box>
       </Flex>

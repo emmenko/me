@@ -225,10 +225,6 @@ const theme = {
         textAlign: 'center',
       },
     },
-    emoji: {
-      color: 'transparent',
-      textShadow: (theme) => `0 0 0 ${theme.colors.text}`,
-    },
   },
   badges: {
     draft: {
