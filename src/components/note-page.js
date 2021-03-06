@@ -24,6 +24,8 @@ const NotePage = (props) => (
     <PageHeading
       isDraft={props.data.notePage.isDraft}
       title={props.data.notePage.title}
+      slug={props.data.notePage.slug}
+      listenToLabel="Listen to this article"
     >
       <Text as="time">{props.data.notePage.date}</Text>
       <span>{' in '}</span>

@@ -104,6 +104,7 @@ const theme = {
   links: {
     icons: {
       cursor: 'pointer',
+      textDecoration: 'none',
       '> svg': {
         fill: 'primary',
       },

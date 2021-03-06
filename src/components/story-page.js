@@ -18,6 +18,8 @@ const StoryPage = (props) => (
     <PageHeading
       isDraft={props.data.storyPage.isDraft}
       title={props.data.storyPage.title}
+      slug={props.data.storyPage.slug}
+      listenToLabel="Listen to this story"
     >
       <Text as="time">{`Published on ${props.data.storyPage.releaseDate}`}</Text>
       <Text as="p">{`About ${props.data.storyPage.timeToRead} min read`}</Text>

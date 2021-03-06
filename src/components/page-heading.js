@@ -1,5 +1,7 @@
-import { Box, Heading } from '@theme-ui/components';
+import { Box, Heading, Flex, Text } from '@theme-ui/components';
+import { isBrowserSupported } from '@readmo/sdk';
 import DraftBadge from './draft-badge';
+import AudioSvg from './svg/audio';
 
 const PageHeading = (props) => (
   <Box sx={{ mb: 4 }}>
@@ -16,7 +18,36 @@ const PageHeading = (props) => (
         mb: 3,
       }}
     >
-      {props.children}
+      <Flex
+        sx={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignContent: 'flex-start',
+        }}
+      >
+        <Box>{props.children}</Box>
+        {isBrowserSupported() && (
+          <Box>
+            <Flex
+              as="a"
+              variant="links.icons"
+              href={props.slug}
+              rel="noopener noreferrer"
+              target="blank"
+              data-readmoapp
+            >
+              <AudioSvg width={24} height={24} />
+              <Text
+                as="span"
+                variant="links.primary"
+                sx={{ ml: 1, fontStyle: 'normal', fontWeight: 'normal' }}
+              >
+                {props.listenToLabel}
+              </Text>
+            </Flex>
+          </Box>
+        )}
+      </Flex>
     </Box>
   </Box>
 );
