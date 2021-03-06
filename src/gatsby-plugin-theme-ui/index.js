@@ -104,6 +104,7 @@ const theme = {
   links: {
     icons: {
       cursor: 'pointer',
+      textDecoration: 'none',
       '> svg': {
         fill: 'primary',
       },
@@ -223,6 +224,10 @@ const theme = {
       pre: {
         textAlign: 'center',
       },
+    },
+    emoji: {
+      color: 'transparent',
+      textShadow: (theme) => `0 0 0 ${theme.colors.text}`,
     },
   },
   badges: {

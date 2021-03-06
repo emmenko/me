@@ -1,4 +1,4 @@
-import { Box, Heading } from '@theme-ui/components';
+import { Box, Heading, Flex, Text } from '@theme-ui/components';
 import DraftBadge from './draft-badge';
 
 const PageHeading = (props) => (
@@ -16,7 +16,31 @@ const PageHeading = (props) => (
         mb: 3,
       }}
     >
-      {props.children}
+      <Flex
+        sx={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignContent: 'flex-start',
+        }}
+      >
+        <Box>{props.children}</Box>
+        <Box>
+          <Flex
+            as="a"
+            variant="links.icons"
+            href={props.slug}
+            rel="noopener noreferrer"
+            target="blank"
+            data-readmoapp
+            sx={{ '> * + *': { ml: 2 } }}
+          >
+            <Text as="span" variant="typography.emoji">
+              🎧
+            </Text>
+            <Text as="span">{props.listenToLabel}</Text>
+          </Flex>
+        </Box>
+      </Flex>
     </Box>
   </Box>
 );
