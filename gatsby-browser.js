@@ -15,12 +15,12 @@ export const onClientEntry = async (
     },
     theme: {
       light: {
-        highlightTextColor: '#272727',
-        highlightGradient: 'linear-gradient(-10deg, #e35750, #e79a99)',
+        highlightTextColor: '#414141',
+        highlightGradient: 'linear-gradient(-5deg, #f5f5f5, #f5f5f5)',
       },
       dark: {
-        highlightTextColor: '#272727',
-        highlightGradient: 'linear-gradient(-10deg, #e35750, #e79a99)',
+        highlightTextColor: '#c9d1d9',
+        highlightGradient: 'linear-gradient(-10deg, #0d1117, #0d1117)',
       },
     },
   });
