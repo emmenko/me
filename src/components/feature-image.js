@@ -1,5 +1,5 @@
 import { Themed } from 'theme-ui';
-import { Box, Link as HTMLLink } from '@theme-ui/components';
+import { Box, Flex, Link as HTMLLink } from '@theme-ui/components';
 import { GatsbyImage } from 'gatsby-plugin-image';
 
 const FeatureImage = (props) => {
@@ -7,8 +7,11 @@ const FeatureImage = (props) => {
     return null;
   }
   return (
-    <Box sx={{ mb: [3, 4] }}>
-      <GatsbyImage image={props.image.childImageSharp.gatsbyImageData} />
+    <Flex sx={{ mb: [3, 4], flexDirection: 'column' }}>
+      <GatsbyImage
+        image={props.image.childImageSharp.gatsbyImageData}
+        alt={`Photo by ${props.author}`}
+      />
       <Box
         sx={{
           p: { m: 0, color: 'secondary', fontSize: 1, textAlign: 'center' },
@@ -19,7 +22,7 @@ const FeatureImage = (props) => {
           <HTMLLink href={props.authorUrl}>{props.author}</HTMLLink>
         </Themed.p>
       </Box>
-    </Box>
+    </Flex>
   );
 };
 

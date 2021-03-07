@@ -20,6 +20,7 @@ const StoriesPage = (props) => {
             <Box sx={{ padding: [null, 2, 4] }}>
               <GatsbyImage
                 image={story.featureImage.image.childImageSharp.gatsbyImageData}
+                alt=""
               />
             </Box>
             <Flex sx={{ flexDirection: 'column', justifyContent: 'center' }}>
