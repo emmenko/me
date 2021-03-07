@@ -26,6 +26,7 @@ const NotePage = (props) => (
       isDraft={props.data.notePage.isDraft}
       title={props.data.notePage.title}
       slug={props.data.notePage.slug}
+      editUrl={props.data.notePage.editUrl}
       listenToLabel="Listen to this article"
     >
       <Text as="time">{props.data.notePage.date}</Text>

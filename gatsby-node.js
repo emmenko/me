@@ -1,7 +1,15 @@
+const path = require('path');
 const kebabCase = require('lodash.kebabcase');
 const { createRemoteFileNode } = require('gatsby-source-filesystem');
 
 const trimTrailingSlash = (url) => url.replace(/(\/?)$/, '');
+
+const getEditUrlPath = (pageRootFolder, relativeFilePath) =>
+  path.join(
+    `https://github.com/emmenko/me/edit/main/src`,
+    pageRootFolder,
+    relativeFilePath
+  );
 
 const mdxResolverPassthrough = (fieldName) => async (
   source,
@@ -101,8 +109,9 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         body: { type: 'String!' },
         html: { type: 'String' },
         timeToRead: { type: 'Int' },
-        tags: { type: '[NotePageTag]' },
+        tags: { type: '[NotePageTag]', args: {} },
         featureImage: { type: 'FeatureImage' },
+        editUrl: { type: 'String!' },
       },
       interfaces: ['Node'],
     }),
@@ -131,8 +140,9 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
           type: 'Int',
           extensions: { mdxpassthrough: { fieldName: 'timeToRead' } },
         },
-        tags: { type: '[NotePageTag]' },
+        tags: { type: '[NotePageTag]', args: {} },
         featureImage: { type: 'FeatureImage' },
+        editUrl: { type: 'String!' },
       },
       interfaces: ['Node', 'NotePage'],
     }),
@@ -153,6 +163,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         featureImage: { type: 'FeatureImage' },
         epub: { type: 'File', extensions: { fileByRelativePath: {} } },
         pdf: { type: 'File', extensions: { fileByRelativePath: {} } },
+        editUrl: { type: 'String!' },
       },
       interfaces: ['Node'],
     }),
@@ -175,6 +186,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         featureImage: { type: 'FeatureImage' },
         epub: { type: 'File', extensions: { fileByRelativePath: {} } },
         pdf: { type: 'File', extensions: { fileByRelativePath: {} } },
+        editUrl: { type: 'String!' },
       },
       interfaces: ['Node', 'StoryPage'],
     }),
@@ -213,6 +225,7 @@ exports.onCreateNode = async (gatsbyApi) => {
       description: gatsbyApi.node.frontmatter.description,
       date: gatsbyApi.node.frontmatter.date,
       tags: modifiedTags,
+      editUrl: getEditUrlPath('notes', fileNode.relativePath),
     };
     if (gatsbyApi.node.frontmatter.featureImage) {
       fieldData.featureImage = await createFeatureImage(gatsbyApi);
@@ -251,6 +264,7 @@ exports.onCreateNode = async (gatsbyApi) => {
       releaseDate: gatsbyApi.node.frontmatter.releaseDate,
       epub: gatsbyApi.node.frontmatter.epub,
       pdf: gatsbyApi.node.frontmatter.pdf,
+      editUrl: getEditUrlPath('stories', fileNode.relativePath),
     };
     if (gatsbyApi.node.frontmatter.featureImage) {
       fieldData.featureImage = await createFeatureImage(gatsbyApi);
