@@ -8,16 +8,18 @@ const IndexPage = () => {
     <Layout alignContent="center" pageContext={{ breadcrumbs: [] }}>
       <Box
         sx={{
-          marginY: [4, 5],
+          mt: [4, 5],
+          mb: [4, 5],
           fontFamily: 'home',
-          border: '1px solid',
-          borderColor: 'primary',
+          fontSize: 5,
           backgroundColor: 'background',
-          letterSpacing: '0.2rem',
+          letterSpacing: '0.75rem',
           paddingY: 1,
           paddingX: 2,
           width: 'auto',
           alignItems: 'center',
+          textTransform: 'uppercase',
+          textAlign: 'center',
         }}
       >
         {'Nicola Molinari'}
