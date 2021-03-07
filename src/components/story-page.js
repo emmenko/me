@@ -20,6 +20,7 @@ const StoryPage = (props) => (
       isDraft={props.data.storyPage.isDraft}
       title={props.data.storyPage.title}
       slug={props.data.storyPage.slug}
+      editUrl={props.data.storyPage.editUrl}
       listenToLabel="Listen to this story"
     >
       <Text as="time">{`Published on ${props.data.storyPage.releaseDate}`}</Text>
