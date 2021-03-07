@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import { Box, Flex, Text } from '@theme-ui/components';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { getSrc } from 'gatsby-plugin-image';
 import Layout from './layout';
 import SEO from './seo';
 import Link from './link';
@@ -17,7 +18,7 @@ const NotePage = (props) => (
       pathname={props.path}
       image={
         props.data.notePage.featureImage
-          ? props.data.notePage.featureImage.image.childImageSharp.fluid.src
+          ? getSrc(props.data.notePage.featureImage.image)
           : undefined
       }
     />

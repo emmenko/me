@@ -15,7 +15,6 @@ module.exports = {
     DEV_SSR: true,
     FAST_DEV: true,
     PRESERVE_WEBPACK_CACHE: true,
-    FAST_REFRESH: true,
   },
   plugins: [
     {
@@ -67,6 +66,7 @@ module.exports = {
         ],
       },
     },
+    'gatsby-plugin-image',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     'gatsby-plugin-catch-links',

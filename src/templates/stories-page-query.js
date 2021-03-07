@@ -16,9 +16,7 @@ export const query = graphql`
         featureImage {
           image {
             childImageSharp {
-              fluid(maxWidth: 376, maxHeight: 376) {
-                ...GatsbyImageSharpFluid
-              }
+              gatsbyImageData(width: 376, height: 376, layout: CONSTRAINED)
             }
           }
           author
