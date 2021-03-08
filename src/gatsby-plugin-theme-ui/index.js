@@ -42,7 +42,7 @@ const theme = {
         background: '#0d1117',
         primary: '#e79a99',
         accent: '#e35750',
-        secondary: '#bfbfbf',
+        secondary: '#8b949e',
         muted: '#e2e2e2',
         highlight: '#272727',
         code: '#232323',
@@ -156,7 +156,8 @@ const theme = {
         padding: 2,
         borderLeft: '4px solid',
         borderColor: 'secondary',
-        backgroundColor: 'highlight',
+        borderRadius: '2px',
+        color: 'secondary',
         p: {
           margin: 0,
         },

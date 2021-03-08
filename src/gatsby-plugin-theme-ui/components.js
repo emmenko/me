@@ -8,9 +8,9 @@ const StoryChapter = (props) => (
 const InlineCode = (props) => (
   <Themed.code
     sx={{
-      backgroundColor: 'muted',
+      backgroundColor: 'highlight',
       borderRadius: '2px',
-      color: 'code',
+      color: 'secondary',
       fontFamily: 'monospace',
       fontSize: 1,
       paddingY: '2px',
