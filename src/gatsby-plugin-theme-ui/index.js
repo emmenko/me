@@ -23,8 +23,6 @@ const baseFontWeights = {
 
 const theme = {
   ...baseTheme,
-  /* THEME OPTIONS */
-  useColorSchemeMediaQuery: true,
   /* COLORS */
   colors: {
     text: '#424242',
