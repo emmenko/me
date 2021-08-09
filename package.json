@@ -20,6 +20,7 @@
   "dependencies": {
     "@mdx-js/mdx": "1.6.22",
     "@mdx-js/react": "1.6.22",
+    "@netlify/plugin-gatsby": "1.0.3",
     "@readmo/sdk": "0.1.1",
     "@theme-ui/components": "0.10.0",
     "@theme-ui/preset-base": "0.10.1",
@@ -30,7 +31,6 @@
     "gatsby-plugin-image": "1.11.0",
     "gatsby-plugin-manifest": "3.11.0",
     "gatsby-plugin-mdx": "2.11.0",
-    "gatsby-plugin-netlify-cache": "1.2.0",
     "gatsby-plugin-offline": "4.11.0",
     "gatsby-plugin-react-helmet": "4.11.0",
     "gatsby-plugin-sharp": "3.11.0",
