@@ -2,5 +2,8 @@
   publish = "public"
   command = "yarn build"
 
+[build.environment]
+  YARN_VERSION = "1.22.5"
+
 [[plugins]]
 package = "@netlify/plugin-gatsby"
