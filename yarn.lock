@@ -10263,15 +10263,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql-compose@npm:^7.25.0":
-  version: 7.25.1
-  resolution: "graphql-compose@npm:7.25.1"
+"graphql-compose@npm:^9.0.0":
+  version: 9.0.10
+  resolution: "graphql-compose@npm:9.0.10"
   dependencies:
     graphql-type-json: 0.3.2
-    object-path: 0.11.5
-  peerDependencies:
-    graphql: ^14.2.0 || ^15.0.0
-  checksum: 143391aa4e810fd5eb1258e206b161df9e4817b7756116d71f8a75b90f138ec3c705bbc2454e75146d076d5ace3a2138418c10d0b5fbf51b9951b8092e3571ae
+  checksum: 46c566470a41d9ed5065b2ac2c50c870d34e5d03fff7eaa71cf10212a6492d1eef8a6ed9df012fbbfc85fa587eddbf498ce115015b075630f2c4168fcd447810
   languageName: node
   linkType: hard
 
@@ -14259,13 +14256,6 @@ __metadata:
   version: 1.1.1
   resolution: "object-keys@npm:1.1.1"
   checksum: b363c5e7644b1e1b04aa507e88dcb8e3a2f52b6ffd0ea801e4c7a62d5aa559affe21c55a07fd4b1fd55fc03a33c610d73426664b20032405d7b92a1414c34d6a
-  languageName: node
-  linkType: hard
-
-"object-path@npm:0.11.5":
-  version: 0.11.5
-  resolution: "object-path@npm:0.11.5"
-  checksum: 25525900930e1772d6da5d8c8e0ea703b9e504574b1428b6f6987c1ad6b0bc143ce2c8fcf2616abdc80bd1af127760136a1a027a867759b042f68513fc387426
   languageName: node
   linkType: hard
 
