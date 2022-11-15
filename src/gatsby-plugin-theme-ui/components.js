@@ -1,4 +1,4 @@
-import { Themed } from 'theme-ui';
+import { Themed } from '@theme-ui/mdx';
 import { Box } from '@theme-ui/components';
 import Code from '../components/code';
 

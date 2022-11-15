@@ -1,4 +1,4 @@
-import { Themed } from 'theme-ui';
+import { Themed } from '@theme-ui/mdx';
 import { Box, Flex, Link as HTMLLink } from '@theme-ui/components';
 import { GatsbyImage } from 'gatsby-plugin-image';
 

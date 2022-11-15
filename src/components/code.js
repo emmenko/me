@@ -1,5 +1,5 @@
-import { Themed } from 'theme-ui';
 import Highlight, { defaultProps } from 'prism-react-renderer';
+import { Themed } from '@theme-ui/mdx';
 import { Box } from '@theme-ui/components';
 import codeBlockParseOptions from '../utils/code-block-parse-options';
 
