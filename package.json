@@ -52,7 +52,7 @@
     "theme-ui": "0.15.4"
   },
   "devDependencies": {
-    "eslint-config-react-app": "6.0.0",
+    "eslint-config-react-app": "7.0.1",
     "hast-util-heading": "1.0.5"
   },
   "resolutions": {
